@@ -1,0 +1,57 @@
+<!-- React without JSX -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS Essentials</title>
+</head>
+<body>
+<h1>Add React in One Minute</h1>
+<p>This page demonstrates using React with no build tooling.</p>
+<p>React is loaded as a script tag.</p>
+<div id="like_button_container"></div>
+<script type="text/javascript" src="index-without-jsx.html"></script>
+<!-- Load React. -->
+<!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+<script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+<!-- For using JSX (JavaScript XML) -> it allows  to write HTML in React -->
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<script type="text/babel"> // babel is necessary for JSX
+
+// Defines a React component called LikeButton
+class LikeButton extends React.Component {
+
+    // Constructor which contains the state
+    constructor(props) {
+        super(props);
+        this.state = {liked: false}; // state liked standard value is false
+    }
+
+    // Contains the UI
+    render() {
+
+        // Logic for changing the state
+        if (this.state.liked) {
+            return 'You liked this.';
+        }
+
+        // Creates the button element
+        // DOES NOT USE JSX! THEREFORE NOT SO NICE TO READ
+        return React.createElement('div', {}, React.createElement(
+            'button', // HTML element
+            {onClick: () => this.setState({liked: true})}, // Properties of the element
+            'Like' // Text of the element
+        ));
+    }
+}
+
+// Render the like_button_container to the DOM
+const domContainer =
+    document.querySelector('#like_button_container');
+// Append the created LikeButton to the container
+ReactDOM.render(React.createElement(LikeButton), domContainer);
+
+</script>
+</body>
+</html>
