@@ -1,6 +1,6 @@
 import React from "react";
-import {ButtonProps} from "../../interfaces";
-import './button.css'
+import {ButtonProps} from "./interfaces";
+import './button.css';
 
 // "React.FC" is needed if a functional component is needed for the interface
 // Props can be replaced by "({type='default'})" and used later as "type"

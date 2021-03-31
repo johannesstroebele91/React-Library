@@ -26,7 +26,7 @@ class HomePage extends React.Component {
 ```
 
 # 1.2. Styling via className
-* Classes are passed as strings via the "className" prop 
+* classes are passed as strings via the "className" prop 
 * depend on props/state for dynamically rendering UI
 * have better performance than inline styles due to caching of css files
 
