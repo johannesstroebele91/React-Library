@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
+// Styling files can be imported into script files
+import './App.css';
+import {Button} from "./components/button/button";
+
+// Only the App.tsx gets changed in an React app
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <h1>Headline</h1>
+            {/* Comments in JSX must be written in curly braces */}
+            {/* button can be type primary or default */}
+            <Button type={'primary'}>Primary</Button>
+            <Button type={'default'}>Default</Button>
+        </>
+    );
 }
 
 export default App;
