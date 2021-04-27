@@ -23,10 +23,12 @@ https://reactjs.org/docs/create-a-new-react-app.html
 - so you can use it with any backend you want
 
 **Instructions**
-- When you’re ready to deploy to production,
-- running ```npm run``` build will
-- create an optimized build of your app
-- in the build folder
+- ```npm run``` or ```npm run build```
+- Will start the development server
+  - When you’re ready to deploy to production,
+  - running this cmd will create an optimized build of your app
+  - in the build folder
+- ```npm start```
 
 **Under the hood, it uses:**
 - Babel
@@ -52,4 +54,3 @@ https://reactjs.org/docs/create-a-new-react-app.html
   * Node.js is used for two reasons
     * Creating the React App ```create-react-app``` 
     * And for the development server (preview), which is responsible for the behind the scenes optimization steps
-
