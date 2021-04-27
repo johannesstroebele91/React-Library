@@ -10,11 +10,10 @@
     - imports the whole React app
     - by importing it from the `App.tsx` 
     - Further, it forwards all code to the `public/index.html`
-    - using the syntax JSX/TSX
-- `App.js/tsx`: manages all of the React component
+- `App.js/tsx`: root component
+  - which manages all of the React component
   - by referencing all other React components 
   - and exporting its content using `export default App;`
-  - using the syntax JSX/TSX
 - `package.json`
   - holes all the dependencies of the project
   - e.g. react, react-dom, ...

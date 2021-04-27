@@ -1,12 +1,27 @@
+- [1) Basics](#1-basics)
+- [2) Advantages](#2-advantages)
+- [3) Types of Components](#3-types-of-components)
+
 # 1) Basics
 
-In React all user interfaces are made up of components
+- In React components are custom HTML elements,
+- which make up the user interfaces of the application
 
-- They enable to split the app
-- into independent reusable pieces
-- which are isolated from each other
+- The components based approach enable to split the app
+- into independent reusable pieces (isolated from each other)
+- that work together to make the whole application work
 
-**Example**
+- This is done by building a component tree, e.g.:
+  - <App/>
+    - <Header/>
+    - <Tasks/>
+      - <Task/>
+      - <Task/>
+      - <Task/>
+
+**A component in React is**
+* practically just a JS function
+* as can be seen in the following example:
 
 ```javascript
 function App() {
@@ -16,8 +31,9 @@ function App() {
     </div>
   }
 }
+```
 
-## 1.1) Advantage
+# 2) Advantages
 
 - Reusability:
   - enables to reuse components just with "different data"
@@ -28,14 +44,7 @@ function App() {
   - Split big junks into smaller functions
     - combining functions to create something larger
 
-## 1.2) Naming
-
-- the name may be capitalized (e.g. NewsFeed)
-- can only have 1 parent element
-  - e.g. `<div className=""parent""></div>`
-  - an empty parent element can be created using `javascript<React.Fragment></React.Fragment>` or `<></>`)
-
-## 2. Types of Components
+# 3) Types of Components
 
 1. Class Components:
 
@@ -50,4 +59,3 @@ function App() {
 - returns a React element
   - less functionality out of the box
   - but is expendable using Hooks
-```
