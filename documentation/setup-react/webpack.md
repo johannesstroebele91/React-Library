@@ -30,7 +30,7 @@
 
 - starting point for webpack js a JS file
 - from which all the dependencies of a frontend project are collected
-- most often it is the default file src/index.js
+- most often it is the default file ```src/index.js``` or ```src/index.ts```
 
 ## Output
 

@@ -1,7 +1,15 @@
 # Basics
-- public: building folder
-- src: actual source files
-- package.json
+- `public`: building folder
+  - `public/index.html`:
+    - is the single HTML file which is loaded in the browser
+    - so it is the single page of the SPA
+    - It includes the 'root' element,
+    - which ReactDOM uses to render something in this place 
+- `src`: actual source files
+  - `index.js/ts`: is the entry file of the project `src/index.js` or `src/index.ts` which references the `public/index.html`
+  - `App.js`: manages all of the React component
+  - and is injected into the element  `<App />` 
+- `package.json`
   - holes all the dependencies of the project
   - e.g. react, react-dom, ...
   - scripts
