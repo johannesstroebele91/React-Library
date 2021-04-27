@@ -1,0 +1,21 @@
+# Basics
+- `public`: building folder
+  - `public/index.html`:
+    - is the single HTML file which is loaded in the browser
+    - so it is the single page of the SPA
+    - It includes the 'root' element,
+    - which ReactDOM uses to render something in this place 
+- `src`: actual source files
+  - `index.js/ts`: is the entry file of the project `src/index.js` or `src/index.js/tsx`
+    - imports the whole React app
+    - by importing it from the `App.tsx` 
+    - Further, it forwards all code to the `public/index.html`
+    - using the syntax JSX/TSX
+- `App.js/tsx`: manages all of the React component
+  - by referencing all other React components 
+  - and exporting its content using `export default App;`
+  - using the syntax JSX/TSX
+- `package.json`
+  - holes all the dependencies of the project
+  - e.g. react, react-dom, ...
+  - scripts

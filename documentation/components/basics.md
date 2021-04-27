@@ -1,10 +1,21 @@
 # 1) Basics
 
-= all UIs are made up of components
+In React all user interfaces are made up of components
 
-- enable to split the app into
-- independent reusable pieces
+- They enable to split the app
+- into independent reusable pieces
 - which are isolated from each other
+
+**Example**
+
+```javascript
+function App() {
+  return{
+    <div>
+      <h1>Hello</h1>
+    </div>
+  }
+}
 
 ## 1.1) Advantage
 
@@ -39,3 +50,4 @@
 - returns a React element
   - less functionality out of the box
   - but is expendable using Hooks
+```
