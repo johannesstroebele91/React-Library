@@ -1,12 +1,17 @@
 # 1) Basics
 
-- are input / parameters that the component can accept
-- make a component reusable
+- **Goal** is to make components reusable
+- **Props** are input / parameters that the component can accept
   - e.g. "Hello" Button
   - e.g. "Goodbye" Button
-- should be treated as an immutable object
+- Should be treated as an immutable object
   - NEVER overwrite the props value!
   - because it should come from the caller
+- Enables to pass data to a custom data
+  - by adding a props (properties or attributes)
+- Inside of the component
+  - you can get access these props
+  - and use them  
 
 # 2) Necessity of Interface for TypeScript
 
