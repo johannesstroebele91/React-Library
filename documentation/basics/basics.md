@@ -15,5 +15,3 @@
   - Also for switching pages
   - So only 1 HTML file is requested (therefore SPA)
   - React takes over the rest
-
-

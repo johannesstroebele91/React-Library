@@ -53,9 +53,9 @@
   - less functionality out of the box in comparison to class components
   - but is expendable using Hooks
 
-# 4) Return func
+# 4) Limit One root Element
 
-Only accepts one parent element!!!
+Return func can only have 1 root element
 
 - Generally, an empty parent element is used: `javascript<React.Fragment></React.Fragment>` or `<></>`)
 - However, if a a class or the parent element itself is necessary, it can be use like this: `<div className=""parent""></div>`
