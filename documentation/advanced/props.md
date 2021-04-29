@@ -11,23 +11,138 @@
   - by adding a props (properties or attributes)
 - Inside of the component
   - you can get access these props
-  - and use them  
+  - and use them
 
-# 2) Necessity of Interface for TypeScript
+# 2) Props in TypeScript
 
-- interface is needed for using props in TypeScript
-- an interface defines a schema of what properties an object can have
-- optional properties can be declared by adding the suffix "?" to the property
+## 2.1) Problems
 
-```typescript jsx
-export interface HomePageProps {
-  name: string; // required
-  age?: number; // optional
+- Data passed to a child via props
+- not only includes the passed data
+- but the other information (e.g. children)
+- which would be cubersom to define one by one
+- every time props are passed
+
+```javascript
+function Todos(props: any) {
+  return (
+    <ul>
+      {}
+      <li>Learn React</li>
+      <li>Learn TypeScript</li>
+    </ul>
+  );
 }
+export default Todos;
+```
 
-class HomePage extends React.Component<HomePageProps> {
-  render() {
-    return <div className="home-page-container">Hompage</div>;
+## 2.2) Solution
+
+- (`const Todos: React.FC<> = (props) => {}`
+- Using a generic types in functional components
+- to explicitly add additional data to be passed
+- which are then combined with the props object
+
+### 2.3) Example: with objects and a type
+**This is the recommended approach**
+```javascript
+// types.ts
+type Todo = {
+  id: string;
+  text: string;
+
+}
+export default Todo;
+
+// App.tsx
+function App() {
+  const todos: Todo[] = [
+    { id: new Date().toISOString(), text: "Learn React" },
+    { id: new Date().toISOString(), text: "Learn TypeScript" },
+  ];
+  return (
+    <>
+      <h1>Todo App</h1>
+      <Todos items={todos} />
+    </>
+  );
+}
+export default App;
+
+// Todos.tsx
+const Todos: React.FC<{ items: Todo[] }> = (props) => {
+  return (
+    <>
+      {props.items.map((item) => (
+        <li key={item.id}>{item.text}</li>
+      ))}
+    </>
+  );
+};
+export default Todos;
+```
+
+### 2.4) Example: with objects and a class
+**This is a good approach**
+```javascript
+// types.ts
+class Todo {
+  id: string;
+  text: string;
+
+  constructor(todoText: string) {
+    this.text = todoText;
+    this.id = new Date().toISOString();
   }
 }
+
+export default Todo;
+
+// App.tsx
+function App() {
+  const todos = [ new Todo('Learn React'), new Todo('Learn TypeScript')]
+  return (
+    <>
+      <h1>Todo App</h1>
+      <Todos items={todos} />
+    </>
+  );
+}
+export default App;
+
+// Todos.tsx
+import Todo from "../models/types";
+const Todos: React.FC<{ items: Todo[] }> = (props) => {
+  return (
+    <>
+      {props.items.map((item) => (
+        <li key={item.id}>{item.text}</li>
+      ))}
+    </>
+  );
+};
+export default Todos;
+```
+
+### 2.5) Example: without objects
+**This is a outdated approach**
+```javascript
+// App.tsx
+    <>
+      <h1>Todo App</h1>
+      <Todos items={["Learn TypeScript", "Learn React"]} />
+    </>
+
+// Todos.tsx
+
+export default const Todos: React.FC<{ items: string[] }> = (props) => {
+  return (
+    <>
+      {props.items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </>
+  );
+};
+
 ```
