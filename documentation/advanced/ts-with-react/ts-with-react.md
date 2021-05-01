@@ -1,4 +1,15 @@
-# Basics
+# 1) Basics
+
+- in contrast to React with JS
+- dev server does one more thing behind the scenes
+- it compiles the TypeScript code into JavaScript code
+
+# 2) Compiling TS to JS
+- A compiler transforms React components written in TS into JS
+  - this adds multiple improvements
+  - e.g. CSS-support for most browsers, import statement support, React elements (eg. `<App/>`)...
+
+# 3) Commands
 
 https://create-react-app.dev/docs/getting-started/
 
@@ -11,13 +22,7 @@ A new React project with TypeScript can be started
   - `npx create-react-app . --template typescript`
   - which creates the project directly in the respective folder
 
-# TypeScript with React
-
-- in contrast to React with JS
-- dev server does one more thing behind the scenes
-- it compiles the TypeScript code into JavaScript code
-
-# Dependencies in the package.json
+# 4) Dependencies in the package.json
 
 - Same dependencies as in React with JS but:
 - Type packages: are translation bridges between VanillaJS and a TypeScript project
@@ -31,3 +36,4 @@ A new React project with TypeScript can be started
 
 - Compiler for TypeScript
   - "typescript": "^4.2.3"
+
