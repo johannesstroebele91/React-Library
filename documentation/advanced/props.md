@@ -1,3 +1,10 @@
+- [1) Basics](#1-basics)
+- [2) Problems](#2-problems)
+- [3) Solution](#3-solution)
+  - [3.1) Example: with objects and a interface with props destructuring](#31-example-with-objects-and-a-interface-with-props-destructuring)
+  - [3.2) Example: with objects and a class without props destructuring](#32-example-with-objects-and-a-class-without-props-destructuring)
+  - [3.3) Example: without objects](#33-example-without-objects)
+ 
 # 1) Basics
 
 - **Goal** is to make components reusable
@@ -13,9 +20,7 @@
   - you can get access these props
   - and use them
 
-# 2) Props in TypeScript
-
-## 2.1) Problems
+# 2) Problems
 
 - Data passed to a child via props
 - not only includes the passed data
@@ -36,22 +41,28 @@ function Todos(props: any) {
 export default Todos;
 ```
 
-## 2.2) Solution
+# 3) Solution
 
 - (`const Todos: React.FC<> = (props) => {}`
 - Using a generic types in functional components
 - to explicitly add additional data to be passed
 - which are then combined with the props object
 
-### 2.3) Example: with objects and a type
+## 3.1) Example: with objects and a interface with props destructuring
 **This is the recommended approach**
 ```javascript
 // types.ts
-type Todo = {
+interface Todo {
   id: string;
   text: string;
 
 }
+/* Alternative Type
+type Todo = {
+  id: string;
+  text: string;
+
+} */
 export default Todo;
 
 // App.tsx
@@ -70,10 +81,14 @@ function App() {
 export default App;
 
 // Todos.tsx
-const Todos: React.FC<{ items: Todo[] }> = (props) => {
+interface TodoProps {
+  items: Todo;
+}
+
+const Todos: React.FC<{ items: Todo[] }> = ({ items }) => {
   return (
     <>
-      {props.items.map((item) => (
+      {items.map((item) => (
         <li key={item.id}>{item.text}</li>
       ))}
     </>
@@ -82,7 +97,7 @@ const Todos: React.FC<{ items: Todo[] }> = (props) => {
 export default Todos;
 ```
 
-### 2.4) Example: with objects and a class
+## 3.2) Example: with objects and a class without props destructuring
 **This is a good approach**
 ```javascript
 // types.ts
@@ -124,7 +139,7 @@ const Todos: React.FC<{ items: Todo[] }> = (props) => {
 export default Todos;
 ```
 
-### 2.5) Example: without objects
+## 3.3) Example: without objects
 **This is a outdated approach**
 ```javascript
 // App.tsx
