@@ -1,5 +1,5 @@
-type Todo = {
-  id: string;
+interface Todo {
+  id: number;
   text: string;
 
 }
