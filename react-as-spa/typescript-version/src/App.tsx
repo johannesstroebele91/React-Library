@@ -2,7 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import Todos from "./components/Todos";
 import NewTodo from "./components/NewTodo";
-import Todo from './models/types';
+import Todo from "./models/types";
 
 // Only the App.tsx gets changed in an React app
 function App() {
@@ -14,22 +14,29 @@ function App() {
   // by using generic types "useState<Todo>([])"
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  /* Not hard coded, but dynamic array of todos
-  const todos: Todo[] = [
-    { id: new Date().toISOString(), text: "Learn React" },
-    { id: new Date().toISOString(), text: "Learn TypeScript" },
-  ]; */
-
+  // ADD TODO
   // Handels the function given back from "NewTodo.tsx"
   // The data received can then be used to change dynamically change the todos
   const addTodoHandler = (todoText: string) => {
-    const newTodo: Todo = {id: Math.floor(Math.random() * 20), text: todoText};
+    const newTodo: Todo = {
+      id: Math.floor(Math.random() * 20),
+      text: todoText,
+    };
 
     // Update the state from the previous state
-      // Add newTodo to the existing array of todos
-      // by concating the newTodo to the prevTodos
+    // Add newTodo to the existing array of todos
+    // by concating the newTodo to the prevTodos
     setTodos((prevTodos) => {
       return prevTodos.concat(newTodo);
+    });
+  };
+
+  // DELETE TODO
+  // Get the Id of the todo that needs to be deleted
+  // and pass only the Todos that do not have this ID
+  const deleteTodoHandler = (todoId: number) => {
+    setTodos((prevTodos) => {
+      return prevTodos.filter((todo) => todo.id !== todoId);
     });
   };
 
@@ -37,7 +44,7 @@ function App() {
     <>
       <h1>Todo App</h1>
       <NewTodo onAddTodo={addTodoHandler} />
-      <Todos items={todos} />
+      <Todos items={todos} onDeleteTodo={deleteTodoHandler} />
     </>
   );
 }

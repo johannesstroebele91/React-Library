@@ -8,12 +8,14 @@ import classes from './Todos.module.css';
 
 interface TodoProps {
   items: Todo[];
+  onDeleteTodo: (todoId: number) => void
 }
-const Todos: React.FC<TodoProps> = ({items}) => {
+const Todos: React.FC<TodoProps> = ({items, onDeleteTodo}) => {
   return (
     <ul className={classes.todos}>
       {items.map((item) => (
-        <TodoItem key={item.id} todo={item} />
+        
+        <TodoItem key={item.id} todo={item} onDeleteTodo={onDeleteTodo.bind(null, item.id)} /> 
     ))}
     </ul>
   );

@@ -85,12 +85,15 @@ interface TodoProps {
   items: Todo;
 }
 
-const Todos: React.FC<{ items: Todo[] }> = ({ items }) => {
+// Destructions is happening like "{ items, onDeleteTodo }"
+// AND NOT LIKE { items}, {onDeleteTodo }
+const Todos: React.FC<TodoProps> = ({ items, onDeleteTodo }) => {
   return (
     <>
       {items.map((item) => (
         <li key={item.id}>{item.text}</li>
       ))}
+      <button onClick="onDeleteTodo()">Add</button>
     </>
   );
 };
