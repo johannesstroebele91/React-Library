@@ -19,7 +19,7 @@ const TodoItem: React.FC<TodoProps> = ({ todo, onDeleteTodo }) => {
       onClick={onDeleteTodo}
     >
       <span>{todo.text}</span>
-      <button>Delete</button>
+      <button className="button">Delete</button>
     </li>
   );
 };
