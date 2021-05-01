@@ -2,21 +2,24 @@
 // So {} enable to add an additional generic type
 // to the already existing generic type (=merging both generic types)
 
-import Todo from "../models/types";
+import { useContext } from "react";
+import { TodosContext } from "../store/todos-context";
 import TodoItem from "./TodoItem";
-import classes from './Todos.module.css';
 
-interface TodoProps {
-  items: Todo[];
-  onDeleteTodo: (todoId: number) => void
-}
-const Todos: React.FC<TodoProps> = ({items, onDeleteTodo}) => {
+import classes from "./Todos.module.css";
+
+const Todos: React.FC = () => {
+  const todosContext = useContext(TodosContext);
+
   return (
     <ul className={classes.todos}>
-      {items.map((item) => (
-        
-        <TodoItem key={item.id} todo={item} onDeleteTodo={onDeleteTodo.bind(null, item.id)} /> 
-    ))}
+      {todosContext.items.map((item) => (
+        <TodoItem
+          key={item.id}
+          todo={item}
+          onDeleteTodo={todosContext.deleteTodo.bind(null, item.id)}
+        />
+      ))}
     </ul>
   );
 };

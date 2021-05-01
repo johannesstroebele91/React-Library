@@ -1,4 +1,6 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
+import { TodosContext } from '../store/todos-context';
+
 import classes from "./NewTodo.module.css";
 
 /* A function call needs to be passed back to the App.tsx file
@@ -7,7 +9,8 @@ import classes from "./NewTodo.module.css";
  * with the following syntax in TypeScript ": () => "
  * "()" specifies the parameters (e.g. name: string)
  * to the left of the "=>" is stated the expected return type (e.g. void) */
-const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
+const NewTodo: React.FC = () => {
+  const todosContext = useContext(TodosContext)
   // Ref needs to explicitly stated, because several type of ref exist
   // e.g. <input/> it is HTMLInputElement
   // e.g. <button/> it is HTMLButtonElement
@@ -33,17 +36,17 @@ const NewTodo: React.FC<{ onAddTodo: (text: string) => void }> = (props) => {
     /*  Add text to list of todos
      * Therefore data needs to be passed back to the App.tsx
      * Where the todos data should be centrally managed
-     * This can be done by calling a function in App.tsx
+     * This can be done by calling a function in todos-context.tsx
      * from the current component and passing the enteredText value */
-    props.onAddTodo(enteredText);
+    todosContext.addTodo(enteredText);
   };
 
   return (
     <form onSubmit={submitHandler} className={classes.form}>
       {/* ↑↑↑ Pass the submit handler to onSubmit */}
-      <label>Todo text</label>
+      <label>Add todo</label>
       <input type="text" id="text" ref={todoTextInputRef} />
-      <button>Add Todo</button>
+      <button>Add a todo</button>
     </form>
   );
 };
