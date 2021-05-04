@@ -1,5 +1,5 @@
 {
-  "name": "context-api-version",
+  "name": "general-version",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
