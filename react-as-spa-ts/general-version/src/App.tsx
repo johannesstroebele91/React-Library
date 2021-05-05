@@ -1,7 +1,7 @@
 import Expenses from "./components/Expenses/Expenses/Expenses";
 import expenses from "./mock-data";
  
-function App() {
+const App = () =>{
 
   return (
     <div>

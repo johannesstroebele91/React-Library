@@ -16,7 +16,7 @@
 
 # 2) How React works
 
-[Link to How React Works file](../advanced/ts-with-react/how-react-works-jsx-and-tsx.md)
+[Link to How React Works file](./prerequisites/how-react-works-jsx-and-tsx.md)
 
 # 3) Dependencies
 

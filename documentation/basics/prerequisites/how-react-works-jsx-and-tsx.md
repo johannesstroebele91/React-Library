@@ -7,7 +7,11 @@
   - and is user-friendly to write
 - JSX/TSX files enable you to use HTML in JS files
   - which is normally not possible
-
+- React goes through each file (starting from the App.tsx/js/jsx)
+  - when the application is initialized
+  - DOES NOT automatically update, when sth changes
+  - e.g. button is clicked  
+  - but you need to tell React to CHANGE THE STATE
 # 2) How JSX/TSX (React) works
 
 In the end, the React code (JSX/TSX files)
@@ -45,7 +49,7 @@ function App() {
   - but needed to be previously
   - now magic happens behind the scenes
 
-    4.1) Without magic
+## 4.1) Without magic
 
 - React needs to be imported always
 - After the definition of the wrapper root element
@@ -65,7 +69,7 @@ return React.createElement(
 );
 ```
 
-4.2) With magic
+## 4.2) With magic
 
 - React does not need to be imported
 - And writing code is much faster
