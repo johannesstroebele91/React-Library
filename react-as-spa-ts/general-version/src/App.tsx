@@ -5,7 +5,7 @@ function App() {
 
   return (
     <div>
-      <h1 style={{marginLeft: 6, color: 'white'}}>Expense Tracker</h1>
+      <h1 style={{textAlign: 'center', color: 'white'}}>Expense Tracker</h1>
       <Expenses expenses={expenses}/>
     </div>
 

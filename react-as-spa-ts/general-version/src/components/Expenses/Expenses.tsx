@@ -1,6 +1,7 @@
 import ExpenseItem from "../ExpenseItem/ExpenseItem";
 import "./Expenses.css";
 import Expense from '../../models/types';
+import Card from "../Card/Card";
 
 interface ExpensesProps {
   expenses: Expense[];
@@ -8,7 +9,7 @@ interface ExpensesProps {
 
 const Expenses: React.FC<ExpensesProps> = ({expenses}) => {
   return (
-    <div className="expenses">
+    <Card className="expenses">
       <ExpenseItem
         title={expenses[0].title}
         amount={expenses[0].amount}
@@ -29,7 +30,7 @@ const Expenses: React.FC<ExpensesProps> = ({expenses}) => {
         amount={expenses[3].amount}
         date={expenses[3].date}
       ></ExpenseItem>
-    </div>
+    </Card>
   );
 };
 export default Expenses;
