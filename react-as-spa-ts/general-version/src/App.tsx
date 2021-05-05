@@ -1,4 +1,4 @@
-import Expenses from "./components/Expenses/Expenses";
+import Expenses from "./components/Expenses/Expenses/Expenses";
 import expenses from "./mock-data";
  
 function App() {

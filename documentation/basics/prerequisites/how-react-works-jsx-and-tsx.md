@@ -45,11 +45,15 @@ function App() {
   - but needed to be previously
   - now magic happens behind the scenes
 
-  4.1) Without magic
+    4.1) Without magic
 
-- React needs to be imported
-- AND after the definition of the first element
-- an infinite number of elements can be defined like this:
+- React needs to be imported always
+- After the definition of the wrapper root element
+  - ,which is the first element,
+  - an infinite number of elements can be defined
+- This also explains why only one thing needs to be returned
+  a) an array could be returned but not multiple elements side by side like it would be here
+  b) a wrapper is used here (has child elements)
 
 ```javascript
 import React from "react";

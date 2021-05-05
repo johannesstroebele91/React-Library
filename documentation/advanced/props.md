@@ -7,19 +7,18 @@
  
 # 1) Basics
 
-- **Goal** is to make components reusable
+- The goal is to pass data between components
+  - thereby making components reusable
 - **Props** are input / parameters that the component can accept
-  - e.g. "Hello" Button
-  - e.g. "Goodbye" Button
+  - by enabling to pass data to a custom data
+  - through props (properties or attributes)
+  - which then can be accessed inside the component
 - Should be treated as an immutable object
   - NEVER overwrite the props value!
   - because it should come from the caller
-- Enables to pass data to a custom data
-  - by adding a props (properties or attributes)
-- Inside of the component
-  - you can get access these props
-  - and use them
-
+- Such dynamic date can be outputted
+  - i.e. in the returned JSX code
+  - by using `{}` which a JS expression in between them
 # 2) Problems
 
 - Data passed to a child via props

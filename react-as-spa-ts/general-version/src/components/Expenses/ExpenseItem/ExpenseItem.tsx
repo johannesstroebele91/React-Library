@@ -1,4 +1,4 @@
-import Card from "../Card/Card";
+import Card from "../../Utility/Card";
 import ExpenseDate from "../ExpenseDate/ExpenseDate";
 import "./ExpenseItem.css";
 

@@ -1,7 +1,7 @@
-import ExpenseItem from "../ExpenseItem/ExpenseItem";
 import "./Expenses.css";
-import Expense from '../../models/types';
-import Card from "../Card/Card";
+import Expense from '../../../models/types';
+import Card from "../../Utility/Card";
+import ExpenseItem from "../ExpenseItem/ExpenseItem";
 
 interface ExpensesProps {
   expenses: Expense[];

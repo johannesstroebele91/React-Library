@@ -1,12 +1,13 @@
 # 1) Declarative approach (used by React)
 
-- For this approach only the desired target state(s)
+For this approach only the desired target state(s)
 - of a component needs to be defined
-- React generates and runs the actual JS DOM instructions automatically
-- which in turn update what is visible on the page
-- Example of a desired target state see below
-  - React generats and runs the actual JS DOM instructions
-  - And the updated version of the page is visible in the browser
+- and react figures out the steps by itself
+
+React generats and runs the actual JS DOM instructions
+- And the updated version of the page is visible in the browser
+
+Example of a desired target state see below
 
 ```javascript
 function App() {

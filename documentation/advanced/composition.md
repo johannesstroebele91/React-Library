@@ -9,13 +9,12 @@
 
 General case e.g. <ExpenseItem/>
 
-# 2) Wrapper Components 
+# 2) Wrapper Components
 
 - For such components not everything is configured by props
 - but content is passed
 - via the opening and closing tags of the component
 - enabling to combine components for more abstraction
-
 
 Important:
 
