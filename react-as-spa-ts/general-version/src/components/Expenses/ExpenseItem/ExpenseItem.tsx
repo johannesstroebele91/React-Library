@@ -9,38 +9,26 @@ interface ExpenseItemProps {
   date: Date;
 }
 
-// Using Props with TS
-// Specifying the passed values by
-// !!! 1) Creating a Interface for the passed values (NECESSARY)
-// 2) And destructuring the values to make them more easy to access
+// PROPS: For passing props in TS it is
+// NECESSARY to create a Interface for passed values (e.g. ExpenseItemProps)
+// Fore easier access destructuring the values is used (e.g. ({title}))
 const ExpenseItem: React.FC<ExpenseItemProps> = ({ title, amount, date }) => {
-  /* useState allows to define values as state
-  - New changes are assigned by calling a function 
-    - wherefore useState is returning an array
-    - where the first value is the variable itself 
-    - and the second value is the update function
-      -> array destructuring helps to store both values in separate variables */
+  // STATE: 1. Initialize useState with an initial value (e.g. amount)
+  // STATE: 2. Store with array destructuring in separate variables the two returned values
   const [amountExpenseItem, setAmount] = useState(amount);
 
-  /* Declaring the passed data AGAIN in the component to
-      - enables to change the variables by the event handler
-      - e.g. e.g. let amountExpense = amount;
-    - PROBLEM: this does not re-render the UI
-      - is here done by using the useState above
-      - (e.g. const [amountExpenseItem, setAmount] = useState(amount);)
-   */
+  // DECLARE: Declaring the passed data AGAIN like this
+  // to be able to change the variable by the event handler
+  // PROBLEM: this does not re-render the UI
+  let amountExpense = title;
 
   const clickHandler = () => {
-    // This function enables to update the state (re-render the page)
-    // by calling the setAmount function defined before
-    // Instead of assigning the value (e.g. amountExpenseItem = amountExpenseItem +1;)
-
+    // STATE: 3. Call the 2. value updating function (setAmount)
+    // whenever the state should change
     setAmount(amountExpenseItem + 1);
 
-    // WARNING!
-    // value doesn't update right away for the next ling
-    // only after the next re-render
-
+    // WARNING! value doesn't update right away for the next line
+    // BUT only after the next re-render
     console.log(amountExpenseItem);
   };
   return (
@@ -48,18 +36,18 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({ title, amount, date }) => {
       <ExpenseDate expenseDate={date} />
       <div className="expense-item__description">
         <h2>{title}</h2>
+        {/* STATE: 4. Use the 1. value (e.g. amountExpenseItem)
+         * for outputting data in the HTML*/}
         <div className="expense-item__price">${amountExpenseItem}</div>
       </div>
-      {/* onClick is a event handler which
-       * expects a function that gets executed when its triggered, so
-       a) a arrow functions to directly trigger a function inside the {} 
-       b) or point to the handler (!!! NOT A FUNCTION CALL) 
-        * because if a function would be called (e.g. `onClick={greet()}`)
-        * then JS would execute this when the button gets parsed (when the JSX code is returned)
-        * AND not when the click occurs (!!! WHAT WE WANT)
-        * React does this magic behind the scenes for you
-        * Naming conventions start with the event (e.g "click") and ends with "Handler"
-*/}
+      {/* ONCLICK: is a event handler 
+          -  which expects a function that gets executed
+          -  when its triggered by an event
+      -  DO NOT CALL A FUNCTION!
+          -  because it would be only called once, when the JSX code is returned initially
+          -  AND NOT when the click occurs - SOLUTION:
+            -  a) a arrow functions to directly trigger a function inside the {} 
+            -  b) or point to the handler (!!! NOT A FUNCTION CALL)*/}
       <button onClick={clickHandler}>Change Title</button>
     </Card>
   );
