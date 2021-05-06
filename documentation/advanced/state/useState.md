@@ -30,6 +30,8 @@ The value that should be monitored for change
 
 # 2) Approach
 
+**See Github Commit: [0a5ca492214a059402f203506af7a759d30efa8d](https://github.com/johannesstroebele91/React-Library/commit/0a5ca492214a059402f203506af7a759d30efa8d)**
+
 ## 2.1) Multiple States
 
 ### 2.2.1) Declare useState

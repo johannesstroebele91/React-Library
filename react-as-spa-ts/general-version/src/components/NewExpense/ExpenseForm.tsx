@@ -1,7 +1,15 @@
 import { useState } from "react";
 import "./ExpenseForm.css";
 import Expense from "../../models/types";
-const ExpenseForm: React.FC = () => {
+
+interface ExpenseFormProps {
+  onSaveExpenseData: (enteredExpenseData: Expense) => void;
+}
+/* Data is passed, via pointer at a function, to the parent using:
+  1) `ExpenseFormProps`
+  2) `onSaveExpenseData`
+  3) and later `onSaveExpenseData(expenseData)` */
+const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSaveExpenseData }) => {
   // !!! STATE CAN BE USED IN 6 STEPS (Step 5 is skipped)
 
   // 1) Declare useState
@@ -32,7 +40,7 @@ const ExpenseForm: React.FC = () => {
       amount: parseFloat(enteredAmount),
       date: new Date(enteredDate), // parses the date string into a Date object
     };
-    console.log(expenseData);
+    onSaveExpenseData(expenseData);
     // Clears the input after the form was submitted
     setEnteredTitle("");
     setEnteredAmount("");
