@@ -2,13 +2,26 @@
 
 **Without changes to the state an app is in the end static**
 
-- State enable apps to be
-  1. interactive: can react to clicks and date entered by users
-  2. reactive: app changes when certain things happen
-- The state is fully controlled by the component
-  - should be treated as immutable
-  - and is on a PER COMPONENT bases
-  - even for multiple e.g. ExpenseItem components
+State enable apps to be
+
+1. interactive: can react to clicks and date entered by users
+2. reactive: app changes when certain things happen
+
+The state is fully controlled by the component
+
+- should be treated as immutable
+- and is on a PER COMPONENT bases
+- even for multiple e.g. ExpenseItem components
+
+Problem example:
+
+- Variables can be altered
+  - by the event handler
+  - by declaring them in the component
+  - like this `let amountExpense = title;`
+- BUT: this does not re-render the UI
+  - only the values in the console are updated
+  - **SOLUTION: STATE!!!**
 
 # 2) Approach
 
@@ -39,5 +52,5 @@ You need to specify
 
 For approaches see other files in folder "state"
 
-2.2.1) useState
-2.2.2) setState
+[useState](./useState.md)
+[setState](./setstate.md)
