@@ -40,7 +40,7 @@ function Todos(props: any) {
 export default Todos;
 ```
 
-# 3) Solution
+# 3) Solution for passing data from parent to child
 
 - (`const Todos: React.FC<> = (props) => {}`
 - Using a generic types in functional components

@@ -42,18 +42,19 @@ The value that should be monitored for change
 - e.g. `const [enteredTitle, setEnteredTitle] = useState("");`
 
 ### 2.2.2) Trigger the change of state
+
 Whenever the state should change
+
 - it needs to be triggered in some form
 - e.g. by an event handler such as click event:
   - `<input onChange={titleChangeHandler}</input>`
 
 **DO NOT CALL A FUNCTION!**
--  because it would be only called once, when the JSX code is returned initially
--  AND NOT when the click occurs - SOLUTION:
-  -  a) a arrow functions to directly trigger a function inside the {}
-  -  b) or point to the handler (!!! NOT A FUNCTION CALL)*/}
 
-- which triggers the re-executing of the component function
+- because it would be only called once, when the JSX code is returned initially
+- AND NOT when the click occurs - SOLUTION:
+- a) a arrow functions to directly trigger a function inside the {}
+- b) or point to the handler (!!! NOT A FUNCTION CALL)\*/}
 
 ### 2.2.4) Update state
 
