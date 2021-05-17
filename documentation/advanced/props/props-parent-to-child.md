@@ -1,55 +1,83 @@
-- [1) Basics = pass state data via props](#1-basics--pass-state-data-via-props)
+- [1) Basics](#1-basics)
 - [2) STANDARD EXAMPLE WITH TS](#2-standard-example-with-ts)
+  - [2.1) Parent component](#21-parent-component)
+  - [2.2) Child component](#22-child-component)
 - [3) Destructuring props](#3-destructuring-props)
   - [3.1) Standard case with destructuring](#31-standard-case-with-destructuring)
   - [3.2) Other case without destructuring](#32-other-case-without-destructuring)
 - [4) Outsourcing props](#4-outsourcing-props)
 
-# 1) Basics = pass state data via props
+# 1) Basics
 
-- (`const Todos: React.FC<> = (props) => {}`
-- Using a generic types in functional components
+Data can be passed from the parent component
+
+- to the child component
+- via props and an interface for TS
+
+A generic types in functional components can be used
+
 - to explicitly add additional data to be passed
 - which are then combined with the props object
+- e.g. `const Todos: React.FC<> = (props) => {}`
 
 # 2) STANDARD EXAMPLE WITH TS
 
-**See the following [Project](../../react-as-spa-ts/props-../../react-as-spa-ts/props-version/src/App.tsx)**
+Data can be passed from a parent to a child component as follows
 
-Passing props in TS can be achieved in 4 steps
+**See the following Git Commit [1b946a0b875a5be1220a21cc0311c8de7e3c0dc4](https://github.com/johannesstroebele91/React-Library/commit/1b946a0b875a5be1220a21cc0311c8de7e3c0dc4?short_path=cc60d64)**
 
-For TS a props interface is needed (e.g. ExpenseItemProps)
+## 2.1) Parent component
 
 ```javascript
+// 1) Delcaring data for passing it to a child component
+interface ExpensesProps {
+  expenses: Expense[];
+}
+
+const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
+  return (
+    <>
+      {/* 2) Passing data to a child component */}
+      {/* 2.1) Via an object */}
+      <ExpenseItem expenses={expenses}></ExpenseItem>
+      {/* 2.2) Via variables */}
+      <ExpenseItem
+        title={expenses[0].title}
+        amount={expenses[0].amount}
+        date={expenses[0].date}
+      ></ExpenseItem>
+    </>
+  );
+};
+```
+
+## 2.2) Child component
+
+The variables received from the parent component
+* can be used in the child component
+* using 2 steps
+
+```javascript
+// 1) Props interface for TS
+// 1.1) For an object
+interface ExpenseItemProps {
+  expenses: Expense;
+}
+
+// 1.2) For variables
 interface ExpenseItemProps {
   title: string;
   amount: number;
   date: Date;
 }
-const ExpenseItem: React.FC<ExpenseItemProps> = ({ title, amount, date }) => {
-  // !!! STEP 1-4: CREATE A NEW STATE OF VARIABLES TRIGGERED BY AN INPUT
-
-  // 1) Declare useState
-  const [amountExpenseItem, setAmount] = useState(amount);
-
-  // 3) Creates a new state state
-  const clickHandler = () => {
-    setAmount(amountExpenseItem + 1);
-
-    // WARNING! value doesn't create a new state right away for the next line
-    // BUT only after the next re-render
-    console.log(amountExpenseItem);
-  };
+const ExpenseItem: React.FC<ExpenseItemProps> = ({ expenses }) => {
+  // 2) Displays the variables
+  // 2.1) of the object
   return (
-    <Card className="expense-item">
-      <ExpenseDate expenseDate={date} />
-      <div className="expense-item__description">
-        <h2>{title}</h2>
-        {/* 4) Use to display the variable */}
-        <div className="expense-item__price">${amountExpenseItem}</div>
-      </div>
-      {/* 2) Trigger the change of state */}
-      <button onClick={clickHandler}>Change Title</button>
+    <Card>
+      <h2>{expenses.title}</h2> // 2.2) alt: {title}
+      <div>${expenses.price}</div> // 2.2) alt: {price}
+      <div>${expenses.amount}</div> // 2.2) alt: {amount}
     </Card>
   );
 };
