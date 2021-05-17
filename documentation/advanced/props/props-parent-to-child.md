@@ -1,7 +1,10 @@
 - [1) Basics = pass state data via props](#1-basics--pass-state-data-via-props)
-- [2) Examples](#2-examples)
-  - [2.1) Example with objects](#21-example-with-objects)
-  - [2.2) Example without objects](#22-example-without-objects)
+- [2) STANDARD EXAMPLE WITH TS](#2-standard-example-with-ts)
+- [3) Destructuring props](#3-destructuring-props)
+  - [3.1) Standard case with destructuring](#31-standard-case-with-destructuring)
+  - [3.2) Other case without destructuring](#32-other-case-without-destructuring)
+- [4) Outsourcing props](#4-outsourcing-props)
+
 # 1) Basics = pass state data via props
 
 - (`const Todos: React.FC<> = (props) => {}`
@@ -9,29 +12,57 @@
 - to explicitly add additional data to be passed
 - which are then combined with the props object
 
-# 2) Examples
+# 2) STANDARD EXAMPLE WITH TS
 
 **See the following [Project](../../react-as-spa-ts/props-../../react-as-spa-ts/props-version/src/App.tsx)**
 
-## 2.1) Example with objects
+Passing props in TS can be achieved in 4 steps
 
-**This is the recommended approach**
-
-Types
+For TS a props interface is needed (e.g. ExpenseItemProps)
 
 ```javascript
-// types.ts
-interface Todo {
-  id: string;
-  text: string;
+interface ExpenseItemProps {
+  title: string;
+  amount: number;
+  date: Date;
 }
-/* Alternative Type
-type Todo = {
-  id: string;
-  text: string;
-} */
-export default Todo;
+const ExpenseItem: React.FC<ExpenseItemProps> = ({ title, amount, date }) => {
+  // !!! STEP 1-4: CREATE A NEW STATE OF VARIABLES TRIGGERED BY AN INPUT
+
+  // 1) Declare useState
+  const [amountExpenseItem, setAmount] = useState(amount);
+
+  // 3) Creates a new state state
+  const clickHandler = () => {
+    setAmount(amountExpenseItem + 1);
+
+    // WARNING! value doesn't create a new state right away for the next line
+    // BUT only after the next re-render
+    console.log(amountExpenseItem);
+  };
+  return (
+    <Card className="expense-item">
+      <ExpenseDate expenseDate={date} />
+      <div className="expense-item__description">
+        <h2>{title}</h2>
+        {/* 4) Use to display the variable */}
+        <div className="expense-item__price">${amountExpenseItem}</div>
+      </div>
+      {/* 2) Trigger the change of state */}
+      <button onClick={clickHandler}>Change Title</button>
+    </Card>
+  );
+};
 ```
+
+# 3) Destructuring props
+
+## 3.1) Standard case with destructuring
+
+Objects can be destructured for easier access
+
+- of one variable (e.g. `({title})`
+- or multiples variables `({ title, amount, date })`)
 
 App.tsx
 
@@ -74,7 +105,7 @@ const Todos: React.FC<TodoProps> = ({ items, onDeleteTodo }) => {
 export default Todos;
 ```
 
-b) Todos.tsx with destructuring (also possible, but not the standard)
+## 3.2) Other case without destructuring
 
 ```javascript
 import Todo from "../models/types";
@@ -90,30 +121,20 @@ const Todos: React.FC<{ items: Todo[] }> = (props) => {
 export default Todos;
 ```
 
-## 2.2) Example without objects
+# 4) Outsourcing props
 
-**This is a outdated approach**
-
-App.tsx
+Props can be outsourced to a types.ts file
 
 ```javascript
-<>
-  <h1>Todo App</h1>
-  <Todos items={["Learn TypeScript", "Learn React"]} />
-</>
-```
-
-Todos.tsx
-
-```javascript
-export default const Todos: React.FC<{ items: string[] }> = (props) => {
-  return (
-    <>
-      {props.items.map((item) => (
-        <li key={item}>{item}</li>
-      ))}
-    </>
-  );
-};
-
+// types.ts
+interface Todo {
+  id: string;
+  text: string;
+}
+/* Alternative Type
+type Todo = {
+  id: string;
+  text: string;
+} */
+export default Todo;
 ```

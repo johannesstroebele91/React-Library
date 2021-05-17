@@ -148,7 +148,7 @@ const ExpensesFilter: React.FC<ExpensesFilterProps> = ({ onChangeDateFilter, sel
 The steps 1 and two as before
 
 - Step 3 for declaring the state
-- Step 4 actually updates the state (triggers a re-rendering of the page)
+- Step 4 actually creates a the state of the respective variable (triggers a re-rendering of the page)
 - Step 5 controlls the component (additional step that ensures that data is the same in both components)
 
 ```javascript
@@ -164,7 +164,7 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
   // 2) Processes the passed function
   const filterChangeHandler = (selectedYear: string) => {
     console.log(selectedYear);
-    // 4) Updates the state
+    // 4) Creates a new state of the respective variable
     setFilteredYear(selectedYear);
   };
 
@@ -186,13 +186,3 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
   );
 };
 ```
-
-
-Stateful (smart) vs Sstateless (presentational, dumb) components
-
-Components that manage some state
-- e.g. Expenses Component manages the filter state
-- which can be seen in the `useState()` statement of the respective component
-
-Components that dont manage a state
-- e.g. ExpenseItem component only represents

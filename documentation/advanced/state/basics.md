@@ -23,6 +23,12 @@ Problem example:
   - only the values in the console are updated
   - **SOLUTION: STATE!!!**
 
+WARNING:
+- only a new state is created by this method
+- not the old state updated
+- so the old variables from the previous state needs to passed
+- to the new state
+
 # 2) Approach
 
 You need to specify

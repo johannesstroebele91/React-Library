@@ -3,7 +3,10 @@
   - [1.2) Component tree](#12-component-tree)
 - [2) Advantages](#2-advantages)
 - [3) Types of Components](#3-types-of-components)
-- [4) Return func](#4-return-func)
+  - [3.1) Class vs Functional Components](#31-class-vs-functional-components)
+  - [3.2) Stateful vs Stateless Components](#32-stateful-vs-stateless-components)
+- [4) Limited to "1" root Element](#4-limited-to-1-root-element)
+- [5) Best Practices](#5-best-practices)
 
 # 1) Basics
 
@@ -37,25 +40,16 @@
   - Split big junks into smaller functions
     - combining functions to create something larger
 
-# 3) Types of Components
-
-1. Class Components:
-
-- requires you to extend from React.Component and
-- create a render function which returns a React element
-  - more functionality out of the box
-  - do not need hooks
-
-2. Functional Components:
-
-- is just a plain JS function which accepts props as an argument and
-- returns a React element
-  - less functionality out of the box in comparison to class components
-  - but is expendable using Hooks
-
-# 4) Limit One root Element
+# 3) Limited to "1" root Element
 
 Return func can only have 1 root element
 
 - Generally, an empty parent element is used: `javascript<React.Fragment></React.Fragment>` or `<></>`)
 - However, if a a class or the parent element itself is necessary, it can be use like this: `<div className=""parent""></div>`
+
+# 4) Best Practices
+
+- put new components into new files
+- so having one component per file
+- and have a parent component that controles
+- these collection of component

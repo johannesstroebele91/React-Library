@@ -1,7 +1,7 @@
 - [1) Basics](#1-basics)
   - [1.1) Declare useState](#11-declare-usestate)
-  - [1.2) Update state](#12-update-state)
-  - [1.3) Update state](#13-update-state)
+  - [1.2) Trigger the new state](#12-trigger-the-new-state)
+  - [1.3) Create a new state](#13-create-a-new-state)
   - [1.4) Use new value](#14-use-new-value)
 - [2) Submission of a form](#2-submission-of-a-form)
   - [2.1) Trigger the submit](#21-trigger-the-submit)
@@ -22,7 +22,7 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({ title, amount, date }) => {
   // 1) Declare useState
   const [amountExpenseItem, setAmount] = useState(amount);
 
-  // 3) Update state
+  // 3) Create a new state
   const clickHandler = () => {
     setAmount(amountExpenseItem + 1);
 
@@ -35,7 +35,7 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({ title, amount, date }) => {
       <ExpenseDate expenseDate={date} />
       <div className="expense-item__description">
         <h2>{title}</h2>
-        {/* 4. Use the updated variable */}
+        {/* 4. Displays the variable based on the the new state */}
         <div className="expense-item__price">${amountExpenseItem}</div>
       </div>
       {/* 2) Trigger the change of state */}
@@ -54,7 +54,7 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({ title, amount, date }) => {
 - `const` can be used because React throws away all variables for each new state
 - e.g. `const [enteredTitle, setEnteredTitle] = useState("");`
 
-## 1.2) Update state
+## 1.2) Trigger the new state
 
 Whenever the state should change
 
@@ -69,13 +69,14 @@ Whenever the state should change
 - a) a arrow functions to directly trigger a function inside the {}
 - b) or point to the handler (!!! NOT A FUNCTION CALL)\*/}
 
-## 1.3) Update state
+## 1.3) Create a new state
 
 - Call the 2. value (updating function)
 
 - **WARNING!**
-  - value doesn't update right away for the next line
-  - only after the next re-render
+  - a change in the variable doesn't create a new state
+  - right away for the next line
+  - but only after the next re-render
 - event.target.value
   - saves the WHOLE string, not only the character
   - is always a string (even if input is a number)
@@ -112,7 +113,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSaveExpenseData }) => {
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
 
-  // 3) Update state
+  // 3) Create a new state triggered by the user input
   const titleChangeHandler = (event: any) => {
     setEnteredTitle(event.target.value);
   };
@@ -245,7 +246,7 @@ A parent and child component can be controlled
   // 2) Processes the passed function
   const filterChangeHandler = (selectedYear: string) => {
     console.log(selectedYear)
-    // 4) Updates the state
+    // 4) Create a new state
     setFilteredYear(selectedYear);
   };
 
@@ -283,8 +284,9 @@ const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
   onChangeDateFilter,
   selectedFilteredYear,
 }) => {
-  // !!! STEPS 1-2: UPDATES THE STATE IN THE PARENT COMPONENT (EXPENSES) USING A CHANGE IN THE CHILD COMPONENT
+  // !!! STEPS 1-2: CREATE A NEW STATE IN THE PARENT COMPONENT (EXPENSES) USING A CHANGE IN THE CHILD COMPONENT
   // !!! STEP 3: A VARIABLE IS CONTROLLED USING THE PARENT COMPONENT WITH 2-WAY-BINDING
+  
   // 1) Send the function with the value,
   // That should be passed,
   // to the parent component (Expenses)
