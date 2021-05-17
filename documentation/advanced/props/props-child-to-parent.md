@@ -12,25 +12,16 @@ Data cannot be directly passed via a variable
 - but only via a function
 - which both the parent and the child point to
 
-# 2) Approach
+# 2) Example uncontrolled components
 
-## 2.1) Child Element
+Means that the respective value that should be passed and changes to it
+- are handeled in the child
+- NOT the parent component
 
-- Step 1 and 2 normally
-- Only props needs to be added for considering the state
-
-## 2.2) Parent Element
-
-- Step 1 and 2 normally
-- Step 3 for declaring the state
-- Step 4 actually saves the state ensures two way binding
-- Step 5 is an additional step that implements two-way-binding
-
-# 3) Example
 
 **Github Commit (files ExpensesFilter and Expenses): [f4c4985fc73ec590fe3d8585a9510a3516812afa](https://github.com/johannesstroebele91/React-Library/commit/f4c4985fc73ec590fe3d8585a9510a3516812afa)**
 
-## 3.1) Child component
+## 2.1) Child component (ExpensesFilter)
 
 A Props interface needs to be defined
 
@@ -39,13 +30,12 @@ A Props interface needs to be defined
 
 The variable which points to the **function `onSaveExpenseData`**
 
-- needs to be destructured first `({ onSaveExpenseData })`
-- before it can be used to pass the data `onSaveExpenseData(expenseData);`
+- needs to be destructured first `({ onChangeDateFilter })`
+- before it can be used to pass the data `onChangeDateFilter(event.target.value);`
 
 ```javascript
 interface ExpensesFilterProps {
   onChangeDateFilter: (enteredFilterDate: string) => void;
-  selectedFilteredYear: string;
 }
 
 const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
@@ -67,23 +57,19 @@ const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
         <select onChange={filterChangeHandler}>
           <option value="2022">2022</option>
           <option value="2021">2021</option>
-          <option value="2020">2020</option>
-          <option value="2019">2019</option>
         </select>
       </div>
     </div>
   );
 };
-
-export default ExpensesFilter;
 ```
 
-## 3.2) Parent component (Expenses)
+## 2.2) Parent component (Expenses)
 
-The variable `onSaveExpenseData` that points to a function
+The variable `onChangeDateFilter` that points to a function
 
-- needs to be passed `onSaveExpenseData={saveExpenseDataHandler}`
-- and the needed function stated `const saveExpenseDataHandler = (enteredExpenseData: Expense) => {};`
+- needs to be passed `onChangeDateFilter={filterChangeHandler}`
+- and the needed function stated `const filterChangeHandler = (selectedYear: string) => {};`
 
 ```javascript
 const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
@@ -95,8 +81,90 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
   // 2) Processes the passed function
   const filterChangeHandler = (selectedYear: string) => {
     console.log(selectedYear);
+  };
 
-    // 4) Update state
+  return (
+    <>
+      <Card className="expenses">
+        {/* 1) Receives the passed function from the child*/}
+        <ExpensesFilter onChangeDateFilter={filterChangeHandler} />
+        {/* ... */}
+      </Card>
+    </>
+  );
+};
+```
+
+# 3) Example controlled components
+
+Means that the respective value that should be passed and changes to it
+- are NOT handeled in the child
+- BUT the parent component
+
+## 3.1) Child component (ExpensesFilter)
+
+Step 1 and 2 like before
+
+- The props for the `selectedFilteredYear`
+  - needs to be added for considering the changed state in the parent
+- And the value attribute
+  - needs to be added to the `select` button for two-way-binding
+
+```javascript
+interface ExpensesFilterProps {
+  onChangeDateFilter: (enteredFilterDate: string) => void;
+  selectedFilteredYear: string;
+}
+
+const ExpensesFilter: React.FC<ExpensesFilterProps> = ({ onChangeDateFilter, selectedFilteredYear }) => {
+
+  // 1) Send the function with the value,
+  // That should be passed,
+  // to the parent component (Expenses)
+  const filterChangeHandler = (event: any) => {
+    onChangeDateFilter(event.target.value);
+
+  };
+
+  return (
+    <div className="expenses-filter">
+      <div className="expenses-filter__control">
+        <label>Filter by year</label>
+        {/* 2) Trigger the change of state using onChange */}
+        <select onChange={filterChangeHandler} value={selectedFilteredYear}>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+        </select>
+      </div>
+    </div>
+  );
+};
+```
+
+## 3.2) Parent component (Expenses)
+
+The steps 1 and two as before
+
+- Step 3 for declaring the state
+- Step 4 actually updates the state (triggers a re-rendering of the page)
+- Step 5 controlls the component (additional step that ensures that data is the same in both components)
+
+```javascript
+interface ExpensesProps {
+  expenses: Expense[];
+}
+
+const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
+  // 3) Save the data in a state
+  // (for making it possible to re-render page when changes occur)
+  // And initializing the value e.e.g '2020'
+  const [filteredYear, setFilteredYear] = useState("2020");
+  // 2) Processes the passed function
+  const filterChangeHandler = (selectedYear: string) => {
+    console.log(selectedYear);
+    // 4) Updates the state
     setFilteredYear(selectedYear);
   };
 
@@ -112,9 +180,19 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
           onChangeDateFilter={filterChangeHandler}
           selectedFilteredYear={filteredYear}
         />
-        ...{" "}
+        {/* ... */}
       </Card>
     </>
   );
 };
 ```
+
+
+Stateful (smart) vs Sstateless (presentational, dumb) components
+
+Components that manage some state
+- e.g. Expenses Component manages the filter state
+- which can be seen in the `useState()` statement of the respective component
+
+Components that dont manage a state
+- e.g. ExpenseItem component only represents

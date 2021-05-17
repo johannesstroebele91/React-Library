@@ -1,14 +1,51 @@
-- [1) Declare useState](#1-declare-usestate)
-- [2) Trigger the change of state](#2-trigger-the-change-of-state)
-- [3) Update state](#3-update-state)
-- [4) Use new value](#4-use-new-value)
-- [5) Submission of a form](#5-submission-of-a-form)
-  - [5.1) Trigger the submit](#51-trigger-the-submit)
-  - [5.2) Create a submit handler](#52-create-a-submit-handler)
-  - [5.1) Add a value using 2-way-binding](#51-add-a-value-using-2-way-binding)
-- [6) Usage of a previous state](#6-usage-of-a-previous-state)
+- [1) Basics](#1-basics)
+  - [1.1) Declare useState](#11-declare-usestate)
+  - [1.2) Update state](#12-update-state)
+  - [1.3) Update state](#13-update-state)
+  - [1.4) Use new value](#14-use-new-value)
+- [2) Submission of a form](#2-submission-of-a-form)
+  - [2.1) Trigger the submit](#21-trigger-the-submit)
+  - [2.2) Submit the form](#22-submit-the-form)
+- [3) Controlled component (2-way-binding)](#3-controlled-component-2-way-binding)
+  - [3.1) Parent component: ExpenseForm](#31-parent-component-expenseform)
+  - [3.2) Child component: ExpenseForm](#32-child-component-expenseform)
+- [4) Usage of a previous state](#4-usage-of-a-previous-state)
 
-# 1) Declare useState
+# 1) Basics
+
+A State of variables can be changed in 4 steps as shown below in the example
+
+ExpenseItem
+
+```javascript
+const ExpenseItem: React.FC<ExpenseItemProps> = ({ title, amount, date }) => {
+  // 1) Declare useState
+  const [amountExpenseItem, setAmount] = useState(amount);
+
+  // 3) Update state
+  const clickHandler = () => {
+    setAmount(amountExpenseItem + 1);
+
+    // WARNING! value doesn't update right away for the next line
+    // BUT only after the next re-render
+    console.log(amountExpenseItem);
+  };
+  return (
+    <Card className="expense-item">
+      <ExpenseDate expenseDate={date} />
+      <div className="expense-item__description">
+        <h2>{title}</h2>
+        {/* 4. Use the updated variable */}
+        <div className="expense-item__price">${amountExpenseItem}</div>
+      </div>
+      {/* 2) Trigger the change of state */}
+      <button onClick={clickHandler}>Change Title</button>
+    </Card>
+  );
+};
+```
+
+## 1.1) Declare useState
 
 - Initialize useState with an initial value (e.g. amount)
 - Store with array destructuring in separate variables the two returned values
@@ -17,7 +54,7 @@
 - `const` can be used because React throws away all variables for each new state
 - e.g. `const [enteredTitle, setEnteredTitle] = useState("");`
 
-# 2) Trigger the change of state
+## 1.2) Update state
 
 Whenever the state should change
 
@@ -32,7 +69,7 @@ Whenever the state should change
 - a) a arrow functions to directly trigger a function inside the {}
 - b) or point to the handler (!!! NOT A FUNCTION CALL)\*/}
 
-# 3) Update state
+## 1.3) Update state
 
 - Call the 2. value (updating function)
 
@@ -49,20 +86,109 @@ const titleChangeHandler = (event: any) => {
 };
 ```
 
-# 4) Use new value
+## 1.4) Use new value
 
 - Use the 1. value (e.g. amountExpenseItem)
 - for outputting data in the HTML
 - e.g. `<p>{amountExpenseItem}</p>`
 
-# 5) Submission of a form
+# 2) Submission of a form
 
-## 5.1) Trigger the submit
+A state for a form submission can be implemented in 6 steps (2 additional ones)
+
+```javascript
+interface ExpenseFormProps {
+  onSaveExpenseData: (enteredExpenseData: Expense) => void;
+}
+/* Data is passed, via pointer at a function, to the parent
+  1) `ExpenseFormProps`
+  2) `onSaveExpenseData`
+  3) and later `onSaveExpenseData(expenseData)` */
+const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSaveExpenseData }) => {
+  // !!! A FORM CAN BE SUBMITTED IN 5 STEPS USING STATE
+
+  // 1) Declare useState
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredAmount, setEnteredAmount] = useState("");
+  const [enteredDate, setEnteredDate] = useState("");
+
+  // 3) Update state
+  const titleChangeHandler = (event: any) => {
+    setEnteredTitle(event.target.value);
+  };
+  const amountChangeHandler = (event: any) => {
+    setEnteredAmount(event.target.value);
+  };
+  const dateChangeHandler = (event: any) => {
+    setEnteredDate(event.target.value);
+  };
+
+  // 5) Submit the form
+  const submitHandler = (event: any) => {
+    // Call preventDefault() to prevent page reload (automatic HTTP request)
+    event.preventDefault();
+
+    // Create a updated object from received values
+    const expenseData: Expense = {
+      id: "e" + Math.floor(Math.random() * 1000).toString(),
+      title: enteredTitle,
+      amount: parseFloat(enteredAmount),
+      date: new Date(enteredDate), // parses the date string into a Date object
+    };
+    onSaveExpenseData(expenseData);
+    // Clears the input after the form was submitted
+    setEnteredTitle("");
+    setEnteredAmount("");
+    setEnteredDate("");
+  };
+
+  return (
+    <form onSubmit={submitHandler}>
+      {/* ↑↑↑ 4) Trigger the form Submit the form */}
+      <div className="new-expense__controls">
+        <div className="new-expense__control">
+          <label>Title</label>
+          {/* 2) Trigger the change of state using onChange */}
+          <input type="text" onChange={titleChangeHandler} />
+        </div>
+        <div className="new-expense__control">
+          <label>Amount</label>
+          <input
+            onChange={amountChangeHandler}
+            type="number"
+            min="0.01"
+            step="0.01"
+          />
+        </div>
+        <div className="new-expense__control">
+          <label>Date</label>
+          <input
+            onChange={dateChangeHandler}
+            type="date"
+            min="2019-01-01"
+            max="2022-12-31"
+          />
+        </div>
+      </div>
+      <div className="new-expense__actions">
+        {/* 4) Submit the form */}
+        <button type="submit">Add Expense</button>
+      </div>
+    </form>
+  );
+};
+```
+
+## 2.1) Trigger the submit
 
 - Add onSubmit to the form `<form onSubmit={submitHandler}>`
 - Add the submit button `<button type="submit">Add Expense</button>`
 
-## 5.2) Create a submit handler
+## 2.2) Submit the form
+
+Create a submit handler
+
+- for managing the submit
 
 ```javascript
 const submitHandler = (event: any) => {
@@ -88,40 +214,129 @@ const submitHandler = (event: any) => {
 };
 ```
 
-## 5.1) Add a value using 2-way-binding
+# 3) Controlled component (2-way-binding)
 
-- enables to get user input AND change it
-  - Passes the value back into the input
-  - using two-way-binding (e.g. value={enteredTitle})
-- Example
-  - Passes the value back into the input when the form is submitted
-  - and clear the input values (see step b)
-  - using two-way-binding (e.g. value={enteredTitle})
-  - `<input value={enteredTitle} type="text" onChange={titleChangeHandler} />`
+Enables to get user input AND change it
 
-# 6) Usage of a previous state
+- Passes the value back into the input
+- using 2-way-binding (e.g. value={enteredTitle})
 
-Most often, the previous state of a component
-* should be remembered
-* for using it in the next state
+Example
 
-The solution is to modify the `set` function
-* by not declaring it static
-* but dynamic
-* facilitating the previous state by passing it through an arrow function)
+- Passes the value back into the input when the form is submitted
+- and clear the input values (see step b)
+- using two-way-binding (e.g. value={enteredTitle})
+- `<input value={enteredTitle} type="text" onChange={titleChangeHandler} />`
 
-Example from Habillo: (Commit: [bbbeebe8c0cda8029a41b834783e38e394e0430b](https://github.com/johannesstroebele91/Habillo/commit/bbbeebe8c0cda8029a41b834783e38e394e0430b))
-* prevState with an arrow function is used
-* not habits or habitsLists
-  * these variables would lead to a solution
-  * which would forget the previous state!
+It can be implemented with a 6) additional step
+
+## 3.1) Parent component: ExpenseForm
+
+A parent and child component can be controlled
+
+- to ensure that both child and parent have the same data (e.g. `selectedFilteredYear`)
+- by passing the changed value from the parent to the child again
 
 ```javascript
-  // Declare useState
-  const [habitsLists, setHabitsLists] = useState(habits);
-
-  const onFinish = (habit: Habit) => {
-    // Set new state to re-render site for reconsidering new add habit
-    setHabitsLists((prevState) => ( [...prevState, habit]));
+  // 3) Save the data in a state
+  // (for making it possible to re-render page when changes occur)
+  // And initializing the value e.e.g '2020'
+  const [filteredYear ,setFilteredYear] = useState('2020');
+  // 2) Processes the passed function
+  const filterChangeHandler = (selectedYear: string) => {
+    console.log(selectedYear)
+    // 4) Updates the state
+    setFilteredYear(selectedYear);
   };
+
+  return (
+    <>
+      <Card className="expenses">
+        {/* 1) Receives the passed function from the child*/}
+        {/* 5) In order to ensure that both the parent and the child have the same data
+              * data (e.g. 'filteredYear') should be back
+              * via two-way-binding
+              * RESULT: 2020 is the default as stated above */}
+        <ExpensesFilter onChangeDateFilter={filterChangeHandler} selectedFilteredYear={filteredYear} />
+        {/* ... */}
+      </Card>
+    </>
+  );
+};
+```
+
+## 3.2) Child component: ExpenseForm
+
+The change data from the parent (e.g. `selectedFilteredYear`)
+
+- is passed via props
+- and used via `value={selectedFilteredYear}` to updated the input
+- which triggered the change of the state
+
+```javascript
+interface ExpensesFilterProps {
+  onChangeDateFilter: (enteredFilterDate: string) => void;
+  selectedFilteredYear: string;
+}
+
+const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
+  onChangeDateFilter,
+  selectedFilteredYear,
+}) => {
+  // !!! STEPS 1-2: UPDATES THE STATE IN THE PARENT COMPONENT (EXPENSES) USING A CHANGE IN THE CHILD COMPONENT
+  // !!! STEP 3: A VARIABLE IS CONTROLLED USING THE PARENT COMPONENT WITH 2-WAY-BINDING
+  // 1) Send the function with the value,
+  // That should be passed,
+  // to the parent component (Expenses)
+  const filterChangeHandler = (event: any) => {
+    onChangeDateFilter(event.target.value);
+  };
+
+  return (
+    <div className="expenses-filter">
+      <div className="expenses-filter__control">
+        <label>Filter by year</label>
+        {/* 2) Trigger the change of state using onChange */}
+        {/* 3) Controlls a variable in the child component using two way binding */}
+        <select onChange={filterChangeHandler} value={selectedFilteredYear}>
+          <option value="2022">2022</option>
+          <option value="2021">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+        </select>
+      </div>
+    </div>
+  );
+};
+```
+
+# 4) Usage of a previous state
+
+Most often, the previous state of a component
+
+- should be remembered
+- for using it in the next state
+
+The solution is to modify the `set` function
+
+- by not declaring it static
+- but dynamic
+- facilitating the previous state by passing it through an arrow function)
+
+Example from Habillo:
+
+(Commit: [bbbeebe8c0cda8029a41b834783e38e394e0430b](https://github.com/johannesstroebele91/Habillo/commit/bbbeebe8c0cda8029a41b834783e38e394e0430b))
+
+The `prevState` variable is used with an arrow function
+- (not habits or habitsLists!!!)
+- because otherwise this would lead to a solution which would forget the previous state!
+
+```javascript
+// Declare useState
+const [habitsLists, setHabitsLists] = useState(habits);
+
+const onFinish = (habit: Habit) => {
+  // Set new state to re-render site for reconsidering new add habit
+  setHabitsLists((prevState) => [...prevState, habit]);
+};
 ```

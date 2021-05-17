@@ -12,13 +12,12 @@ interface ExpenseItemProps {
 // PROPS: Passing props in TS NEEDS a Props Interface (e.g. ExpenseItemProps)
 // Obj destructuring can be used for easier access of variables (e.g. ({title}))
 const ExpenseItem: React.FC<ExpenseItemProps> = ({ title, amount, date }) => {
-  //
-  // !!! STATE CAN BE USED IN 5 STEPS
-  // 
-  // 1. Declare useState
+
+  // !!! STEP 1-4: UPDATE THE STATE OF VARIABLES USING AN INPUT
+  // 1) Declare useState
   const [amountExpenseItem, setAmount] = useState(amount);
 
-  // 4. Update state
+  // 3) Update state
   const clickHandler = () => {
     setAmount(amountExpenseItem + 1);
 
@@ -31,10 +30,10 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({ title, amount, date }) => {
       <ExpenseDate expenseDate={date} />
       <div className="expense-item__description">
         <h2>{title}</h2>
-        {/* 5. Use the updated variable */}
+        {/* 4. Use the updated variable */}
         <div className="expense-item__price">${amountExpenseItem}</div>
       </div>
-      {/* 3. Trigger the change of state */}
+      {/* 2) Trigger the change of state */}
       <button onClick={clickHandler}>Change Title</button>
     </Card>
   );

@@ -11,6 +11,10 @@ interface ExpensesProps {
 
 const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
 
+  // !!! STEP 1+2: A VALUE CAN BE PASSED FROM THE CHILD (ExpensesFilter) TO THIS PARENT COMPONENT
+  // !!! STEP 3+4: A STATE CAN BE UPDATED USING THE NEW INPUT FROM THE CHILD
+  // !!! STEP 5: A COMPONENT CAN BE CONTROLLED TO ENSURE THAT BOTH CHILD AND PARENT HAVE THE SAME DATA
+
   // 3) Save the data in a state
   // (for making it possible to re-render page when changes occur)
   // And initializing the value e.e.g '2020'

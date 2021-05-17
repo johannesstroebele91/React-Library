@@ -10,14 +10,16 @@ interface ExpenseFormProps {
   2) `onSaveExpenseData`
   3) and later `onSaveExpenseData(expenseData)` */
 const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSaveExpenseData }) => {
-  // !!! STATE CAN BE USED IN 6 STEPS (Step 5 is skipped)
+  // !!! STEP 1-4: A STATE CAN BE CHANGED USING AN INPUT AND THE VALUES PASSED TO A PARENT COMPONENT (EXPENSES)
+  // !!! STEP 5: A FORM CAN BE SUBMITTED HERE AND ITS VALUE PASSED TO THE PARENT
+  // !!! STEP 6: THE VALUES OF A CHILD AND PARENT COMPONENT CAN BE CONTROLLED USING 2-WAY-BINDING
 
   // 1) Declare useState
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
   const [enteredDate, setEnteredDate] = useState("");
 
-  // 3) Update the state
+  // 3) Update state
   const titleChangeHandler = (event: any) => {
     setEnteredTitle(event.target.value);
   };
@@ -28,7 +30,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSaveExpenseData }) => {
     setEnteredDate(event.target.value);
   };
 
-  // 6) Submit the form
+  // 5) Submit the form
   const submitHandler = (event: any) => {
     // Call preventDefault() to prevent page reload (automatic HTTP request)
     event.preventDefault();
@@ -49,7 +51,7 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSaveExpenseData }) => {
 
   return (
     <form onSubmit={submitHandler}>
-      {/* ↑↑↑ 6) Submit the form */}
+      {/* ↑↑↑ 4) Trigger the form Submit the form */}
       <div className="new-expense__controls">
         <div className="new-expense__control">
           <label>Title</label>
