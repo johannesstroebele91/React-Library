@@ -19,7 +19,7 @@ Means that the respective value that should be passed and changes to it
 - NOT the parent component
 
 
-**Github Commit (files ExpensesFilter and Expenses): [f4c4985fc73ec590fe3d8585a9510a3516812afa](https://github.com/johannesstroebele91/React-Library/commit/f4c4985fc73ec590fe3d8585a9510a3516812afa)**
+**See the following Github Commit: [113ce035f92da3a1d32429b12b5253d0df407707](https://github.com/johannesstroebele91/React-Library/commit/113ce035f92da3a1d32429b12b5253d0df407707)**
 
 ## 2.1) Child component (ExpensesFilter)
 

@@ -286,7 +286,7 @@ const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
 }) => {
   // !!! STEPS 1-2: CREATE A NEW STATE IN THE PARENT COMPONENT (EXPENSES) USING A CHANGE IN THE CHILD COMPONENT
   // !!! STEP 3: A VARIABLE IS CONTROLLED USING THE PARENT COMPONENT WITH 2-WAY-BINDING
-  
+
   // 1) Send the function with the value,
   // That should be passed,
   // to the parent component (Expenses)
@@ -327,7 +327,7 @@ The solution is to modify the `set` function
 
 Example from Habillo:
 
-(Commit: [bbbeebe8c0cda8029a41b834783e38e394e0430b](https://github.com/johannesstroebele91/Habillo/commit/bbbeebe8c0cda8029a41b834783e38e394e0430b))
+See the git Commit: [113ce035f92da3a1d32429b12b5253d0df407707](https://github.com/johannesstroebele91/React-Library/commit/113ce035f92da3a1d32429b12b5253d0df407707))
 
 The `prevState` variable is used with an arrow function
 - (not habits or habitsLists!!!)

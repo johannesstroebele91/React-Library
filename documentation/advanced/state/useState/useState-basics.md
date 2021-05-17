@@ -14,12 +14,13 @@ So useState monitors a variable for change
 
 - by creating a new state (NOT UPDATE A STATE)
 
-
 The function useState returns an array with exactly two elements
-1) element: name of the variable which state should be change
-2) element: is always a function
-  - which you can call to set a new value for your state.
-  - Calling that function will then also trigger React to re-evaluate the component
+
+1. element: name of the variable which state should be change
+2. element: is always a function
+
+- which you can call to set a new value for your state.
+- Calling that function will then also trigger React to re-evaluate the component
 
 # 2) WARNING!!!
 
@@ -41,10 +42,10 @@ a) Multiple States
 
 - **Preferred approach by Maximilian Scharzmüller**
 - See [useState-multiple-states](useState-multiple-states)
-- See Github Commit: [0a5ca492214a059402f203506af7a759d30efa8d](https://github.com/johannesstroebele91/React-Library/commit/0a5ca492214a059402f203506af7a759d30efa8d)
+- See the following git Commit: [113ce035f92da3a1d32429b12b5253d0df407707]([Github](https://github.com/johannesstroebele91/React-Library/commit/113ce035f92da3a1d32429b12b5253d0df407707))
   b) One State
 - See [useState-one-state](useState-one-state.md)
-- See Github Commit: [0a5ca492214a059402f203506af7a759d30efa8d](https://github.com/johannesstroebele91/React-Library/commit/0a5ca492214a059402f203506af7a759d30efa8d)
+- See Github Commit: [113ce035f92da3a1d32429b12b5253d0df407707]([Github](https://github.com/johannesstroebele91/React-Library/commit/113ce035f92da3a1d32429b12b5253d0df407707))
 
 # 3) Use Cases
 
