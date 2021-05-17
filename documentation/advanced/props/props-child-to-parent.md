@@ -28,7 +28,7 @@ Data cannot be directly passed via a variable
 
 # 3) Example
 
-**Github Commit: [85398735667fa06154a9ac8ca0ba776f8e0dcb91](https://github.com/johannesstroebele91/React-Library/commit/85398735667fa06154a9ac8ca0ba776f8e0dcb91)**
+**Github Commit (files ExpensesFilter and Expenses): [f4c4985fc73ec590fe3d8585a9510a3516812afa](https://github.com/johannesstroebele91/React-Library/commit/f4c4985fc73ec590fe3d8585a9510a3516812afa)**
 
 ## 3.1) Child component
 
