@@ -5,7 +5,7 @@ import Expense from "../../models/types";
 interface ExpenseFormProps {
   onSaveExpenseData: (enteredExpenseData: Expense) => void;
 }
-/* Data is passed, via pointer at a function, to the parent using:
+/* Data is passed, via pointer at a function, to the parent
   1) `ExpenseFormProps`
   2) `onSaveExpenseData`
   3) and later `onSaveExpenseData(expenseData)` */

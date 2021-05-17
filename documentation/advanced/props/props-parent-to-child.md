@@ -1,4 +1,4 @@
-# 1) Basics
+# 1) Basics = pass state data via props
 - (`const Todos: React.FC<> = (props) => {}`
 - Using a generic types in functional components
 - to explicitly add additional data to be passed
