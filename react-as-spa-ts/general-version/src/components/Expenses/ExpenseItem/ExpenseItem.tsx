@@ -1,23 +1,24 @@
 import { useState } from "react";
+import Expense from "../../../models/types";
 import Card from "../../Utility/Card";
 import ExpenseDate from "../ExpenseDate/ExpenseDate";
 import "./ExpenseItem.css";
 
+// !!! STEP 1-3: RECEDING DATA FROM THE PARENT
+
+// 1) Interface for receiving data via props in TS
 interface ExpenseItemProps {
-  title: string;
-  amount: number;
-  date: Date;
+  expense: Expense;
 }
 
-// PROPS: Passing props in TS NEEDS a Props Interface (e.g. ExpenseItemProps)
-// Obj destructuring can be used for easier access of variables (e.g. ({title}))
-const ExpenseItem: React.FC<ExpenseItemProps> = ({ title, amount, date }) => {
+// 2) Generic types are used to use the interface for the props on the component
+// 3) Obj destructuring enables to easily access variables from the props (e.g. ({title}))
+const ExpenseItem: React.FC<ExpenseItemProps> = ({ expense }) => {
+  // !!! STEP 5-7: CREATE A NEW STATE FOR THE DECLARED VARIABLE USING AN INPUT
+  // 4) Declare useState
+  const [amountExpenseItem, setAmount] = useState(expense.amount);
 
-  // !!! STEP 1-4: UPDATE THE STATE OF VARIABLES USING AN INPUT
-  // 1) Declare useState
-  const [amountExpenseItem, setAmount] = useState(amount);
-
-  // 3) Update state
+  // 6) Update state
   const clickHandler = () => {
     setAmount(amountExpenseItem + 1);
 
@@ -27,13 +28,13 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({ title, amount, date }) => {
   };
   return (
     <Card className="expense-item">
-      <ExpenseDate expenseDate={date} />
+      <ExpenseDate expenseDate={expense.date} />
       <div className="expense-item__description">
-        <h2>{title}</h2>
-        {/* 4. Use the updated variable */}
+        <h2>{expense.title}</h2>
+        {/* 7. Use the variable in the new state */}
         <div className="expense-item__price">${amountExpenseItem}</div>
       </div>
-      {/* 2) Trigger the change of state */}
+      {/* 5) Trigger the change of state */}
       <button onClick={clickHandler}>Change Title</button>
     </Card>
   );

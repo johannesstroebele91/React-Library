@@ -5,12 +5,13 @@ import ExpenseItem from "../ExpenseItem/ExpenseItem";
 import ExpensesFilter from "../ExpensesFilter/ExpensesFilter";
 import { useState } from "react";
 
-// !!! STEP 1+2: Data can be passed from a parent to a child component
+// !!! STEP 1: Props for receiving data from the parent
+// !!! STEP 2: Data can be passed down to a child component via props
 // !!! STEP 3+4: A VALUE CAN BE PASSED FROM THE CHILD (ExpensesFilter) TO THIS PARENT COMPONENT
 // !!! STEP 4+6: A STATE CAN BE UPDATED USING THE NEW INPUT FROM THE CHILD
 // !!! STEP 7: A COMPONENT CAN BE CONTROLLED TO ENSURE THAT BOTH CHILD AND PARENT HAVE THE SAME DATA
 
-// 1) Delcaring data for passing it to a child component
+// 1) Props for receiving data from the parent
 interface ExpensesProps {
   expenses: Expense[];
 }
@@ -39,27 +40,10 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
           onChangeDateFilter={filterChangeHandler}
           selectedFilteredYear={filteredYear}
         />
-        {/* 2) Passing data to a child component */}
-        <ExpenseItem
-          title={expenses[0].title}
-          amount={expenses[0].amount}
-          date={expenses[0].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          title={expenses[1].title}
-          amount={expenses[1].amount}
-          date={expenses[1].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          title={expenses[2].title}
-          amount={expenses[2].amount}
-          date={expenses[2].date}
-        ></ExpenseItem>
-        <ExpenseItem
-          title={expenses[3].title}
-          amount={expenses[3].amount}
-          date={expenses[3].date}
-        ></ExpenseItem>
+        {/* 1) Passing data to a child component */}
+        {expenses.map((expense) => (
+          <ExpenseItem key={expense.id} expense={expense} />
+        ))}
       </Card>
     </>
   );
