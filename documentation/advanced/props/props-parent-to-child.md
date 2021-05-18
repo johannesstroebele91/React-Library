@@ -24,7 +24,7 @@ A generic types in functional components can be used
 
 Data can be passed from a parent to a child component as follows
 
-**See the following Git Commit [1b946a0b875a5be1220a21cc0311c8de7e3c0dc4](https://github.com/johannesstroebele91/React-Library/commit/1b946a0b875a5be1220a21cc0311c8de7e3c0dc4?short_path=cc60d64)**
+**See the following Git Commit [113ce035f92da3a1d32429b12b5253d0df407707](https://github.com/johannesstroebele91/React-Library/commit/113ce035f92da3a1d32429b12b5253d0df407707)**
 
 ## 2.1) Parent component
 
