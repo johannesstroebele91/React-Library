@@ -1,4 +1,4 @@
-import "./";
+import "./Expenses.css";
 import Expense from "../../models/types";
 import Card from "../Utility/Card";
 import ExpensesFilter from "./ExpensesList/ExpensesFilter/ExpensesFilter";

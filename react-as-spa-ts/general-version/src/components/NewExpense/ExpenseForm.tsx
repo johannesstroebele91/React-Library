@@ -4,15 +4,17 @@ import Expense from "../../models/types";
 
 interface ExpenseFormProps {
   onSaveExpenseData: (enteredExpenseData: Expense) => void;
+  onCloseNewExpenseForm: () => void;
 }
 /* Data is passed, via pointer at a function, to the parent
   1) `ExpenseFormProps`
   2) `onSaveExpenseData`
   3) and later `onSaveExpenseData(expenseData)` */
-const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSaveExpenseData }) => {
+const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSaveExpenseData, onCloseNewExpenseForm }) => {
   // !!! STEP 1-4: A STATE CAN BE CHANGED USING AN INPUT AND THE VALUES PASSED TO A PARENT COMPONENT (EXPENSES)
   // !!! STEP 5: A FORM CAN BE SUBMITTED HERE AND ITS VALUE PASSED TO THE PARENT
   // !!! STEP 6: THE VALUES OF A CHILD AND PARENT COMPONENT CAN BE CONTROLLED USING 2-WAY-BINDING
+  // !!! STEP 7: Manages conditional content regarding a cancel button
 
   // 1) Declare useState
   const [enteredTitle, setEnteredTitle] = useState("");
@@ -47,6 +49,9 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSaveExpenseData }) => {
     setEnteredTitle("");
     setEnteredAmount("");
     setEnteredDate("");
+
+    // Close form for adding new expense after finish
+    onCloseNewExpenseForm();
   };
 
   return (
@@ -85,6 +90,8 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSaveExpenseData }) => {
         </div>
       </div>
       <div className="new-expense__actions">
+        {/* 7) Cancel the adding of a new expense using conditions */}
+        <button onClick={() => {onCloseNewExpenseForm()}}>Cancel</button>
         {/*6) Submit the form */}
         <button type="submit">Add Expense</button>
       </div>
