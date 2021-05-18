@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Expense from "../../../models/types";
-import Card from "../../Utility/Card";
-import ExpenseDate from "../ExpenseDate/ExpenseDate";
+import Expense from "../../../../models/types";
+import Card from "../../../Utility/Card";
+import ExpenseDate from "./ExpenseDate/ExpenseDate";
 import "./ExpenseItem.css";
 
 // !!! STEP 1-3: RECEDING DATA FROM THE PARENT
@@ -27,16 +27,18 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({ expense }) => {
     console.log(amountExpenseItem);
   };
   return (
-    <Card className="expense-item">
-      <ExpenseDate expenseDate={expense.date} />
-      <div className="expense-item__description">
-        <h2>{expense.title}</h2>
-        {/* 7. Use the variable in the new state */}
-        <div className="expense-item__price">${amountExpenseItem}</div>
-      </div>
-      {/* 5) Trigger the change of state */}
-      <button onClick={clickHandler}>Change Title</button>
-    </Card>
+    <li>
+      <Card className="expense-item">
+        <ExpenseDate expenseDate={expense.date} />
+        <div className="expense-item__description">
+          <h2>{expense.title}</h2>
+          {/* 7. Use the variable in the new state */}
+          <div className="expense-item__price">${amountExpenseItem}</div>
+        </div>
+        {/* 5) Trigger the change of state */}
+        <button onClick={clickHandler}>Change Title</button>
+      </Card>
+    </li>
   );
 };
 

@@ -1,6 +1,6 @@
 import Expenses from "./models/types";
 
-const expenses: Expenses[] = [
+const INITIAL_EXPENSES: Expenses[] = [
     {
       id: 'e1',
       title: 'Toilet Paper',
@@ -22,4 +22,4 @@ const expenses: Expenses[] = [
     },
   ];
 
-export default expenses;
+export default INITIAL_EXPENSES;

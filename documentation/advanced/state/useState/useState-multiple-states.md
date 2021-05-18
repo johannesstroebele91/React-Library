@@ -314,10 +314,19 @@ const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
 
 # 4) Usage of a previous state
 
-Most often, the previous state of a component
+The problem is that
 
-- should be remembered
-- for using it in the next state
+- the previous state of the variable, which state is monitored, is forgotten
+- in case a new state is created via set function (e.g. setHabitsLists)
+
+Solution
+
+- declaring the set
+  // 1) The initial state populates the expenses variable with INITIAL_EXPENSES
+  // 2) When the new state is created `setExpenses()`
+  // the old state of the expense is passed via prevExpenses
+  // And the new state for the variable added via expense
+  setExpenses((prevExpenses) => [...prevExpenses, expense]);
 
 The solution is to modify the `set` function
 
@@ -330,15 +339,24 @@ Example from Habillo:
 See the git Commit: [113ce035f92da3a1d32429b12b5253d0df407707](https://github.com/johannesstroebele91/React-Library/commit/113ce035f92da3a1d32429b12b5253d0df407707))
 
 The `prevState` variable is used with an arrow function
+
 - (not habits or habitsLists!!!)
 - because otherwise this would lead to a solution which would forget the previous state!
 
 ```javascript
-// Declare useState
-const [habitsLists, setHabitsLists] = useState(habits);
+// 1) Declare useState with variable and set function
+// 2) Initialize the variable with an initial value (e.g. habits)
+const [habitsLists, setHabitsLists] = useState(INITIAL_HABITS);
 
 const onFinish = (habit: Habit) => {
-  // Set new state to re-render site for reconsidering new add habit
+  // 3) WRONG :(
+  // Using the variable that the state was declared with
+  // Forgets the old state
+  setHabitsLists((prevState) => [INITIAL_HABITS, habit]);
+
+  // 3) RIGHT :)
+  // Call the set state method to create a new state for the variable (re-render page)
+  // use prevState to pass the old state to the new state of the variable
   setHabitsLists((prevState) => [...prevState, habit]);
 };
 ```
