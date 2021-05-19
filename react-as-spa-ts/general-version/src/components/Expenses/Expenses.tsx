@@ -4,6 +4,7 @@ import Card from "../Utility/Card";
 import ExpensesFilter from "./ExpensesList/ExpensesFilter/ExpensesFilter";
 import { useState } from "react";
 import ExpensesList from "./ExpensesList/ExpensesList";
+import ExpensesChart from "./ExpensesChart";
 
 // !!! STEP 1: Props for receiving data from the parent
 // !!! STEP 2+3: A VALUE CAN BE PASSED FROM THE CHILD (ExpensesFilter) TO THIS PARENT COMPONENT
@@ -43,6 +44,7 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
           onChangeDateFilter={filterChangeHandler}
           selectedFilteredYear={filteredYear}
         />
+        <ExpensesChart expenses={filteredExpenses}/>
         <ExpensesList filteredExpenses={filteredExpenses}/>
       </Card>
     </>

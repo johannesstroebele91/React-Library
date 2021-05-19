@@ -1,14 +1,15 @@
 - [1) Basics](#1-basics)
-- [2) Example Data: array of objects](#2-example-data-array-of-objects)
-- [3) Rendering a small or specific number of array elements](#3-rendering-a-small-or-specific-number-of-array-elements)
-  - [3.1) Parent component](#31-parent-component)
-  - [3.2) Child component](#32-child-component)
-- [4) Rendering a large or unspecific number of array elements](#4-rendering-a-large-or-unspecific-number-of-array-elements)
+- [2) Keys](#2-keys)
+- [3) Example Data: array of objects](#3-example-data-array-of-objects)
+- [4) Rendering a small or specific number of array elements](#4-rendering-a-small-or-specific-number-of-array-elements)
   - [4.1) Parent component](#41-parent-component)
   - [4.2) Child component](#42-child-component)
-- [5) Rendering filtered items](#5-rendering-filtered-items)
-  - [5.1) Alongside the map function](#51-alongside-the-map-function)
-  - [5.2) Separate from the map function](#52-separate-from-the-map-function)
+- [5) Rendering a large or unspecific number of array elements](#5-rendering-a-large-or-unspecific-number-of-array-elements)
+  - [5.1) Parent component](#51-parent-component)
+  - [5.2) Child component](#52-child-component)
+- [6) Rendering filtered items](#6-rendering-filtered-items)
+  - [6.1) Alongside the map function](#61-alongside-the-map-function)
+  - [6.2) Separate from the map function](#62-separate-from-the-map-function)
 
 # 1) Basics
 
@@ -17,20 +18,25 @@ Dynamic lists in React can be created from arrays using
 - the `map()` function
 - e.g. `someArray.map((element) => { <CustomComponent passedValue={element} />} )`
 
-A key need to be added in order to
+# 2) Keys
+
+Is required for React to correctly
+
+- identify and update (if needed) the list elements
+- AND needs to be unique (e.g. id)
+
+It enables to
 
 - avoid bugs with the state (most importantly!!!)
 - and unnecessary performance issues (needs to render twice to check the order)
 - e.g. `someArray.map((element) => { <CustomComponent key={element.id} passedValue={element} />} )`
-
-Keys should be unique values from the data itself (e.g. id)
 
 If no unique values are present
 
 - the second argument `index` of the map((item, index) => {...}` function can be used
 - e.g. map((item, index) => {<CustomComponent key={index} passedValue={element} />})`
 
-# 2) Example Data: array of objects
+# 3) Example Data: array of objects
 
 ```javascript
 const expenses: Expenses[] = [
@@ -56,9 +62,9 @@ const expenses: Expenses[] = [
 ];
 ```
 
-# 3) Rendering a small or specific number of array elements
+# 4) Rendering a small or specific number of array elements
 
-## 3.1) Parent component
+## 4.1) Parent component
 
 Injecting data per array into an component dynamically
 
@@ -88,7 +94,7 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
 };
 ```
 
-## 3.2) Child component
+## 4.2) Child component
 
 Using data from the parent in the child components
 
@@ -115,9 +121,9 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({ expense /* Alt: via variables
 };
 ```
 
-# 4) Rendering a large or unspecific number of array elements
+# 5) Rendering a large or unspecific number of array elements
 
-## 4.1) Parent component
+## 5.1) Parent component
 
 Injecting data per array into an component dynamically
 
@@ -135,13 +141,13 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
 };
 ```
 
-## 4.2) Child component
+## 5.2) Child component
 
 The same as for [1.2 child component](./rendering-lists.md)
 
-# 5) Rendering filtered items
+# 6) Rendering filtered items
 
-## 5.1) Alongside the map function
+## 6.1) Alongside the map function
 
 Directly filtering the array alongside the map function
 
@@ -156,7 +162,7 @@ Directly filtering the array alongside the map function
 }
 ```
 
-## 5.2) Separate from the map function
+## 6.2) Separate from the map function
 
 Separate the filter by declaring another variable and filtering it
 
