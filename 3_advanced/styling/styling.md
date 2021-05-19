@@ -7,7 +7,10 @@
 Setup styles in a  conditional & dynamic way (e.g. change style if user enterer invalid input)
 scoping styles (style only is available for the component and not globally)
 - styled components (3rd party library): setup pre-styled components with their own scoped styles
-- css modules
+- - [1) Style Attribute](#1-style-attribute)
+- [2) Inline styling](#2-inline-styling)
+- [3) Styling via style objects](#3-styling-via-style-objects)
+- [4) Styling via className](#4-styling-via-classname)css modules
 
 # 1) Style Attribute
 

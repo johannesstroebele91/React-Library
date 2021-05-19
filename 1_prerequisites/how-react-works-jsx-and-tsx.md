@@ -1,3 +1,10 @@
+- [1) Basics](#1-basics)
+- [2) How JSX/TSX (React) works](#2-how-jsxtsx-react-works)
+- [3) ReactDOM dependency](#3-reactdom-dependency)
+- [4) React dependency](#4-react-dependency)
+  - [4.1) Without magic](#41-without-magic)
+  - [4.2) With magic](#42-with-magic)
+
 # 1) Basics
 
 - Stands for JS/TS XML
@@ -10,8 +17,9 @@
 - React goes through each file (starting from the App.tsx/js/jsx)
   - when the application is initialized
   - DOES NOT automatically update, when sth changes
-  - e.g. button is clicked  
+  - e.g. button is clicked
   - but you need to tell React to CHANGE THE STATE
+
 # 2) How JSX/TSX (React) works
 
 In the end, the React code (JSX/TSX files)
