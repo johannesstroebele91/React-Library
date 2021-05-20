@@ -1,29 +1,59 @@
-- [1) Style Attribute](#1-style-attribute)
-- [2) Inline styling](#2-inline-styling)
-- [3) Styling via style objects](#3-styling-via-style-objects)
-- [4) Styling via className](#4-styling-via-classname)
+- [1) Inline styling `style={{}}`](#1-inline-styling-style)
+- [2) Regular CSS selectors](#2-regular-css-selectors)
+- [3) Style objects](#3-style-objects)
+- [TODO MOVE SOMEWHERE ELSE](#todo-move-somewhere-else)
+- [6) styled components (3rd party library)](#6-styled-components-3rd-party-library)
+- [7) Issue Global Scope of Styling](#7-issue-global-scope-of-styling)
 
-Setup styles in a conditional & dynamic way (e.g. change style if user enterer invalid input)
-scoping styles (style only is available for the component and not globally)
+# 1) Inline styling `style={{}}`
 
-- styled components (3rd party library): setup pre-styled components with their own scoped styles
+- In JSX, JavaScript expressions are written inside double curly braces {},
+  - So styles in React are writting inside two sets of curly braces {{}}
+  - due to the styling being a JavaScript object
+- "px" is not needed
+  - because React adds it automatically
+  - e.g. `<div style={{'font-size': '5px'}}></div>`
+- Spelling:
+  a) option: camel case: e.g. `<div style={{fontSize: 5}}></div>`
+  b) option: stringified: e.g. `<div style={{'font-size': 5}}></div>`
 
-# 1) Style Attribute
+# 2) Regular CSS selectors
 
-- enables to style the HTML elements
-- px is not needed (React adds it automatically)
-
-# 2) Inline styling
-
-- In JSX, JavaScript expressions are written inside curly braces,
-- and since JavaScript objects also use curly braces,
-- the styling in the example above is written inside two sets of curly braces {{}}.
+- classes are passed as strings via the "className" prop
+- depend on props/state for dynamically rendering UI
+- have better performance than inline styles due to caching of css files
+- e.g. className, idName
 
 ```javascript
-<div style={{flexWrap: 'nowrap'}}>
+class HomePage extends React.Component {
+    render() {
+        return (
+            <!-- Add className to add styles to HTML elements-->
+            <div className={"button-styling"}>
+              Hello
+            </div>
+        );
+    }
+}
 ```
 
-# 3) Styling via style objects
+```css
+/* Id selector */
+#form-control {
+  margin: 0;
+}
+
+/* Class selector */
+.button-styling {
+  margin: 0;
+}
+/* Tag/element selector */
+div {
+  margin: 0;
+}
+div button { margin: 0; }
+```
+# 3) Style objects
 
 - most often used to dynamically add styles at render time (e.g. changing position from top to left)
 
@@ -42,21 +72,12 @@ class HomePage extends React.Component {
 }
 ```
 
-# 4) Styling via className
+# TODO MOVE SOMEWHERE ELSE
 
-- classes are passed as strings via the "className" prop
-- depend on props/state for dynamically rendering UI
-- have better performance than inline styles due to caching of css files
+# 6) styled components (3rd party library)
 
-```javascript
-class HomePage extends React.Component {
-    render() {
-        return (
-            <!-- Add className to add styles to HTML elements-->
-            <div className={"button-styling"}>
-              Hello
-            </div>
-        );
-    }
-}
-```
+setup pre-styled components with their own scoped styles
+
+# 7) Issue Global Scope of Styling
+
+Scoping styles (style only is available for the component and not globally)
