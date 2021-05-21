@@ -1,26 +1,89 @@
-- [1) Standard in React](#1-standard-in-react)
-- [2) Approaches for scoping css](#2-approaches-for-scoping-css)
+- [1) CSS in React is un-scoped (standard)](#1-css-in-react-is-un-scoped-standard)
+- [2) Approaches for scoping CSS](#2-approaches-for-scoping-css)
   - [2.1) Styled Components Package (3rd party library)](#21-styled-components-package-3rd-party-library)
-    - [2.1.1) Standard example](#211-standard-example)
-    - [2.1.2) Conditions example using props inside of styles](#212-conditions-example-using-props-inside-of-styles)
-    - [2.1.3) Conditions example without props](#213-conditions-example-without-props)
-  - [2.2) CSS Modules](#22-css-modules)
+  - [2.1) CSS Modules](#21-css-modules)
+    - [2.1.1) Explanation](#211-explanation)
+    - [2.1.2) Setting up](#212-setting-up)
+    - [2.1.3) Example](#213-example)
+    - [2.2.1) Standard example](#221-standard-example)
+    - [2.2.2) Conditions example using props inside of styles](#222-conditions-example-using-props-inside-of-styles)
+    - [2.2.3) Conditions example without props](#223-conditions-example-without-props)
 
-# 1) Standard in React
+# 1) CSS in React is un-scoped (standard)
 
-The stanard case in react is
+The standard case in react is
 
 - that css files are not scoped
 - so all of the classes are available globally (the whole app)
 - BUT you need to be VERY CAREFULL in larger projects
 
-# 2) Approaches for scoping css
+# 2) Approaches for scoping CSS
 
 ## 2.1) Styled Components Package (3rd party library)
 
 Enable to embed css into JSX/TSX files
 
-### 2.1.1) Standard example
+## 2.1) CSS Modules
+
+### 2.1.1) Explanation
+
+Reference: [CSS Modules from create-react-app](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet/)
+Reference: [Button component in Git Commits]()
+
+CSS Modules enable to separate the CSS of components from each other
+
+The build process for CSS modules
+
+- takes the CSS classes from the CSS files
+- and creates new classes with unique class names
+
+### 2.1.2) Setting up
+
+Projects needs to be setup to support these modules
+
+- in a special way
+- which is supported if `create-react-app` was used to create the app
+
+### 2.1.3) Example
+
+Approach
+
+1. Rename the file by inserting .module before .css (e.g. Button.module.css)
+2. Declare the import (e.g. import styles from '/.Button.module.css')
+3. Use the styles in the HTML (e.g. className={styles.button})
+
+Button.css
+
+```css
+.button {
+  width: 100%;
+  font: inherit;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid #8b005d;
+  color: white;
+  background: #8b005d;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.26);
+  cursor: pointer;
+}
+```
+
+Button.tsx
+
+```javascript
+import styles from "./Button.module.css";
+
+const Button = (props: any) => {
+  return (
+    <button type={props.type} className={styles.button} onClick={props.onClick}>
+      {props.children}
+    </button>
+  );
+};
+
+export default Button;
+```
+
+### 2.2.1) Standard example
 
 **Setup**
 
@@ -39,7 +102,7 @@ Ref: [https://styled-components.com/](https://styled-components.com/)
 
 **Example**
 
-See components Button and CourseInput in [Git Commit d4a3b4b47d2d394f4f90768b4542f729046d2be1](https://github.com/johannesstroebele91/React-Library/commit/d4a3b4b47d2d394f4f90768b4542f729046d2be1)
+See components Button and CourseInput in [Git Commit 65ea944bfe82f1771291955d5339ec8644c69c42](https://github.com/johannesstroebele91/React-Library/commit/65ea944bfe82f1771291955d5339ec8644c69c42)
 
 ` const Button = styled.button``;  `
 
@@ -116,7 +179,7 @@ const Button = (props: any) => {
 export default Button;
 ```
 
-### 2.1.2) Conditions example using props inside of styles
+### 2.2.2) Conditions example using props inside of styles
 
 This is done using:
 
@@ -208,7 +271,7 @@ const CourseInput: React.FC<onAddGoalProps> = ({ onAddGoal }) => {
 };
 ```
 
-### 2.1.3) Conditions example without props
+### 2.2.3) Conditions example without props
 
 This is done using:
 
@@ -278,14 +341,3 @@ const CourseInput: React.FC<onAddGoalProps> = ({ onAddGoal }) => {
   );
 };
 ```
-
-## 2.2) CSS Modules
-
-Reference: [CSS Modules from create-react-app](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet/)
-
-CSS Modules enable to separate the css of components from each other
-
-Projects needs to be setup to support these modules
-
-- in a special way
-- which is supported if `create-react-app` was used to create the app
