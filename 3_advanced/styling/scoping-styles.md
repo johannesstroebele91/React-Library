@@ -39,7 +39,7 @@ Ref: [https://styled-components.com/](https://styled-components.com/)
 
 **Example**
 
- see components Button and CourseInput in [Git Commit](https://github.com/johannesstroebele91/React-Library/commit/e6deb1b710be476be54fe9c1ed4f6c221b684a75)
+See components Button and CourseInput in [Git Commit d4a3b4b47d2d394f4f90768b4542f729046d2be1](https://github.com/johannesstroebele91/React-Library/commit/d4a3b4b47d2d394f4f90768b4542f729046d2be1)
 
 ` const Button = styled.button``;  `
 
@@ -124,6 +124,90 @@ This is done using:
 - and defining conditional CSS inside the respective styled components
 - and defining a FormControlProps regarding TypeScript (e.g. interface FormControlProps {invalid:boolean;})
 
+FormControl
+
+```javascript
+import { useState } from "react";
+import styled from "styled-components";
+import Button from "../../UI/Button/Button";
+
+interface FormControlProps {
+  invalid: boolean;
+}
+const FormControl =
+  styled.div <
+  FormControlProps >
+  `
+  margin: 0.5rem 0;
+
+  & label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+    color: ${({ invalid }) => (invalid ? "red" : "black")}
+  }
+
+  & input {
+    display: block;
+    width: 100%;
+    border: 1px solid ${({ invalid }) => (invalid ? "red" : "#ccc")};
+    background: ${({ invalid }) => (invalid ? "salmon" : "transparent")};
+    font: inherit;
+    line-height: 1.5rem;
+    padding: 0 0.25rem;
+  }
+
+  & input:focus {
+    outline: none;
+    background: #fad0ec;
+    border-color: #8b005d;
+  }
+`;
+
+// CourseInput
+
+interface onAddGoalProps {
+  onAddGoal: (enteredValue: string) => void;
+}
+
+const CourseInput: React.FC<onAddGoalProps> = ({ onAddGoal }) => {
+  const [enteredValue, setEnteredValue] = useState("");
+  const [isValid, setIsValid] = useState(true);
+
+  const goalInputChangeHandler = (event: any) => {
+    if (event.target.value.trim().length > 0) {
+      setIsValid(true);
+    }
+    setEnteredValue(event.target.value);
+  };
+
+  const formSubmitHandler = (event: any) => {
+    event.preventDefault();
+    if (enteredValue.trim().length === 0) {
+      setIsValid(false);
+      return;
+    }
+    onAddGoal(enteredValue);
+    setEnteredValue("");
+    setIsValid(true);
+  };
+
+  return (
+    <form onSubmit={formSubmitHandler}>
+      <FormControl invalid={!isValid}>
+        <label>Course Goal</label>
+        <input
+          type="text"
+          onChange={goalInputChangeHandler}
+          value={enteredValue}
+        />
+      </FormControl>
+      <Button type="submit">Add Goal</Button>
+    </form>
+  );
+};
+```
+
 ### 2.1.3) Conditions example without props
 
 This is done using:
@@ -202,5 +286,6 @@ Reference: [CSS Modules from create-react-app](https://create-react-app.dev/docs
 CSS Modules enable to separate the css of components from each other
 
 Projects needs to be setup to support these modules
+
 - in a special way
 - which is supported if `create-react-app` was used to create the app
