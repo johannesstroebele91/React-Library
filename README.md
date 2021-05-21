@@ -1,4 +1,6 @@
-# 1) Prerequisites
+# Project Files Structure
+
+## 1) Prerequisites
 - apps
   - react with js as **widgets**
   - react with js as **spa**
@@ -9,7 +11,7 @@
 - react and typescript
 - webpack
 
-# 2) Basics
+## 2) Basics
 - apps
   - expenses manager (everything that was learned in the basics folder)
   - tasks manager (only props that was learned in the basics folder)
@@ -21,6 +23,6 @@
 - conditional content
 - lists rendering
 
-# 3) Advanced
+## 3) Advanced
 - app tasks manager (everything tht was learned in the basics folder)
 - styling

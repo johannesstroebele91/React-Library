@@ -3,6 +3,8 @@
 Setup styles in a conditional & dynamic way
 e.g. change style if user enterer invalid input
 
+Examples see CourseInput in [Git Commit](https://github.com/johannesstroebele91/React-Library/commit/27f57c0da9b6948a1949a9f7374e51fe10bb3383)
+
 ## 1.1) Using useState and static inline-styling
 
 ```javascript

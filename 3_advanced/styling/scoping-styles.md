@@ -1,3 +1,11 @@
+- [1) Standard in React](#1-standard-in-react)
+- [2) Approaches for scoping css](#2-approaches-for-scoping-css)
+  - [2.1) Styled Components Package (3rd party library)](#21-styled-components-package-3rd-party-library)
+    - [2.1.1) Standard example](#211-standard-example)
+    - [2.1.2) Conditions example using props inside of styles](#212-conditions-example-using-props-inside-of-styles)
+    - [2.1.3) Conditions example without props](#213-conditions-example-without-props)
+  - [2.2) CSS Modules](#22-css-modules)
+
 # 1) Standard in React
 
 The stanard case in react is
@@ -10,10 +18,13 @@ The stanard case in react is
 
 ## 2.1) Styled Components Package (3rd party library)
 
-Styled Components
+Enable to embed css into JSX/TSX files
 
-- scopes the styling
-- by generating unique class names
+### 2.1.1) Standard example
+
+**Setup**
+
+Styled Components scopes the styling by generating unique class names
 
 Ref: [https://styled-components.com/](https://styled-components.com/)
 
@@ -26,7 +37,9 @@ Ref: [https://styled-components.com/](https://styled-components.com/)
    - e.g. ` const Button = styled.button``;  `
    - but other HTML elements like `styled.h1`, ... are also possible
 
-Example
+**Example**
+
+ see components Button and CourseInput in [Git Commit](https://github.com/johannesstroebele91/React-Library/commit/e6deb1b710be476be54fe9c1ed4f6c221b684a75)
 
 ` const Button = styled.button``;  `
 
@@ -48,11 +61,17 @@ Styles need to be written
 - without {} for the respective tag
 - and & used for states such as "focus", ...
 
+Media Queries
+
+- are written like normally
+- e.g. shown below
+
 ```javascript
 import "./Button.css";
 import styled from "styled-components";
 
 const Button = styled.button`
+  width: 100%;
   font: inherit;
   padding: 0.5rem 1.5rem;
   border: 1px solid #8b005d;
@@ -60,6 +79,10 @@ const Button = styled.button`
   background: #8b005d;
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.26);
   cursor: pointer;
+
+  @media (min-width: 768px) {
+    width: auto;
+  }
 
   &:focus {
     outline: none;
@@ -93,4 +116,91 @@ const Button = (props: any) => {
 export default Button;
 ```
 
-## 2.2) ???
+### 2.1.2) Conditions example using props inside of styles
+
+This is done using:
+
+- in the HTML (e.g. `<FormControl invalid={!isValid}>`)
+- and defining conditional CSS inside the respective styled components
+- and defining a FormControlProps regarding TypeScript (e.g. interface FormControlProps {invalid:boolean;})
+
+### 2.1.3) Conditions example without props
+
+This is done using:
+
+- in the HTML part (e.g. `<FormControl className={isValid && "invalid"}>`)
+- and defining separate invalid classes using the styled components
+- and defining a FormControlProps regarding TypeScript (TODO currently workaround using `<any>`)
+
+**CourseInput component**
+
+TODO interface props needs to be fixed!!!
+
+```javascript
+const FormControl =
+  styled.div <
+  any >
+  `
+&.invalid label {
+  color: red
+}
+&.invalid input {
+  border-color: red;
+  background: salmon;
+}
+`;
+
+interface onAddGoalProps {
+  onAddGoal: (enteredValue: string) => void;
+}
+
+const CourseInput: React.FC<onAddGoalProps> = ({ onAddGoal }) => {
+  const [enteredValue, setEnteredValue] = useState("");
+  const [isValid, setIsValid] = useState(true);
+
+  const goalInputChangeHandler = (event: any) => {
+    if (event.target.value.trim().length > 0) {
+      setIsValid(true);
+    }
+    setEnteredValue(event.target.value);
+  };
+
+  const formSubmitHandler = (event: any) => {
+    event.preventDefault();
+    if (enteredValue.trim().length === 0) {
+      setIsValid(false);
+      return;
+    }
+    onAddGoal(enteredValue);
+    setEnteredValue("");
+    setIsValid(true);
+  };
+
+  return (
+    <form onSubmit={formSubmitHandler}>
+      {/* from-control class does not need to be set as before */}
+      {/* because the styles are already attached via "styles components" */}
+      {/* The case for " */}
+      <FormControl className={isValid && "invalid"}>
+        <label>Course Goal</label>
+        <input
+          type="text"
+          onChange={goalInputChangeHandler}
+          value={enteredValue}
+        />
+      </FormControl>
+      <Button type="submit">Add Goal</Button>
+    </form>
+  );
+};
+```
+
+## 2.2) CSS Modules
+
+Reference: [CSS Modules from create-react-app](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet/)
+
+CSS Modules enable to separate the css of components from each other
+
+Projects needs to be setup to support these modules
+- in a special way
+- which is supported if `create-react-app` was used to create the app
