@@ -1,9 +1,8 @@
 - [1) Inline styling `style={{}}`](#1-inline-styling-style)
 - [2) Regular CSS selectors](#2-regular-css-selectors)
 - [3) Style objects](#3-style-objects)
-- [TODO MOVE SOMEWHERE ELSE](#todo-move-somewhere-else)
-- [6) styled components (3rd party library)](#6-styled-components-3rd-party-library)
-- [7) Issue Global Scope of Styling](#7-issue-global-scope-of-styling)
+
+**Types of stylings for HTML elements**
 
 # 1) Inline styling `style={{}}`
 
@@ -51,8 +50,11 @@ class HomePage extends React.Component {
 div {
   margin: 0;
 }
-div button { margin: 0; }
+div button {
+  margin: 0;
+}
 ```
+
 # 3) Style objects
 
 - most often used to dynamically add styles at render time (e.g. changing position from top to left)
@@ -71,13 +73,3 @@ class HomePage extends React.Component {
   }
 }
 ```
-
-# TODO MOVE SOMEWHERE ELSE
-
-# 6) styled components (3rd party library)
-
-setup pre-styled components with their own scoped styles
-
-# 7) Issue Global Scope of Styling
-
-Scoping styles (style only is available for the component and not globally)
