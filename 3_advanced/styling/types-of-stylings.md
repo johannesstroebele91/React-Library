@@ -1,6 +1,7 @@
 - [1) Inline styling `style={{}}`](#1-inline-styling-style)
 - [2) Regular CSS selectors](#2-regular-css-selectors)
-- [3) Style objects](#3-style-objects)
+- [3) Merging multiple styles](#3-merging-multiple-styles)
+- [4) Style objects](#4-style-objects)
 
 **Types of stylings for HTML elements**
 
@@ -12,9 +13,20 @@
 - "px" is not needed
   - because React adds it automatically
   - e.g. `<div style={{'font-size': '5px'}}></div>`
-- Spelling:
-  a) option: camel case: e.g. `<div style={{fontSize: 5}}></div>`
-  b) option: stringified: e.g. `<div style={{'font-size': 5}}></div>`
+
+**Approaches**
+
+a) Camel case
+
+```javascript
+<div style={{ fontSize: 5 }}></div>
+```
+
+b) stringified
+
+```javascript
+<div style={{ "font-size": 5 }}></div>
+```
 
 # 2) Regular CSS selectors
 
@@ -55,7 +67,39 @@ div button {
 }
 ```
 
-# 3) Style objects
+# 3) Merging multiple styles
+
+An external can be merged with an internal class
+
+- by passing down a class
+- and merging this class with another class using
+  - props `<Card className={classes.input}>`
+  - and `${}` syntax (e.g. `className={`${classes.card} ${className}`}`)
+
+Example see AddUser and Card components in [Git Commit: ]()
+
+**AddUser**
+
+```javascript
+import classes from "./AddUser.module.css";
+...
+<Card className={classes.input}>
+```
+
+**Card**
+
+```javascript
+import classes from "./Card.module.css";
+interface CardProps {
+  className: any;
+}
+const Card: React.FC<CardProps> = ({ children, className }) => {
+  // children props enables to access the content
+  return <div className={`${classes.card} ${className}`}>{children}</div>;
+};
+```
+
+# 4) Style objects
 
 - most often used to dynamically add styles at render time (e.g. changing position from top to left)
 

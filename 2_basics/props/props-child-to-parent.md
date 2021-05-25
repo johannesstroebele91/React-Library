@@ -15,9 +15,9 @@ Data cannot be directly passed via a variable
 # 2) Example uncontrolled components
 
 Means that the respective value that should be passed and changes to it
+
 - are handeled in the child
 - NOT the parent component
-
 
 **See the following Github Commit: [113ce035f92da3a1d32429b12b5253d0df407707](https://github.com/johannesstroebele91/React-Library/commit/113ce035f92da3a1d32429b12b5253d0df407707)**
 
@@ -32,6 +32,11 @@ The variable which points to the **function `onSaveExpenseData`**
 
 - needs to be destructured first `({ onChangeDateFilter })`
 - before it can be used to pass the data `onChangeDateFilter(event.target.value);`
+
+Props interfaces can be special for
+
+- buttons (e.g. `interface ButtonProps { type: "button" | "submit" | "reset" | undefined; }`)
+- function: for passing data (e.g. for id it is `interface SomeComponentProps { onChange: (id: number) => void }` )
 
 ```javascript
 interface ExpensesFilterProps {
@@ -98,6 +103,7 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
 # 3) Example controlled components
 
 Means that the respective value that should be passed and changes to it
+
 - are NOT handeled in the child
 - BUT the parent component
 
@@ -116,14 +122,15 @@ interface ExpensesFilterProps {
   selectedFilteredYear: string;
 }
 
-const ExpensesFilter: React.FC<ExpensesFilterProps> = ({ onChangeDateFilter, selectedFilteredYear }) => {
-
+const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
+  onChangeDateFilter,
+  selectedFilteredYear,
+}) => {
   // 1) Send the function with the value,
   // That should be passed,
   // to the parent component (Expenses)
   const filterChangeHandler = (event: any) => {
     onChangeDateFilter(event.target.value);
-
   };
 
   return (
