@@ -7,7 +7,7 @@ interface UserItemProps {
 const UserItem: React.FC<UserItemProps> = ({ user }) => {
   return (
     <li>
-      <b>{user.username}</b>: {user.age}
+      <b>{user.username}</b>: {user.age} years old
     </li>
   );
 };

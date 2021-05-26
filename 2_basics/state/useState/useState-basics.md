@@ -3,8 +3,12 @@
 - [3) Example](#3-example)
   - [3.1) Example with input](#31-example-with-input)
   - [3.2) Declare useState](#32-declare-usestate)
+    - [3.2.1) Example for primitive types (e.g. string, ...)](#321-example-for-primitive-types-eg-string-)
+    - [3.2.2) Example for reference types (e.g. objects, ...)](#322-example-for-reference-types-eg-objects-)
   - [3.3) Trigger the new state](#33-trigger-the-new-state)
   - [3.4) Create a new state](#34-create-a-new-state)
+    - [3.4.2) Example for primitive types (e.g. string, ...)](#342-example-for-primitive-types-eg-string-)
+    - [3.4.2) Example for reference types (e.g. objects, ...)](#342-example-for-reference-types-eg-objects-)
   - [3.5) Use new value](#35-use-new-value)
 - [4) Approach](#4-approach)
   - [4.1) Multiple States](#41-multiple-states)
@@ -84,12 +88,31 @@ const ExpenseForm: React.FC = () => {
 
 ## 3.2) Declare useState
 
-- Initialize useState with an initial value (e.g. amount)
-- Store with array destructuring in separate variables the two returned values
-  a) value is the variable itself
-  b) value is the update function
+Initialize useState with an initial value (e.g. amount)
+
 - `const` can be used because React throws away all variables for each new state
-- e.g. `const [enteredTitle, setEnteredTitle] = useState("");`
+
+### 3.2.1) Example for primitive types (e.g. string, ...)
+
+```javascript
+const [enteredTitle, setEnteredTitle] = useState("");
+```
+
+Store with array destructuring in separate variables the two returned values
+a) value is the variable itself
+b) value is the update function
+
+### 3.2.2) Example for reference types (e.g. objects, ...)
+
+- IMPORTANT! the type state needs to be declared
+- and the state initialized!
+
+```javascript
+  const [errorModal, setErrorModal] = useState<{
+    title: string;
+    message: string;
+  }>({ title: "", message: "" });
+```
 
 ## 3.3) Trigger the new state
 
@@ -118,10 +141,21 @@ Whenever the state should change
   - saves the WHOLE string, not only the character
   - is always a string (even if input is a number)
 
+### 3.4.2) Example for primitive types (e.g. string, ...)
+
 ```javascript
 const titleChangeHandler = (event: any) => {
   setEnteredTitle(event.target.value);
 };
+```
+
+### 3.4.2) Example for reference types (e.g. objects, ...)
+
+```javascript
+setErrorModal({
+  title: "Invalid age",
+  message: "The age of the user is invalid",
+});
 ```
 
 ## 3.5) Use new value
