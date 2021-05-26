@@ -4,7 +4,11 @@ import Card from "../../UI/Card/Card";
 import Button from "../../UI/Button/Button";
 import { useState } from "react";
 
-const AddUser: React.FC = () => {
+interface AdduserProps {
+  onAddUser: (username: string, age: number) => void;
+}
+
+const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
 
@@ -12,12 +16,14 @@ const AddUser: React.FC = () => {
     // Call preventDefault() to prevent page reload (automatic HTTP request)
     event.preventDefault();
 
-    if(enteredUsername.trim().length === 0 || enteredAge.trim().length === 0){
-      return
-    }
-    if (+enteredAge < 1 ) {
+    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       return;
     }
+    if (+enteredAge < 1) {
+      return;
+    }
+    // Pass new user to the parent (cast age to number)
+    onAddUser(enteredUsername, +enteredAge);
     setEnteredUsername("");
     setEnteredAge("");
   };

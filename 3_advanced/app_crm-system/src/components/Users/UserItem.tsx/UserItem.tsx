@@ -1,8 +1,14 @@
-const UserItem = () => {
+import User from "../../../models/types";
+
+interface UserItemProps {
+  user: User;
+}
+
+const UserItem: React.FC<UserItemProps> = ({ user }) => {
   return (
-    <>
-      <p>User</p>
-    </>
+    <li>
+      <b>{user.username}</b>: {user.age}
+    </li>
   );
 };
 

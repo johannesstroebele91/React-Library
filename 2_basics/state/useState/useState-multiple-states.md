@@ -4,7 +4,7 @@
   - [2.3) Submit the form](#23-submit-the-form)
 - [2) Controlled component (2-way-binding)](#2-controlled-component-2-way-binding)
   - [2.1) Parent component: ExpenseForm](#21-parent-component-expenseform)
-  - [2.2) Child component: ExpenseForm](#22-child-component-expenseform)
+  - [2.2) Child component: ExpensesFilter](#22-child-component-expensesfilter)
 - [3) Usage of a previous state](#3-usage-of-a-previous-state)
 
 # 1) Basics of multiple states
@@ -184,7 +184,7 @@ A parent and child component can be controlled
 };
 ```
 
-## 2.2) Child component: ExpenseForm
+## 2.2) Child component: ExpensesFilter
 
 The change data from the parent (e.g. `selectedFilteredYear`)
 
@@ -267,14 +267,16 @@ The `prevState` variable is used with an arrow function
 const [habitsLists, setHabitsLists] = useState(INITIAL_HABITS);
 
 const onFinish = (habit: Habit) => {
-  // 3) WRONG :(
-  // Using the variable that the state was declared with
-  // Forgets the old state
-  setHabitsLists((prevState) => [INITIAL_HABITS, habit]);
 
-  // 3) RIGHT :)
+  // 3.1) RIGHT :)
   // Call the set state method to create a new state for the variable (re-render page)
   // use prevState to pass the old state to the new state of the variable
   setHabitsLists((prevState) => [...prevState, habit]);
+
+  // 3.2) WRONG :(
+  // Using the variable that the state was declared with
+  // Forgets the old state
+  setHabitsLists([INITIAL_HABITS, habit]);
+
 };
 ```

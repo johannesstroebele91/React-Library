@@ -133,9 +133,9 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
     <>
       {/* 2) Passing data to a child component */}
       {/* 2.1) Via an object */}
-      {expenses.map(expense => <ExpenseItem key={expense.id} expense={expense} />
+      {expenses.map(expense => <ExpenseItem key={expense.id} expense={expense} />)}
       {/* 2.2) Via variables */}
-      {expenses.map(expense => <ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} price={expense.price}/>
+      {expenses.map(expense => <ExpenseItem key={expense.id} title={expense.title} amount={expense.amount} price={expense.price}/>)}
     </>
   );
 };
