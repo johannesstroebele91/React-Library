@@ -1,7 +1,15 @@
 - [1) Basics](#1-basics)
 - [2) WARNING!!!](#2-warning)
-- [2) Approach](#2-approach)
-- [3) Use Cases](#3-use-cases)
+- [3) Example](#3-example)
+  - [3.1) Example with input](#31-example-with-input)
+  - [3.2) Declare useState](#32-declare-usestate)
+  - [3.3) Trigger the new state](#33-trigger-the-new-state)
+  - [3.4) Create a new state](#34-create-a-new-state)
+  - [3.5) Use new value](#35-use-new-value)
+- [4) Approach](#4-approach)
+  - [4.1) Multiple States](#41-multiple-states)
+  - [4.2) One State](#42-one-state)
+- [5) Use Cases](#5-use-cases)
 
 # 1) Basics
 
@@ -36,18 +44,106 @@ It is one of the most important **React hooks**
 - NOT outside these functions
 - OR nested function (only 1 exception)
 
-# 2) Approach
+# 3) Example
 
-a) Multiple States
+## 3.1) Example with input
+
+A State of variables can be changed in 7 steps as shown below in the example
+
+```javascript
+const ExpenseForm: React.FC = () => {
+  // 1) Declare useState
+  const [enteredTitle, setEnteredTitle] = useState("");
+
+  const titleChangeHandler = (event: any) => {
+    // 4) Check if state was really changed
+    if (enteredTitle.trim().length === 0) {
+      return;
+    }
+    // 5) Create a new state
+    setEnteredTitle(event.target.value);
+    // WARNING! value doesn't update right away for the next line
+    // BUT only after the next re-render
+    console.log(amountExpenseItem);
+
+    // 6) Reset states
+    setEnteredTitle("");
+  };
+  return (
+    <>
+      <label>Title</label>
+      {/* 2) Trigger the change of state using onChange */}
+      {/* 7) Feed the new state back into the input via value */}
+      <input type="text" onChange={titleChangeHandler} value={enteredTitle} />
+      {/* ALT for step 7) Displays the variable based on the the new state */}
+      <p>{amountExpenseItem}</p>
+    </>
+  );
+};
+```
+
+## 3.2) Declare useState
+
+- Initialize useState with an initial value (e.g. amount)
+- Store with array destructuring in separate variables the two returned values
+  a) value is the variable itself
+  b) value is the update function
+- `const` can be used because React throws away all variables for each new state
+- e.g. `const [enteredTitle, setEnteredTitle] = useState("");`
+
+## 3.3) Trigger the new state
+
+Whenever the state should change
+
+- it needs to be triggered in some form
+- e.g. by an event handler such as click event:
+  - `<input onChange={titleChangeHandler}</input>`
+
+**DO NOT CALL A FUNCTION!**
+
+- because it would be only called once, when the JSX code is returned initially
+- AND NOT when the click occurs - SOLUTION:
+- a) a arrow functions to directly trigger a function inside the {}
+- b) or point to the handler (!!! NOT A FUNCTION CALL)\*/}
+
+## 3.4) Create a new state
+
+- Call the 2. value (updating function)
+
+- **WARNING!**
+  - a change in the variable doesn't create a new state
+  - right away for the next line
+  - but only after the next re-render
+- event.target.value
+  - saves the WHOLE string, not only the character
+  - is always a string (even if input is a number)
+
+```javascript
+const titleChangeHandler = (event: any) => {
+  setEnteredTitle(event.target.value);
+};
+```
+
+## 3.5) Use new value
+
+- Use the 1. value (e.g. amountExpenseItem)
+- for outputting data in the HTML
+- e.g. `<p>{amountExpenseItem}</p>`
+
+# 4) Approach
+
+## 4.1) Multiple States
 
 - **Preferred approach by Maximilian Scharzmüller**
 - See [useState-multiple-states](useState-multiple-states)
-- See the following git Commit: [113ce035f92da3a1d32429b12b5253d0df407707]([Github](https://github.com/johannesstroebele91/React-Library/commit/113ce035f92da3a1d32429b12b5253d0df407707))
-  b) One State
-- See [useState-one-state](useState-one-state.md)
-- See Github Commit: [113ce035f92da3a1d32429b12b5253d0df407707]([Github](https://github.com/johannesstroebele91/React-Library/commit/113ce035f92da3a1d32429b12b5253d0df407707))
+- See the following git Commit: [113ce035f92da3a1d32429b12b5253d0df407707](<[Github](https://github.com/johannesstroebele91/React-Library/commit/113ce035f92da3a1d32429b12b5253d0df407707)>)
 
-# 3) Use Cases
+## 4.2) One State
+
+- See [useState-one-state](useState-one-state.md)
+- See Github Commit: [113ce035f92da3a1d32429b12b5253d0df407707](<[Github](https://github.com/johannesstroebele91/React-Library/commit/113ce035f92da3a1d32429b12b5253d0df407707)>)
+
+# 5) Use Cases
 
 A new state might be needed for the following reasons:
 

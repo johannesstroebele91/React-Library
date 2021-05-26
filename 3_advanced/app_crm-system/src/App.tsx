@@ -1,6 +1,6 @@
 import "./App.css";
 import AddUser from "./components/Users/AddUser/AddUser";
-import UserList from "./components/Users/UserList/UserList";
+import UsersList from "./components/Users/UsersList/UsersList";
 
 // Only the App.tsx gets changed in an React app
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <>
     <h1 style={{textAlign: 'center', color: 'white'}}>CRM System</h1>
       <AddUser />
-      <UserList />
+      <UsersList />
     </>
   );
 }

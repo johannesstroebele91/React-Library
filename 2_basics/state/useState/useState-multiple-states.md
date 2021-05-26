@@ -1,101 +1,19 @@
-- [1) Basics](#1-basics)
-  - [1.1) Declare useState](#11-declare-usestate)
-  - [1.2) Trigger the new state](#12-trigger-the-new-state)
-  - [1.3) Create a new state](#13-create-a-new-state)
-  - [1.4) Use new value](#14-use-new-value)
-- [2) Submission of a form](#2-submission-of-a-form)
-  - [2.1) Trigger the submit](#21-trigger-the-submit)
-  - [2.2) Submit the form](#22-submit-the-form)
-- [3) Controlled component (2-way-binding)](#3-controlled-component-2-way-binding)
-  - [3.1) Parent component: ExpenseForm](#31-parent-component-expenseform)
-  - [3.2) Child component: ExpenseForm](#32-child-component-expenseform)
-- [4) Usage of a previous state](#4-usage-of-a-previous-state)
+- [1) Basics of multiple states](#1-basics-of-multiple-states)
+  - [1.1) Example](#11-example)
+  - [2.2) Trigger the submit](#22-trigger-the-submit)
+  - [2.3) Submit the form](#23-submit-the-form)
+- [2) Controlled component (2-way-binding)](#2-controlled-component-2-way-binding)
+  - [2.1) Parent component: ExpenseForm](#21-parent-component-expenseform)
+  - [2.2) Child component: ExpenseForm](#22-child-component-expenseform)
+- [3) Usage of a previous state](#3-usage-of-a-previous-state)
 
-# 1) Basics
+# 1) Basics of multiple states
 
-A State of variables can be changed in 4 steps as shown below in the example
+## 1.1) Example
 
-ExpenseItem
-
-```javascript
-const ExpenseItem: React.FC<ExpenseItemProps> = ({ title, amount, date }) => {
-  // 1) Declare useState
-  const [amountExpenseItem, setAmount] = useState(amount);
-
-  // 3) Create a new state
-  const clickHandler = () => {
-    setAmount(amountExpenseItem + 1);
-
-    // WARNING! value doesn't update right away for the next line
-    // BUT only after the next re-render
-    console.log(amountExpenseItem);
-  };
-  return (
-    <Card className="expense-item">
-      <ExpenseDate expenseDate={date} />
-      <div className="expense-item__description">
-        <h2>{title}</h2>
-        {/* 4. Displays the variable based on the the new state */}
-        <div className="expense-item__price">${amountExpenseItem}</div>
-      </div>
-      {/* 2) Trigger the change of state */}
-      <button onClick={clickHandler}>Change Title</button>
-    </Card>
-  );
-};
-```
-
-## 1.1) Declare useState
-
-- Initialize useState with an initial value (e.g. amount)
-- Store with array destructuring in separate variables the two returned values
-  a) value is the variable itself
-  b) value is the update function
-- `const` can be used because React throws away all variables for each new state
-- e.g. `const [enteredTitle, setEnteredTitle] = useState("");`
-
-## 1.2) Trigger the new state
-
-Whenever the state should change
-
-- it needs to be triggered in some form
-- e.g. by an event handler such as click event:
-  - `<input onChange={titleChangeHandler}</input>`
-
-**DO NOT CALL A FUNCTION!**
-
-- because it would be only called once, when the JSX code is returned initially
-- AND NOT when the click occurs - SOLUTION:
-- a) a arrow functions to directly trigger a function inside the {}
-- b) or point to the handler (!!! NOT A FUNCTION CALL)\*/}
-
-## 1.3) Create a new state
-
-- Call the 2. value (updating function)
-
-- **WARNING!**
-  - a change in the variable doesn't create a new state
-  - right away for the next line
-  - but only after the next re-render
-- event.target.value
-  - saves the WHOLE string, not only the character
-  - is always a string (even if input is a number)
-
-```javascript
-const titleChangeHandler = (event: any) => {
-  setEnteredTitle(event.target.value);
-};
-```
-
-## 1.4) Use new value
-
-- Use the 1. value (e.g. amountExpenseItem)
-- for outputting data in the HTML
-- e.g. `<p>{amountExpenseItem}</p>`
-
-# 2) Submission of a form
-
-A state for a form submission can be implemented in 6 steps (2 additional ones)
+A state for a form submission
+- that uses multiple states
+- can be implemented in 6 steps (2 additional ones)
 
 ```javascript
 interface ExpenseFormProps {
@@ -180,12 +98,12 @@ const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSaveExpenseData }) => {
 };
 ```
 
-## 2.1) Trigger the submit
+## 2.2) Trigger the submit
 
 - Add onSubmit to the form `<form onSubmit={submitHandler}>`
 - Add the submit button `<button type="submit">Add Expense</button>`
 
-## 2.2) Submit the form
+## 2.3) Submit the form
 
 Create a submit handler
 
@@ -215,7 +133,7 @@ const submitHandler = (event: any) => {
 };
 ```
 
-# 3) Controlled component (2-way-binding)
+# 2) Controlled component (2-way-binding)
 
 Enables to get user input AND change it
 
@@ -231,7 +149,7 @@ Example
 
 It can be implemented with a 6) additional step
 
-## 3.1) Parent component: ExpenseForm
+## 2.1) Parent component: ExpenseForm
 
 A parent and child component can be controlled
 
@@ -266,7 +184,7 @@ A parent and child component can be controlled
 };
 ```
 
-## 3.2) Child component: ExpenseForm
+## 2.2) Child component: ExpenseForm
 
 The change data from the parent (e.g. `selectedFilteredYear`)
 
@@ -312,7 +230,7 @@ const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
 };
 ```
 
-# 4) Usage of a previous state
+# 3) Usage of a previous state
 
 The problem is that
 
@@ -326,7 +244,7 @@ Solution
   // 2) When the new state is created `setExpenses()`
   // the old state of the expense is passed via prevExpenses
   // And the new state for the variable added via expense
-  setExpenses((prevExpenses) => [...prevExpenses, expense]);
+  setExpenses((prevExpenses) => [...prevExpenses, expense])
 
 The solution is to modify the `set` function
 
