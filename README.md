@@ -1,28 +1,34 @@
 # Project Files Structure
 
 ## 1) Prerequisites
+
 - apps
-  - react with js as **widgets**
-  - react with js as **spa**
-  - react with ts as **spa**
-- alternatives to react
-- how react works
-- how to setup react
-- react and typescript
+  - React with js as **widgets**
+  - React with js as **spa**
+  - React with ts as **spa**
+- alternatives to React
+- how React works
+- how to setup React
+- react and TypeScript
 - webpack
 
 ## 2) Basics
+
 - apps
-  - expenses manager (everything that was learned in the basics folder)
-  - tasks manager (only props that was learned in the basics folder)
+  - expenses manager (applies that was learned in the [prerequisites](./1_prerequisites/ and [basics folders](./2_basics/))
+  - tasks manager (applies what was learned about [props](./2_basics/props/props-basics.md))
 - components
 - props
 - state
-- reactsbasics
-- compoisition
+- React basics
+- composition
 - conditional content
 - lists rendering
 
 ## 3) Advanced
-- app tasks manager (everything tht was learned in the basics folder)
+
+- apps
+  - app tasks manager (applies what was learned in the [advanced folder](./3_advanced/))
+  - app crm system (applies what was learned in the [prerequisites](./1_prerequisites/), [basics](./2_basics/), and [advanced folders](./3_advanced/))
 - styling
+- debugging
