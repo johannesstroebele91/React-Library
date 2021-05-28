@@ -15,6 +15,7 @@ You can't return more than 1 "root" JSX element
 ### 2.1) React Fragments
 
 This syntaxes down below render empty wrapper components
+
 - that inject the nested elements
 - via the children props
 
@@ -28,6 +29,7 @@ return (
   </>
 );
 ```
+
 **Standard (always works)**
 
 ```javascript
@@ -38,7 +40,6 @@ return (
   </React.Fragment>
 );
 ```
-
 
 ### 2.2) Using a DIV
 
@@ -75,8 +76,7 @@ export default Wrapper;
 Example Other Custom Components (e.g. AddUser)
 
 ```javascript
-
-import Wrapper from "..."
+import Wrapper from "...";
 
 const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
   return (
