@@ -135,7 +135,7 @@ const submitHandler = (event: any) => {
 
 # 2) Controlled component (2-way-binding)
 
-Enables to get user input AND change it
+React enables to get user input AND change it
 
 - Passes the value back into the input
 - using 2-way-binding (e.g. value={enteredTitle})
@@ -149,6 +149,10 @@ Example
 
 It can be implemented with a 6) additional step
 
+This is in contrast to implementations
+
+- where React does not controll the state
+- e.g. using [useRef](./../../../3_advanced/state/useRef.md)
 ## 2.1) Parent component: ExpenseForm
 
 A parent and child component can be controlled

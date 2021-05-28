@@ -14,8 +14,11 @@ Data cannot be directly passed via a variable
 
 # 2) Example uncontrolled components
 
-Means that the respective value that should be passed and changes to it
+TODO might needs fixing, revise later
 
+Means the component does not controll the state
+- and therefore the respective value
+- that should are needed in the child component
 - are handeled in the child
 - NOT the parent component
 
