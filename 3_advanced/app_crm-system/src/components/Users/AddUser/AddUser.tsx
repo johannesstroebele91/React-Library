@@ -4,6 +4,7 @@ import Card from "../../UI/Card/Card";
 import Button from "../../UI/Button/Button";
 import { useState } from "react";
 import ErrorModal from "../../UI/Modal/ErrorModal";
+import Wrapper from "../../Helpers/Wrapper";
 
 interface AdduserProps {
   onAddUser: (username: string, age: number) => void;
@@ -52,7 +53,7 @@ const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
   };
 
   return (
-    <>
+    <Wrapper>
       {showErrorModal && (
         <ErrorModal
           onCloseModal={closeModalHandler}
@@ -81,7 +82,7 @@ const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
           <Button type="submit">Add User</Button>
         </form>
       </Card>
-    </>
+    </Wrapper>
   );
 };
 

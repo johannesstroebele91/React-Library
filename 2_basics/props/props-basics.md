@@ -1,10 +1,8 @@
 - [1) Basics](#1-basics)
 - [2) Problems](#2-problems)
 - [3) Solution](#3-solution)
-  - [3.1) Example: with objects and a interface with props destructuring](#31-example-with-objects-and-a-interface-with-props-destructuring)
-  - [3.2) Example: with objects and a class without props destructuring](#32-example-with-objects-and-a-class-without-props-destructuring)
-  - [3.3) Example: without objects](#33-example-without-objects)
- 
+- [4) Children props](#4-children-props)
+
 # 1) Basics
 
 - The goal is to pass data between components
@@ -19,7 +17,6 @@
 - Such dynamic date can be outputted
   - i.e. in the returned JSX code
   - by using `{}` which a JS expression in between them
-
 
 # 2) Problems
 
@@ -45,3 +42,61 @@ export default Todos;
 [Pass data from parent to child](./props-parent-to-child.md)
 [Pass data from child to parent](./props-child-to-parent.md)
 
+# 4) Children props
+
+Children props holds all of the content
+
+- that gets passed between the opening and closing tag
+- of the custom component
+
+Example Wrapper
+
+```javascript
+const Wrapper = (props: any) => {
+  return props.children;
+};
+
+export default Wrapper;
+```
+
+Example Other Custom Components (e.g. AddUser)
+
+```javascript
+
+import Wrapper from "..."
+
+const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
+  return (
+    <Wrapper>
+      {showErrorModal && (
+        <ErrorModal
+          onCloseModal={closeModalHandler}
+          title={errorModal.title}
+          message={errorModal.message}
+        />
+      )}
+      <Card className={classes.input}>
+        {/* The module.css can be accessed using classes.input */}
+        <form onSubmit={addUserHandler}>
+          {/* htmlFor connects label to the input id*/}
+          <label htmlFor="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            onChange={(event: any) => setEnteredUsername(event.target.value)}
+            value={enteredUsername}
+          ></input>
+          <label htmlFor="age">Age (Years)</label>
+          <input
+            id="age"
+            type="number"
+            onChange={(event: any) => setEnteredAge(event.target.value)}
+            value={enteredAge}
+          ></input>
+          <Button type="submit">Add User</Button>
+        </form>
+      </Card>
+    </Wrapper>
+  );
+};
+```

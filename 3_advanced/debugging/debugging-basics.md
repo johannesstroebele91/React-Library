@@ -1,12 +1,7 @@
-- understanding error messages
-- debugging & analyzing react apps
-- using react DevTools
-
 - [1) Basics](#1-basics)
 - [2) Types of Errors](#2-types-of-errors)
   - [2.1) Compilation errors](#21-compilation-errors)
   - [2.2) Runtime errors](#22-runtime-errors)
-
 
 # 1) Basics
 
