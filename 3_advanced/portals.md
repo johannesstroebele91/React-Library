@@ -44,34 +44,7 @@ const Backdrop: React.FC<BackdropProps> = ({ onCloseModal }) => {
   return <div className={classes.backdrop} onClick={() => onCloseModal()} />;
 };
 
-// Outsourced ModalOverlay component
-interface ModalOverlayProps {
-  title: string;
-  message: string;
-  onCloseModal: () => void;
-}
-const ModalOverlay: React.FC<ModalOverlayProps> = ({
-  title,
-  message,
-  onCloseModal,
-}) => {
-  return (
-    <Card className={classes.modal}>
-      <header className={classes.header}>
-        <h2>{title}</h2>
-      </header>
-      <div className={classes.content}>
-        <p>{message}</p>
-      </div>
-      <footer className={classes.actions}>
-        <Button type="button" onClick={() => onCloseModal()}>
-          Okay
-        </Button>
-      </footer>
-    </Card>
-  );
-};
-
+// Modal component
 interface ErrorModalProps {
   title: string;
   message: string;
@@ -80,7 +53,8 @@ interface ErrorModalProps {
 
 const ErrorModal: React.FC<ErrorModalProps> = ({ onCloseModal }) => {
   // Use function createPortal() from the ReactDOM library
-  return <>{ReactDOM.createPortal()}</>;
+  return <>{ReactDOM.createPortal(<Backdrop onCloseModal={onCloseModal} />,
+        document.getElementById("backdrop-root")!)}</>;
 };
 
 export default ErrorModal;
