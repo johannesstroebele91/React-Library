@@ -1,22 +1,22 @@
-# Project Files Structure
+**Project Files Structure**
 
-## 1) Prerequisites
+# 1) Prerequisites
 
 - apps
-  - React with js as **widgets**
-  - React with js as **spa**
-  - React with ts as **spa**
+  - React with Javascript as **widgets**
+  - React with Javascript as **single-page-application**
+  - React with TypeScript as **single-page-application**
 - alternatives to React
 - how React works
 - how to setup React
 - react and TypeScript
 - webpack
 
-## 2) Basics
+# 2) Components, Props, useState, dynamic lists, conditions
 
 - apps
-  - expenses manager (applies that was learned in the [prerequisites](./1_prerequisites/ and [basics folders](./2_basics/))
-  - tasks manager (applies what was learned about [props](./2_basics/props/props-basics.md))
+  - expenses manager (applies that was learned in the [1.](./1_prerequisites/) and [2. folder]())
+  - tasks manager (applies [props](./2_components-props-useState-lists-conditions/props/props-basics.md))
 - components
 - props
 - state
@@ -25,10 +25,19 @@
 - conditional content
 - lists rendering
 
-## 3) Advanced
+# 3) Debugging, useRef, fragments, portals, styling
 
 - apps
-  - app tasks manager (applies what was learned in the [advanced folder](./3_advanced/))
-  - app crm system (applies what was learned in the [prerequisites](./1_prerequisites/), [basics](./2_basics/), and [advanced folders](./3_advanced/))
+  - app tasks manager (applies what was learned in the [2. folder]()
+  - app crm system (applies what was learned in the [1. ](./1_prerequisites/), [2. ](./2_components-props-useState-lists-conditions/), and [3. folder](./3_debugging-useRef-fragments-portals-styling/))
 - styling
 - debugging
+
+# 4) UseEffect, reducers, context API
+
+- apps
+  - app ??? 
+  - app tasks manager (applies [context API](./4_useEffect-useEffect-reducers-contextApi/context-api.md))
+- useEffect
+- reducers
+- context API
