@@ -8,16 +8,19 @@ import MainHeader from "./components/MainHeader/MainHeader";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // !!! useEffect to persit data through reloads and app restarts in 4 steps
+  // !!! useEffect to persit data through reloads and app restarts in 3 steps
 
   // 2) Declare useEffect for persiting data
-  useEffect(() => {
-    // 3) Work with the previously declared item of the localStorage
-    const storedUserLoggedInData = localStorage.getItem("isLoggedIn");
-    if (storedUserLoggedInData === "1") {
-      setIsLoggedIn(true);
-    }
-  }, []);
+  useEffect(
+    () => {
+      // 2.1) Side-effect function: Work with the previously declared item of the localStorage
+      const storedUserLoggedInData = localStorage.getItem("isLoggedIn");
+      if (storedUserLoggedInData === "1") {
+        setIsLoggedIn(true);
+      }
+    }, // 2.2) Dependency array: controls when the function is executed
+    []
+  );
 
   const loginHandler = (email: string, password: string) => {
     // TODO functionality for checking email and password
@@ -27,7 +30,7 @@ function App() {
   };
 
   const logoutHandler = () => {
-    // 4) Remove key afterwards from local storage
+    // 3) Remove key afterwards from local storage
     localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
   };
