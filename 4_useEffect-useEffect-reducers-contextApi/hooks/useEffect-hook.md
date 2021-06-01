@@ -11,6 +11,9 @@
   - [7.1) Completely empty dependencies WITH CLEANUP FUNCTION](#71-completely-empty-dependencies-with-cleanup-function)
   - [7.2) Empty array dependencies WITH CLEANUP FUNCTION](#72-empty-array-dependencies-with-cleanup-function)
   - [7.3) Specific dependencies `[enteredEmail, enteredPassword]` WITH CLEANUP FUNCTION](#73-specific-dependencies-enteredemail-enteredpassword-with-cleanup-function)
+- [8) Adding Nested Properties As Dependencies To useEffect](#8-adding-nested-properties-as-dependencies-to-useeffect)
+
+Code of project changed, therefore refer to git commit: [27ef5348f073c6a4d80138814c5a591eab3afee1](https://github.com/johannesstroebele91/React-Library/commit/27ef5348f073c6a4d80138814c5a591eab3afee1)
 
 # 1) Explanation of useEffect
 
@@ -77,22 +80,18 @@ To be more precise they are NOT for React jobs such as:
 # 5) Approach via `useEffect()` hook
 
 1. Create a key value pair in the local storage
-
    1. Set the value of the key isLoggedIn to 1 to indicate that user is logged in
    2. `e.g. localStorage.setItem("isLoggedIn", "1");`
       1. argument: identifier as a string (e.g. isLoggedIn)
       2. argument: place of storage as a string (e.g. '1' that the user is logged in, '0' not )
-
 2. Declare useEffect for persiting data (function gets only executed if the dependencies got changed )
-
    1. “Side-effect function" `() => {...}`
-      - is executed after every component evaluation
-      - if the specified dependencies changed
-      - Enables to work with the previously declared item of the localStorage
-      - e.g. get the value of they key from the local storage to work with it
+      1. is executed after every component evaluation
+      2. if the specified dependencies changed
+      3. Enables to work with the previously declared item of the localStorage
+      4. e.g. get the value of they key from the local storage to work with it
    2. Dependency array `[dependencies]`
-      - **Use cases for different dependencies are stated below**
-
+      1. **Use cases for different dependencies are stated below**
 3. Optional: Remove the item after it is no longer needed
 
 **IMPORTANT to know for step 2.1**
@@ -341,4 +340,42 @@ const Login = (props: any) => {
     );
   ...
 }
+```
+
+# 8) Adding Nested Properties As Dependencies To useEffect
+
+It is a common approach to
+
+- use Object destructuring
+- to add object properties as dependencies
+- to useEffect()
+
+
+```javascript
+const { someProperty } = someObject;
+useEffect(() => {
+  // code that only uses someProperty ...
+}, [someProperty]);
+```
+IMPORTANT!
+- the key thing is NOT that destructuring can be used
+- BUT specific properties instead of the entire object can be passed as a dependency
+- which is why this solution would also work
+
+```javascript
+useEffect(() => {
+  // code that only uses someProperty ...
+}, [someObject.someProperty]);
+```
+
+WARNING!
+- this solution should be avoided
+- because the effect function would re-run
+- whenever any property of someObject changes,
+- so not just the one property (someProperty) 
+
+```javascript
+useEffect(() => {
+  // code that only uses someProperty ...
+}, [someObject]);
 ```
