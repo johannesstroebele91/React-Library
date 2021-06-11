@@ -84,7 +84,7 @@ This can be done by
   - 1. isLoggedIn: is the name of the variable that gets passed to the other componente
   - 2. isLoggedIn: is the state specified
 
-Example in App.tsx of [app_task-manager](../4_useEffect-useEffect-reducers-contextApi/app_task-manager/src/App.tsx) and only available in git commit: []()
+Example in App.tsx of [app_task-manager](../4_useEffect-useEffect-reducers-contextApi/app_task-manager/src/App.tsx) and only available in git commit: [be0ac9ed7c7219ca1468ac579079caf7c170e943](https://github.com/johannesstroebele91/React-Library/commit/be0ac9ed7c7219ca1468ac579079caf7c170e943)
 
 ```javascript
 ...
@@ -106,23 +106,134 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 You can listen to the store, context, or state using the:
 
-1. React hook (typically)
+#### 3.2.2.1) React hook (more elegant)
 
+Enables to manage the state
 
+- can be used to change the function that manages the state
+  Approach
 
-2. Consumers
+1. Expose the context to the respective components
+   1. And pass the respective parameters into it
+   2. e.g. `<someContextComponent.Provider value={{isLoggedIn: isLoggedIn}}></someContextComponent.Provider>`
+2. Declare useContext and pass the context into it `useContext(someContextComponent)`
+3. Use the parameters via `context.isLoggedIn`
+
+Example in App.tsx of [app_task-manager](../4_useEffect-useEffect-reducers-contextApi/app_task-manager/src/App.tsx) of the [Git Commit]()
+
+```javascript
+import AuthContext from "./store/auth-context";
+
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  return (
+    <AuthContext.Provider
+      value={{ isLoggedIn: isLoggedIn, onLogout: logoutHandler }} // provide the parameters via AuthContext
+    >
+      <MainHeader />
+      <main>
+        {!isLoggedIn && <Login onLogin={loginHandler} />}
+        {isLoggedIn && <Home onLogout={logoutHandler} />}
+      </main>
+    </AuthContext.Provider>
+  );
+}
+```
+
+Example in Navigation.tsx of [app_task-manager](../4_useEffect-useEffect-reducers-contextApi/app_task-manager/src/App.tsx)
+
+```javascript
+const Navigation = (props: any) => {
+  // 1) Declare variable with useContext() using the AuthContext
+  const context = useContext(AuthContext);
+
+  return (
+    <nav className={classes.nav}>
+      <p>
+        {/* 2) Use the parameters via context. */}
+        {context.isLoggedIn && (
+      </p>
+      <nav>
+  );
+};
+```
+
+*Additional possibility: outsource logic into someComponentContext*
+
+It can also be used to outsource logic
+- e.g. create a separate context management component
+
+1. Oursourcing code to the auth-context.tsx
+2. Removing unnecessary code from the App.tsx
+
+````javascript
+interface AuthContextProps {
+  isLoggedIn: boolean;
+  onLogout: () => void;
+  onLogin: (email: string, password: string) => void;
+}
+const AuthContext = React.createContext<AuthContextProps>({
+  isLoggedIn: false,
+  onLogout: () => {},
+  onLogin: (email, password) => {},
+});
+
+export const AuthContextProvider = (props: any) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const logoutHandler = () => {
+    localStorage.setItem("isLoggedIn", "1");
+    setIsLoggedIn(false);
+  };
+
+  const loginHandler = () => {
+    localStorage.removeItem("isLoggedIn");
+    setIsLoggedIn(true);
+  };
+
+  useEffect(
+    () => {
+      // 2.1) Side-effect function: Work with the previously declared item of the localStorage
+      const storedUserLoggedInData = localStorage.getItem("isLoggedIn");
+      if (storedUserLoggedInData === "1") {
+        setIsLoggedIn(true);
+      }
+    }, // 2.2) Dependency array: controls when the function is executed
+    []
+  );
+
+  return (
+    <AuthContext.Provider
+      value={{
+        isLoggedIn: isLoggedIn,
+        onLogout: logoutHandler,
+        onLogin: loginHandler,
+      }}
+    >
+      {props.children}
+    </AuthContext.Provider>
+  );
+};
+
+```
+
+#### 3.2.2.2) Consumers (less elegant)
 
 [Reference](https://reactjs.org/docs/context.html#contextconsumer)
 
-The Provider component accepts a value prop
+The Provider component **accepts** a value prop
+
 - to be passed to consuming components
 - that are descendants of this Provider.
 
 One Provider can be connected to many consumers
+
 - Providers can be nested
 - to override values deeper within the tree.
 
 All consumers that are descendants of a Provider
+
 - will re-render
 - whenever the Provider’s value prop changes.
 

@@ -33,7 +33,7 @@ The state can be stored in the browser storage via
 Side-effects (short effects) are for managing
 
 - things that happen outside of the normal component evaluation and render cycle
-- especially things that might block/delay rendering (e.g http requests)
+- especially things that might block/delay rendering (e.g http requests)****
 - So they are NOT there to bringing something onto the screen
 - but help to make that happen indirectly
 

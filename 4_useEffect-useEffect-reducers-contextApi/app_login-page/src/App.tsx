@@ -37,8 +37,14 @@ function App() {
   };
   // TODO value for AuthContext.Provider needs fixing
   return (
-    <AuthContext.Provider value={{isLoggedIn: isLoggedIn}}>
-      <MainHeader onLogout={logoutHandler} />
+    <AuthContext.Provider
+      value={{
+        isLoggedIn: isLoggedIn,
+        onLogout: logoutHandler,
+        onLogin: loginHandler,
+      }} // provide the parameters via AuthContext
+    >
+      <MainHeader />
       <main>
         {!isLoggedIn && <Login onLogin={loginHandler} />}
         {isLoggedIn && <Home onLogout={logoutHandler} />}

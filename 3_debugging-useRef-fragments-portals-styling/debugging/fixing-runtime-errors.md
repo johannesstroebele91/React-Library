@@ -2,7 +2,7 @@
 - [2) React Developer Tools](#2-react-developer-tools)
   - [2.1) Components Tab](#21-components-tab)
   - [2.2) Profiler Tab](#22-profiler-tab)
-- [3) Browser Developer Tools (breakpoints)for fixing runetime errors](#3-browser-developer-tools-breakpointsfor-fixing-runetime-errors)
+- [3) Browser Developer Tools (breakpoints) for fixing runetime errors](#3-browser-developer-tools-breakpoints-for-fixing-runetime-errors)
   - [3.1) How to locate files in console](#31-how-to-locate-files-in-console)
   - [3.2) Solution approach](#32-solution-approach)
   - [3.3) Useful debugging actions](#33-useful-debugging-actions)
@@ -53,7 +53,7 @@ It enables to
 
 TODO explanation will be added later
 
-# 3) Browser Developer Tools (breakpoints)for fixing runetime errors
+# 3) Browser Developer Tools (breakpoints) for fixing runetime errors
 
 If you cannot find the error manually or prefer this approach
 
