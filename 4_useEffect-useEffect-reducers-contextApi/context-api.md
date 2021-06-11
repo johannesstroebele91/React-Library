@@ -1,3 +1,14 @@
+- [1) Basics](#1-basics)
+- [2) Naming conventions](#2-naming-conventions)
+- [3) Approach](#3-approach)
+- [3.1) Creating data store](#31-creating-data-store)
+- [3.2) Accessing the data store](#32-accessing-the-data-store)
+    - [3.2.1) Provide context](#321-provide-context)
+    - [3.2.2) Listen to context](#322-listen-to-context)
+      - [3.2.2.1) React hook (more elegant)](#3221-react-hook-more-elegant)
+      - [3.2.2.2) Consumers (less elegant)](#3222-consumers-less-elegant)
+- [4. Context API limitations](#4-context-api-limitations)
+
 # 1) Basics
 
 The context API (React Context) enables to
@@ -159,39 +170,39 @@ const Navigation = (props: any) => {
 };
 ```
 
-*Additional possibility: outsource logic into someComponentContext*
+**Outsourcing app management using an the context component**
 
-It can also be used to outsource logic
-- e.g. create a separate context management component
+The context component can also be used to outsource logic
 
-1. Oursourcing code to the auth-context.tsx
+- by creating a separate context management component
+- thereby seperating probably complex logic from the App.tsx
+- which makes it leaner in the end
+
+1. Oursourcing code to the auth-context.tsx into a new provider component
 2. Removing unnecessary code from the App.tsx
+3. Wrapping the App.tsx with the provider
 
-````javascript
+```javascript
 interface AuthContextProps {
   isLoggedIn: boolean;
   onLogout: () => void;
   onLogin: (email: string, password: string) => void;
 }
-const AuthContext = React.createContext<AuthContextProps>({
-  isLoggedIn: false,
-  onLogout: () => {},
-  onLogin: (email, password) => {},
-});
+const AuthContext =
+  React.createContext <
+  AuthContextProps >
+  {
+    isLoggedIn: false,
+    onLogout: () => {},
+    onLogin: (email, password) => {},
+  };
 
 export const AuthContextProvider = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const logoutHandler = () => {
-    localStorage.setItem("isLoggedIn", "1");
-    setIsLoggedIn(false);
-  };
+  // !!! useEffect to persit data through reloads and app restarts in 3 steps
 
-  const loginHandler = () => {
-    localStorage.removeItem("isLoggedIn");
-    setIsLoggedIn(true);
-  };
-
+  // 2) Declare useEffect for persiting data
   useEffect(
     () => {
       // 2.1) Side-effect function: Work with the previously declared item of the localStorage
@@ -202,6 +213,19 @@ export const AuthContextProvider = (props: any) => {
     }, // 2.2) Dependency array: controls when the function is executed
     []
   );
+
+  const loginHandler = (email: string, password: string) => {
+    // TODO functionality for checking email and password
+    // 1) Create a key value pair in the local storage
+    localStorage.setItem("isLoggedIn", "1");
+    setIsLoggedIn(true);
+  };
+
+  const logoutHandler = () => {
+    // 3) Remove key afterwards from local storage
+    localStorage.removeItem("isLoggedIn");
+    setIsLoggedIn(false);
+  };
 
   return (
     <AuthContext.Provider
@@ -215,7 +239,34 @@ export const AuthContextProvider = (props: any) => {
     </AuthContext.Provider>
   );
 };
+```
 
+2. Removing unnecessary code from the App.tsx
+
+```javascript
+function App() {
+  const context = useContext(AuthContext);
+
+  return (
+    <>
+      <MainHeader />
+      <main>
+        {!context.isLoggedIn && <Login />}
+        {context.isLoggedIn && <Home />}
+      </main>
+    </>
+  );
+```
+
+3. Wrap the App component with the provider component
+
+```javascript
+ReactDOM.render(
+  <AuthContextProvider>
+    <App />
+  </AuthContextProvider>,
+  document.getElementById("root")
+);
 ```
 
 #### 3.2.2.2) Consumers (less elegant)
@@ -270,3 +321,23 @@ const Navigation = (props: any) => {
   );
 };
 ```
+
+# 4. Context API limitations
+
+It is only create for app-wide (component-wide) state management
+
+- so state that affects multiple components
+- but NOT a replacement for component configuration
+
+Therefore, it is unfavorable to use it if you want
+
+- to make reusable components
+  - props are better for ensuring that component stay reusable
+  - e.g. `Button` component
+- also not for high frequency changess
+  - context API is not optimized for that
+  - e.g. state changes every second or faster
+  - solution are e.g. Apollo or Redux
+- to configure components
+  - via props
+  - aka short "prop chains" should not be recplaced

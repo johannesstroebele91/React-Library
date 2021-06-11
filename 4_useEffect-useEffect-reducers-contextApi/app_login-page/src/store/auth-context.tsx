@@ -14,16 +14,9 @@ const AuthContext = React.createContext<AuthContextProps>({
 export const AuthContextProvider = (props: any) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const logoutHandler = () => {
-    localStorage.setItem("isLoggedIn", "1");
-    setIsLoggedIn(false);
-  };
+  // !!! useEffect to persit data through reloads and app restarts in 3 steps
 
-  const loginHandler = () => {
-    localStorage.removeItem("isLoggedIn");
-    setIsLoggedIn(true);
-  };
-
+  // 2) Declare useEffect for persiting data
   useEffect(
     () => {
       // 2.1) Side-effect function: Work with the previously declared item of the localStorage
@@ -34,6 +27,19 @@ export const AuthContextProvider = (props: any) => {
     }, // 2.2) Dependency array: controls when the function is executed
     []
   );
+
+  const loginHandler = (email: string, password: string) => {
+    // TODO functionality for checking email and password
+    // 1) Create a key value pair in the local storage
+    localStorage.setItem("isLoggedIn", "1");
+    setIsLoggedIn(true);
+  };
+
+  const logoutHandler = () => {
+    // 3) Remove key afterwards from local storage
+    localStorage.removeItem("isLoggedIn");
+    setIsLoggedIn(false);
+  };
 
   return (
     <AuthContext.Provider
