@@ -1,8 +1,16 @@
 {
-    "workbench.colorCustomizations": {
-        "activityBar.background": "#003526",
-        "titleBar.activeBackground": "#004A35",
-        "titleBar.activeForeground": "#E8FFF9"
-    },
-    "git.ignoreLimitWarning": true
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#003526",
+    "titleBar.activeBackground": "#004A35",
+    "titleBar.activeForeground": "#E8FFF9"
+  },
+  "git.ignoreLimitWarning": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }

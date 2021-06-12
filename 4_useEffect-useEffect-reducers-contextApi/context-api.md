@@ -130,7 +130,7 @@ Enables to manage the state
 2. Declare useContext and pass the context into it `useContext(someContextComponent)`
 3. Use the parameters via `context.isLoggedIn`
 
-Example in App.tsx of [app_task-manager](../4_useEffect-useEffect-reducers-contextApi/app_task-manager/src/App.tsx) of the [Git Commit]()
+Example in App.tsx of [app_task-manager](../4_useEffect-useEffect-reducers-contextApi/app_task-manager/src/App.tsx) of the [Git Commit: 869e93103dfd4cf002d7d2143ee8ef68e3920645](https://github.com/johannesstroebele91/React-Library/commit/869e93103dfd4cf002d7d2143ee8ef68e3920645)
 
 ```javascript
 import AuthContext from "./store/auth-context";
@@ -181,6 +181,8 @@ The context component can also be used to outsource logic
 1. Oursourcing code to the auth-context.tsx into a new provider component
 2. Removing unnecessary code from the App.tsx
 3. Wrapping the App.tsx with the provider
+
+Example in AuthContext of [app_task-manager](../4_useEffect-useEffect-reducers-contextApi/app_task-manager/src/App.tsx) of the [Git Commit: 2523e9fe3dd989df4e042ff8998aec9a0040a09e](https://github.com/johannesstroebele91/React-Library/commit/2523e9fe3dd989df4e042ff8998aec9a0040a09e)
 
 ```javascript
 interface AuthContextProps {
@@ -241,7 +243,7 @@ export const AuthContextProvider = (props: any) => {
 };
 ```
 
-2. Removing unnecessary code from the App.tsx
+1. Removing unnecessary code from the App.tsx
 
 ```javascript
 function App() {
