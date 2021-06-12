@@ -19,7 +19,7 @@
   - tasks manager (applies [props](./2_components-props-useState-lists-conditions/props/props-basics.md))
 - components
 - props
-- state
+- state and hooks
 - React basics
 - composition
 - conditional content
@@ -30,14 +30,17 @@
 - apps
   - app tasks manager (applies what was learned in the [2. folder]()
   - app crm system (applies what was learned in the [1. ](./1_prerequisites/), [2. ](./2_components-props-useState-lists-conditions/), and [3. folder](./3_debugging-useRef-fragments-portals-styling/))
+- hooks
 - styling
 - debugging
+- fragments
+- portals
 
 # 4) UseEffect, reducers, context API
 
 - apps
-  - app ??? 
+  - app ???
   - app tasks manager (applies [context API](./4_useEffect-useEffect-reducers-contextApi/context-api.md))
 - useEffect
-- reducers
+- useReducer
 - context API

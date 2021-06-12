@@ -1,3 +1,11 @@
+- [1) Basics](#1-basics)
+- [2) Use cases](#2-use-cases)
+- [3) useState vs useReducer](#3-usestate-vs-usereducer)
+  - [3.1) useState: for easier cases](#31-usestate-for-easier-cases)
+  - [3.2) useReducer: for complex cases](#32-usereducer-for-complex-cases)
+- [4) Explanation](#4-explanation)
+- [5) Example](#5-example)
+
 # 1) Basics
 
 The hook useReducer enables to manage more complex states

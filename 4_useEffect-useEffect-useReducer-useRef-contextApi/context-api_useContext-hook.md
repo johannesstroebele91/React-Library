@@ -5,8 +5,8 @@
 - [3.2) Accessing the data store](#32-accessing-the-data-store)
     - [3.2.1) Provide context](#321-provide-context)
     - [3.2.2) Listen to context](#322-listen-to-context)
-      - [3.2.2.1) React hook (more elegant)](#3221-react-hook-more-elegant)
-      - [3.2.2.2) Consumers (less elegant)](#3222-consumers-less-elegant)
+      - [3.2.2.1) React hook with useContext hook (more elegant)](#3221-react-hook-with-usecontext-hook-more-elegant)
+      - [3.2.2.2) Consumers with Provider (less elegant)](#3222-consumers-with-provider-less-elegant)
 - [4. Context API limitations](#4-context-api-limitations)
 
 # 1) Basics
@@ -117,7 +117,7 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 You can listen to the store, context, or state using the:
 
-#### 3.2.2.1) React hook (more elegant)
+#### 3.2.2.1) React hook with useContext hook (more elegant)
 
 Enables to manage the state
 
@@ -271,7 +271,7 @@ ReactDOM.render(
 );
 ```
 
-#### 3.2.2.2) Consumers (less elegant)
+#### 3.2.2.2) Consumers with Provider (less elegant)
 
 [Reference](https://reactjs.org/docs/context.html#contextconsumer)
 

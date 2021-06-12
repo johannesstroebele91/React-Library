@@ -7,7 +7,7 @@
 
 # 1) Basics
 
-Refs enable to getting user input (like useState)
+Refs enables to get user input (like useState)
 
 - so it gives you access to other DOM element
 - and enables you to work with them
