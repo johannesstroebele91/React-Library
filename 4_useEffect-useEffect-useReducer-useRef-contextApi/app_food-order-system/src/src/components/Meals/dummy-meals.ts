@@ -1,4 +1,6 @@
-export const DUMMY_MEALS = [
+import Meal from "../../models/types";
+
+export const DUMMY_MEALS: Meal[] = [
   {
     id: "m1",
     name: "Sushi",

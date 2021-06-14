@@ -1,10 +1,14 @@
-const Input: React.FC = () => {
+import classes from "./Input.module.css";
+
+interface InputProps {
+  input: any;
+  label: string;
+}
+const Input: React.FC<InputProps> = ({ label, input, ...props }) => {
   return (
-    <div className="input">
-      <label>
-        Do you like peas?
-        <input>Button</input>);
-      </label>
+    <div className={classes.input}>
+      <label htmlFor={input.id}>{label}</label>
+      <input {...input} />
     </div>
   );
 };

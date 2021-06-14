@@ -1,4 +1,5 @@
 import header from "../../../assets/meals.jpg"; // Tell webpack this JS file uses this image
+import HeaderCartButton from "../HeaderCartButton/HeaderCartButton";
 import classes from "./Header.module.css";
 
 const Header: React.FC = () => {
@@ -6,15 +7,10 @@ const Header: React.FC = () => {
     <>
       <header className={classes.header}>
         <h1>ReactMeals</h1>
-        <button>Cart</button>
+        <HeaderCartButton />
       </header>
       <div className={classes["main-image"]}>
-        <img
-          src={header}
-          alt="A table full of food"
-          className={classes["main-image"]}
-        />
-        ;
+        <img src={header} alt="A table full of food" />;
       </div>
     </>
   );
