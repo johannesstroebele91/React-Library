@@ -6,6 +6,7 @@
   - [3.1) Standard case with destructuring](#31-standard-case-with-destructuring)
   - [3.2) Other case without destructuring](#32-other-case-without-destructuring)
 - [4) Outsourcing props](#4-outsourcing-props)
+- [5) Automatically adding all props to a HTML element](#5-automatically-adding-all-props-to-a-html-element)
 
 # 1) Basics
 
@@ -54,8 +55,9 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
 ## 2.2) Child component
 
 The variables received from the parent component
-* can be used in the child component
-* using 2 steps
+
+- can be used in the child component
+- using 2 steps
 
 ```javascript
 // 1) Props interface for TS
@@ -166,3 +168,25 @@ type Todo = {
 } */
 export default Todo;
 ```
+
+# 5) Automatically adding all props to a HTML element
+
+All props can be added automatically
+
+- to an HTML element of a child component
+- via props from the parent component
+
+Parent component
+
+```javascript
+...
+return <MenuItem id={id} data={data} ... />
+...
+```
+
+Child component
+
+````javascript
+<input input {...input}/>
+```
+````
