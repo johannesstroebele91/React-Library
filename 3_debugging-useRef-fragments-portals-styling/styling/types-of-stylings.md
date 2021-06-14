@@ -1,6 +1,6 @@
 - [1) Inline styling `style={{}}`](#1-inline-styling-style)
 - [2) Regular CSS selectors](#2-regular-css-selectors)
-- [3) Merging multiple styles](#3-merging-multiple-styles)
+- [3) Class Modules](#3-class-modules)
 - [4) Style objects](#4-style-objects)
 
 **Types of stylings for HTML elements**
@@ -67,14 +67,31 @@ div button {
 }
 ```
 
-# 3) Merging multiple styles
+# 3) Class Modules
+
+Class modules can be used
+
+- by adding module between the file name and css (e.g. Header.module.css)
+- importing the styles via some individual name (e.g. import classes from "Header.module.css")
+- and using the classes object (e.g. {classes.header})
+- IMPORTANT: classes with a dash `-` can be also accessed (e.g. className={classes["main-image"]})
+
+Example see Header.tsx components
+
+```javascript
+import classes from "Header.module.css";
+...
+<header {classes.header}>
+  <img className={classes["main-image"]}/>
+</header>
+```
 
 An external can be merged with an internal class
 
 - by passing down a class
 - and merging this class with another class using
   - props `<Card className={classes.input}>`
-  - and `${}` syntax (e.g. `className={`${classes.card} ${className}`}`)
+  - and `${}` -> (e.g. `className={`${classes.card} ${className}`}`)
 
 Example see AddUser and Card components in [Git Commit: ]()
 
@@ -116,4 +133,8 @@ class HomePage extends React.Component {
     return <div style={style}>Hello World</div>;
   }
 }
+```
+
+```
+
 ```
