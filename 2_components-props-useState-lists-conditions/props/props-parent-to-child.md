@@ -176,17 +176,37 @@ All props can be added automatically
 - to an HTML element of a child component
 - via props from the parent component
 
-Parent component
+Parent component: MealItemsForm.tsx
 
 ```javascript
 ...
-return <MenuItem id={id} data={data} ... />
+return <Input
+        label="Amount"
+        input={{
+          id: "amount",
+          type: "number",
+          min: "1",
+          max: "5",
+          step: "1",
+          defaultValue: "1",
+        }}
+      />
 ...
 ```
 
-Child component
+Child component: Input:tsx
 
 ````javascript
-<input input {...input}/>
-```
+interface InputProps {
+  input: any;
+  label: string;
+}
+const Input: React.FC<InputProps> = ({ label, input, ...props }) => {
+  return (
+    <div className={classes.input}>
+      <label htmlFor={input.id}>{label}</label>
+      <input {...input} />
+    </div>
+  );
+};```
 ````
