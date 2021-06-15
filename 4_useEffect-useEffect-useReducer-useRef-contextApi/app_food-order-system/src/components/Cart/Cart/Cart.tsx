@@ -4,7 +4,7 @@ import classes from "./Cart.module.css";
 const DUMMY_MEAL = [{ id: "c1", name: "Sushi", amount: 2, price: 12.99 }];
 
 interface CartProps {
-  onClose: any;
+  onClose: () => void;
 }
 
 const Cart: React.FC<CartProps> = ({ onClose }) => {

@@ -196,7 +196,7 @@ return <Input
 
 Child component: Input:tsx
 
-````javascript
+```javascript
 interface InputProps {
   input: any;
   label: string;
@@ -208,5 +208,9 @@ const Input: React.FC<InputProps> = ({ label, input, ...props }) => {
       <input {...input} />
     </div>
   );
-};```
-````
+};
+```
+
+```
+
+```
