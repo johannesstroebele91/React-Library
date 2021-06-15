@@ -1,4 +1,4 @@
-# Basics
+# 1) Basics
 
 Portals enable to
 
@@ -7,7 +7,7 @@ Portals enable to
   - e.g. render a modal on top of the real DOM
   - instead of nested somewhere
 
-# Relevance
+# 2) Relevance
 
 - write a better semantic
 - and a "cleaner HTML structure"
@@ -19,7 +19,7 @@ Portals enable to
   - creating a button with an event listener using a `div`
   - e.g. `<div onClick={clickHandler}>Click me</div>`
 
-# Approach
+# 3) Approach
 
 1. Go to index.html file in the public folder
 2. Add a `<div id="modal-root"></div>` before the `<div id="root"></div>` element
@@ -30,6 +30,8 @@ Portals enable to
 7. Write `{ReactDOM.createPortal()}` into the respective component and specify
    1. element which should be rendered
    2. id where the component should be rendered
+
+# 4) Example: ErrorModal.tsx
 
 ```javascript
 // Import ReactDOM

@@ -1,12 +1,35 @@
-const Cart: React.FC = () => {
+import Modal from "../../UI/Modal/Modal";
+import classes from "./Cart.module.css";
+
+const DUMMY_MEAL = [{ id: "c1", name: "Sushi", amount: 2, price: 12.99 }];
+
+interface CartProps {
+  onClose: any;
+}
+
+const Cart: React.FC<CartProps> = ({ onClose }) => {
+  const cartItems = (
+    <ul className={classes["card-items"]}>
+      {DUMMY_MEAL.map((item) => (
+        <li key={item.id}>{item.name}</li>
+      ))}
+    </ul>
+  );
+
   return (
-    <div className="card-items">
-      <div className="total">
-        <div className="actions">
-          <button className="button">asd</button>
-        </div>
+    <Modal onClose={onClose}>
+      {cartItems}
+      <div className={classes.total}>
+        <span>Total Amount</span>
+        <span>35.62</span>
       </div>
-    </div>
+      <div className={classes.actions}>
+        <button className={classes["button--alt"]} onClick={onClose}>
+          Close
+        </button>
+        <button className={classes.button}>Order</button>
+      </div>
+    </Modal>
   );
 };
 export default Cart;
