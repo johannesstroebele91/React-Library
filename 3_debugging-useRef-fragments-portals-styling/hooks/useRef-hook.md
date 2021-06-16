@@ -1,9 +1,9 @@
 - [1) Basics](#1-basics)
-- [2) Uncontrolled component](#2-uncontrolled-component)
+- [2) Use cases](#2-use-cases)
 - [3) Approach](#3-approach)
-- [4) Use cases](#4-use-cases)
-- [5) Issues resetting useRef](#5-issues-resetting-useref)
-- [6) Example](#6-example)
+- [4) Issues resetting useRef](#4-issues-resetting-useref)
+- [5) Example](#5-example)
+- [6) Making refs work for custom components (forwardRef)](#6-making-refs-work-for-custom-components-forwardref)
 
 # 1) Basics
 
@@ -13,7 +13,13 @@ Refs enables to get user input (like useState)
 - and enables you to work with them
 - (setup a connection btw a HTML element and JS/TS code)
 
-# 2) Uncontrolled component
+# 2) Use cases
+
+Simlar as for useState for e.g. managing inputs
+
+- BUT it is much quicker than useState
+- if the goal is to only READ a value
+- NOT write it
 
 useRef enables to build uncontrolled component
 
@@ -31,17 +37,11 @@ useRef enables to build uncontrolled component
 3. connect TS to HTML element using ref={} attribute (e.g. `<input ref={usernameInputRef}>`)
 4. Reading data from the input (e.g. `const enteredUsername = usernameInputRef.current?.value;`)
 5. Use the value `enteredUsername` as needed
-6. WARNING Reset the inputs directly by manipulating the DOM (e.g. `usernameInputRef.current!.value = "";`)
+6. Inputs needs to be resetted directly by manipulating the DOM
+   1. which would normally not be advised (but here its ok)
+   2. e.g. `usernameInputRef.current!.value = "";`
 
-# 4) Use cases
-
-Simlar as for useState for e.g. managing inputs
-
-- BUT it is much quicker than useState
-- if the goal is to only READ a value
-- NOT write it
-
-# 5) Issues resetting useRef
+# 4) Issues resetting useRef
 
 To reset useRef
 
@@ -57,7 +57,7 @@ Alternatively this can be done using
 - which needs to be reflected in the HTML (e.g. `form ref={formRef}`)
 - Ref: https://stackoverflow.com/a/62413386/11823182
 
-# 6) Example
+# 5) Example
 
 useRef can be used using these 6 steps:
 
@@ -90,9 +90,6 @@ const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
       usernameInputRef.current!.value = "";
       ageInputRef.current!.value = "";
     }
-  };
-
-  };
 
   return (
     <>
@@ -107,6 +104,19 @@ const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
     <>
   );
 };
-
-
 ```
+
+# 6) Making refs work for custom components (forwardRef)
+
+See [useImperativeHandle-hook.md](../../4_useEffect-useEffect-useReducer-useRef-contextApi/hooks/useImperativeHandle-hook.md) for a detailed explanation
+
+Problem is that ref does not work
+
+- for custom components
+- out of the box
+
+Instead in the respective custom component
+
+- by passing the ref to the custom component
+- and changing the custom component using React.forwardRef
+- as shown in another [Input.tsx file for the food order app](../../4_useEffect-useEffect-useReducer-useRef-contextApi/app_food-order-system/src/components/UI/Input/Input.tsx)

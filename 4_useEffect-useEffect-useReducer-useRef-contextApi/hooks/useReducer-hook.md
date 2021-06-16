@@ -86,6 +86,8 @@ initFn
 
 # 5) Example
 
+**See CartProvider, CartContext, HeaderCartButton for a more complex example**
+
 This example enables to update a state based on another state (guarantees that code does not run too early)
 
 1. Declare useReducer and initialize

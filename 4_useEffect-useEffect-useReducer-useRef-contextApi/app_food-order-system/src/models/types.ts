@@ -1,6 +1,7 @@
 export default interface Meal {
   id: string;
   name: string;
-  description: string;
+  description?: string;
+  amount?: number;
   price: number;
 }

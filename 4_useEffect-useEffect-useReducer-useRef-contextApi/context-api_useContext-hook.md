@@ -42,6 +42,8 @@ The files inside
 
 # 3) Approach
 
+**See CartProvider, CartContext, HeaderCartButton for a more complex example**
+
 # 3.1) Creating data store
 
 Text as a default state
@@ -55,6 +57,8 @@ Object as a default state which enables to:
 - manage certain states
 - that are defined as properties
 - which have a key and a value (is the initial state)
+
+PS Initializing the context will give better autocompletion
 
 ```javascript
 const AuthContext = React.createContext({
@@ -92,7 +96,7 @@ This can be done by
 - but using `.Provider` to access a property that address all of the child components
 - and specifying the value that should be used from the content ([Reference](https://de.reactjs.org/docs/context.html))
 - e.g. `value={isLoggedIn: isLoggedIn}`
-  - 1. isLoggedIn: is the name of the variable that gets passed to the other componente
+  - 1. isLoggedIn: is the name of the variable that gets passed to the other component
   - 2. isLoggedIn: is the state specified
 
 Example in App.tsx of [app_task-manager](../4_useEffect-useEffect-reducers-contextApi/app_task-manager/src/App.tsx) and only available in git commit: [be0ac9ed7c7219ca1468ac579079caf7c170e943](https://github.com/johannesstroebele91/React-Library/commit/be0ac9ed7c7219ca1468ac579079caf7c170e943)

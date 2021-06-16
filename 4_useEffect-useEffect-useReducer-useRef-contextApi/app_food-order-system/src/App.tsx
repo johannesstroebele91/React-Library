@@ -1,8 +1,9 @@
 import { useState } from "react";
 import "./App.css";
-import Cart from "./src/components/Cart/Cart/Cart";
-import Header from "./src/components/Layout/Header/Header";
-import Meals from "./src/components/Meals/Meals/Meals";
+import Cart from "./components/Cart/Cart/Cart";
+import Header from "./components/Layout/Header/Header";
+import Meals from "./components/Meals/Meals/Meals";
+import CartProvider from "./store/CartProvider";
 
 // Only the App.tsx gets changed in an React app
 function App() {
@@ -15,14 +16,14 @@ function App() {
     setCartIsShown(false);
   };
   return (
-    <>
+    <CartProvider>
       {/* Renders the Cart if the boolean is true btw. not*/}
       {cartIsShown && <Cart onClose={hideCartHandler} />}
       <Header onShowCart={showCartHandler} />
       <main>
         <Meals />
       </main>
-    </>
+    </CartProvider>
   );
 }
 

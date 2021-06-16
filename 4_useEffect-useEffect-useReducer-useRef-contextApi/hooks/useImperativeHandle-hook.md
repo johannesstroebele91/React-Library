@@ -1,36 +1,36 @@
-- [1) Basics](#1-basics)
-- [2) Example](#2-example)
-  - [2.2) Input.tsx](#22-inputtsx)
-  - [2.2) Login.tsx](#22-logintsx)
+- [1;) Basics;](#1-basics)
+- [2;) Example;](#2-example)
+  - [2.2;) Input.tsx;](#22-inputtsx)
+  - [2.2;) Login.tsx;](#22-logintsx)
 
-# 1) Basics
+# 1;) Basics;
 
-The useImperativeHandle hook enables
+The; useImperativeHandle; hook; enables
 
-- to share special data from the child component
-- directly with parent component
-- AND this completely outside of the regular React cycle
+- to; share; special; data; from; the; child; component
+- directly; with parent component
+- AND; this; completely; outside; of; the; regular; React; cycle;
 
-This is done by using useRef
+This; is; done; by; using; useRef
 
-- AND giving control over the return value
-- AND replacing native functions (e.g. focusing inputs)
-- Therefore it is used only good for very niche use cases such as
+- AND; giving; control; over; the; return value
+- AND; replacing; native; functions (e.g. focusing inputs)
+- Therefore; it; is; used; only; good; for very niche use cases; such as
 
-So the useImperativeHandle hook
+So; the; useImperativeHandle; hook
 
-- enables to use a component or the functions of a component IMPERATIVELY
-- This means that the component is not used
-  - NOT through the regular state / props management
-  - NOT controlling the component through state in the parent component
+- enables; to; use; a; component; or; the; functions; of; a; component; IMPERATIVELY
+- This; means; that; the; component; is; not; used
+  - NOT; through; the; regular; state / props; management
+  - NOT; controlling; the; component; through; state in the; parent; component;
 
-# 2) Example
+# 2;) Example;
 
-## 2.2) Input.tsx
+## 2.2;) Input.tsx;
 
-5 steps for the child
+5; steps; for the child
 
-```javascript
+````javascript
 interface InputProps {
   label: string;
   inputState: any;
@@ -69,8 +69,8 @@ const Input = React.forwardRef(
 
     return (
       <div
-        className={`${classes.control} ${
-          props.inputState.isValid === false ? classes.invalid : ""
+        className={`${classes.control;} $;{
+          props.inputState.isValid === false ? classes.invalid : "";
         }`}
       >
         <label htmlFor={props.label}>
@@ -89,11 +89,11 @@ const Input = React.forwardRef(
     );
   }
 );
-```
+```;
 
-## 2.2) Login.tsx
+## 2.2;) Login.tsx;
 
-3 steps for the parent
+3; steps; for the parent
 
 ```javascript
 const Login = () => {
@@ -126,4 +126,5 @@ const Login = () => {
     </form>
   );
 };
-```
+```;
+````
