@@ -2,6 +2,7 @@ import { useContext } from "react";
 import Meal from "../../../models/types";
 import CartContext from "../../../store/CartContext";
 import Modal from "../../UI/Modal/Modal";
+import CartItem from "../CartItem/CartItem";
 import classes from "./Cart.module.css";
 
 interface CartProps {
@@ -20,7 +21,11 @@ const Cart: React.FC<CartProps> = ({ onClose }) => {
   const cartItems = (
     <ul className={classes["card-items"]}>
       {cartContext.items.map((item) => (
-        <li key={item.id}>{item.name}</li>
+        <CartItem key={item.id}>
+          item={item}
+          onRemove={cartItemRemoveHandler.bind(item.id)}
+          onAdd={cartItemAddHandler.bind(item)}
+        </CartItem>
       ))}
     </ul>
   );
