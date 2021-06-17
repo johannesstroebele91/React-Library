@@ -15,17 +15,22 @@ const Cart: React.FC<CartProps> = ({ onClose }) => {
   const totalAmount = `${cartContext.totalAmount.toFixed(2)} €`;
   const hasItems = cartContext.items.length > 0;
 
-  const cartItemRemoveHandler = (id: string) => {};
-  const cartItemAddHandler = (item: Meal) => {};
+  const cartItemRemoveHandler = (id: string) => {
+    cartContext.removeItem(id);
+  };
+  const cartItemAddHandler = (item: Meal) => {
+    cartContext.addItem({ ...item, amount: 1 });
+  };
 
   const cartItems = (
-    <ul className={classes["card-items"]}>
+    <ul className={classes["cart-items"]}>
       {cartContext.items.map((item) => (
-        <CartItem key={item.id}>
+        <CartItem
+          key={item.id}
           item={item}
-          onRemove={cartItemRemoveHandler.bind(item.id)}
-          onAdd={cartItemAddHandler.bind(item)}
-        </CartItem>
+          onRemove={cartItemRemoveHandler}
+          onAdd={cartItemAddHandler}
+        />
       ))}
     </ul>
   );

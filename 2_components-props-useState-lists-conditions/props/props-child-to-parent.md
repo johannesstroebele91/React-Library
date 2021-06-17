@@ -1,3 +1,14 @@
+- [1) Basics = lifting the state up](#1-basics--lifting-the-state-up)
+- [2) Example uncontrolled components](#2-example-uncontrolled-components)
+  - [2.1) Child component (ExpensesFilter)](#21-child-component-expensesfilter)
+  - [2.2) Parent component (Expenses)](#22-parent-component-expenses)
+- [3) Example controlled components](#3-example-controlled-components)
+  - [3.1) Child component (ExpensesFilter)](#31-child-component-expensesfilter)
+  - [3.2) Parent component (Expenses)](#32-parent-component-expenses)
+- [4) Complex Example](#4-complex-example)
+  - [4.1) Good approach](#41-good-approach)
+  - [4.2) Bad approach](#42-bad-approach)
+
 # 1) Basics = lifting the state up
 
 Data can also be passed to the parent from a child (lifting the data)
@@ -14,12 +25,11 @@ Data cannot be directly passed via a variable
 
 # 2) Example uncontrolled components
 
-TODO might needs fixing, revise later
-
 Means the component does not controll the state
+
 - and therefore the respective value
-- that should are needed in the child component
-- are handeled in the child
+- that is needed in the child component
+- is handeled in the child
 - NOT the parent component
 
 **See the following Github Commit: [113ce035f92da3a1d32429b12b5253d0df407707](https://github.com/johannesstroebele91/React-Library/commit/113ce035f92da3a1d32429b12b5253d0df407707)**
@@ -193,6 +203,154 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
         {/* ... */}
       </Card>
     </>
+  );
+};
+```
+
+# 4) Complex Example
+
+## 4.1) Good approach
+
+The best solution is to use an handler (e.g. removeHandler)
+
+- but an arrow function solution is also possible and quite ok
+- although it is bad practice to execute functions in the HTML
+
+Child (CartItem.tsx in the food order system):
+
+```javascript
+interface CartItemProps {
+  item: Meal;
+  onRemove: (id: string) => void;
+  onAdd: (item: Meal) => void;
+}
+
+const CartItem: React.FC<CartItemProps> = ({ item, onAdd, onRemove }) => {
+  const price = `${item.price.toFixed(2)} €`;
+
+  const removeHandler = () => {
+    onRemove(item.id);
+  };
+
+  return (
+    <li className={classes["cart-item"]}>
+      <div>
+        <h2>{item.name}</h2>
+        <div className={classes.summary}>
+          <span className={classes.price}>{price}</span>
+          <span className={classes.amount}>x {item.amount}</span>
+        </div>
+      </div>
+      <div className={classes.actions}>
+        <button onClick={removeHandler}>−</button>
+        <button onClick={() => onAdd(item)}>+</button>
+      </div>
+    </li>
+  );
+};
+```
+
+Parent (Cart.tsx in the food order system)
+
+```javascript
+const Cart: React.FC<CartProps> = ({ onClose }) => {
+  const cartContext = useContext(CartContext);
+
+  const totalAmount = `${cartContext.totalAmount.toFixed(2)} €`;
+  const hasItems = cartContext.items.length > 0;
+
+  const cartItemRemoveHandler = (id: string) => {
+    cartContext.removeItem(id);
+  };
+  const cartItemAddHandler = (item: Meal) => {
+    cartContext.addItem({ ...item, amount: 1 });
+  };
+
+  return (
+    <ul className={classes["cart-items"]}>
+      {cartContext.items.map((item) => (
+        <CartItem
+          key={item.id}
+          item={item}
+          onRemove={cartItemRemoveHandler}
+          onAdd={cartItemAddHandler}
+        />
+      ))}
+    </ul>
+  );
+};
+```
+
+## 4.2) Bad approach
+
+The solution to use directly, e.g. onRemove, also works
+
+- e.g. `onClick={onRemove}`
+- but it is bad practices
+- because the props are at one time a `mouse event`
+- and at another time a `id: string`
+
+Child (CartItem.tsx in the food order system):
+
+```javascript
+interface CartItemProps {
+  item: Meal;
+  onRemove: (someVar: any) => void;
+  onAdd: (anotherVar: any) => void;
+}
+
+const CartItem: React.FC<CartItemProps> = ({ item, onAdd, onRemove }) => {
+  const price = `${item.price.toFixed(2)} €`;
+
+  const removeHandler = () => {
+    onRemove(item.id);
+  };
+
+  return (
+    <li className={classes["cart-item"]}>
+      <div>
+        <h2>{item.name}</h2>
+        <div className={classes.summary}>
+          <span className={classes.price}>{price}</span>
+          <span className={classes.amount}>x {item.amount}</span>
+        </div>
+      </div>
+      <div className={classes.actions}>
+        <button onClick={onRemove}>−</button>
+        <button onClick={onAdd}>+</button>
+      </div>
+    </li>
+  );
+};
+```
+
+Parent (Cart.tsx in the food order system)
+
+```javascript
+const Cart: React.FC<CartProps> = ({ onClose }) => {
+  const cartContext = useContext(CartContext);
+
+  const totalAmount = `${cartContext.totalAmount.toFixed(2)} €`;
+  const hasItems = cartContext.items.length > 0;
+
+  const cartItemRemoveHandler = (id: string) => {
+    cartContext.removeItem(id);
+  };
+  const cartItemAddHandler = (item: Meal) => {
+    cartContext.addItem({ ...item, amount: 1 });
+  };
+
+  return (
+    <ul className={classes["cart-items"]}>
+      {cartContext.items.map((item) => (
+        <CartItem
+          key={item.id}
+          item={item}
+          onRemove={cartItemRemoveHandler}
+          onAdd={cartItemAddHandler}
+        />
+      ))}
+    </ul>
   );
 };
 ```
