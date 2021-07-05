@@ -1,4 +1,3 @@
-
 # 1) Class vs Functional Components
 
 ## 1.1) Class Components:
@@ -18,8 +17,9 @@
 # 2) Stateful vs Stateless Components
 
 Both class and functional components can have a state
-* modern React uses functional components
-* but class component are also great (just have a more overhead)
+
+- modern React uses functional components
+- but class component are also great (just have a more overhead)
 
 **!!!Both stateful and stateless components are great!!!**
 
@@ -41,3 +41,24 @@ Components that don't manage a state
 
 - e.g. ExpenseItem component only represents
 - are the majority of component
+
+# 3) Normal vs Arrow Function Syntax for Components
+
+- Both normal function and arrow function syntax do the same!
+- There are props and cons
+
+## 3.1) Normal Function Syntax
+
+```javascript
+function Card(props: any) {
+  render();
+}
+```
+
+## 3.2) Arrow Function Syntax
+
+```javascript
+const Card = (props: any) => {
+  render();
+};
+```

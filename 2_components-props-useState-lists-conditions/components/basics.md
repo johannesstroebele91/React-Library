@@ -2,11 +2,8 @@
   - [1.1) General](#11-general)
   - [1.2) Component tree](#12-component-tree)
 - [2) Advantages](#2-advantages)
-- [3) Types of Components](#3-types-of-components)
-  - [3.1) Class vs Functional Components](#31-class-vs-functional-components)
-  - [3.2) Stateful vs Stateless Components](#32-stateful-vs-stateless-components)
-- [4) Limited to "1" root Element](#4-limited-to-1-root-element)
-- [5) Best Practices](#5-best-practices)
+- [3) Limited to "1" root Element](#3-limited-to-1-root-element)
+- [4) Best Practices](#4-best-practices)
 
 # 1) Basics
 

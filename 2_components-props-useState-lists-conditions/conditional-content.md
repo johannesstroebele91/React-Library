@@ -14,6 +14,7 @@ Better for small statements
 3. Declaring the statement for a false condition
 
 Example: Expenses Component
+
 ```javascript
 return (
   <>
@@ -78,18 +79,46 @@ The condition can also be declared in advance and used later
 Example: ExpensesList Component
 
 ```javascript
-  //Conditional content
-  if (filteredExpenses.length === 0) {
-    return <h2 className="expenses-list__fallback">Found no expenses.</h2>;
-  }
+//Conditional content
+if (filteredExpenses.length === 0) {
+  return <h2 className="expenses-list__fallback">Found no expenses.</h2>;
+}
 
+return (
+  <ul className="expenses-list">
+    {filteredExpenses.map((filteredExpenses) => (
+      <ExpenseItem key={filteredExpenses.id} expense={filteredExpenses} />
+    ))}
+  </ul>
+);
+```
+
+# 6)
+
+Parent component:
+
+```javascript
+function App() {
+  const [showParagraph, setShowParagraph] = useState(false);
+  const toggleParagraphHandler = () => {
+    setShowParagraph((prevShowParagraph) => !prevShowParagraph);
+  };
   return (
-    <ul className="expenses-list">
-      {
-        filteredExpenses.map((filteredExpenses) => (
-          <ExpenseItem key={filteredExpenses.id} expense={filteredExpenses} />
-        ))
-      }
-    </ul>
+    <div className="app">
+      <h1>Hi there!</h1>
+      // Pass boolean to the child component
+      <DemoOutput show={showParagraph} />
+      <Button onClick={toggleParagraphHandler}>Show paragraph</Button>
+    </div>
   );
+}
+```
+
+Child component:
+
+```javascript
+const DemoOutput: React.FC<DemoOutputProps> = ({ show }) => {
+  // render paragraph conditionally
+  return <p>{show ? "This is new!" : ""}</p>;
+};
 ```
