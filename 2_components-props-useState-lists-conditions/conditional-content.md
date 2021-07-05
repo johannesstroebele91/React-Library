@@ -93,7 +93,7 @@ return (
 );
 ```
 
-# 6)
+# 6) Passing data for rendering child component conditionally
 
 Parent component:
 
