@@ -1,9 +1,12 @@
+import MyParagraph from "./MyParagraph";
+
 interface DemoOutputProps {
   show: boolean;
 }
 
 const DemoOutput: React.FC<DemoOutputProps> = ({ show }) => {
-  return <p>{show ? "This is new!" : ""}</p>;
+  console.log("demo output running");
+  return <MyParagraph>{show ? "This is new!" : ""}</MyParagraph>;
 };
 
 export default DemoOutput;

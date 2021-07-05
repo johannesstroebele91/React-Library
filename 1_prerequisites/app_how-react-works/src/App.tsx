@@ -3,11 +3,11 @@ import "./App.css";
 import DemoOutput from "./components/Demo/DemoOutput";
 import Button from "./components/UI/Button/Button";
 
-// Only the App.tsx gets changed in an React app
 function App() {
   const [showParagraph, setShowParagraph] = useState(false);
 
   // For every state change, the entire component is re-executed
+  // although just content in the child (DemoOutput) has changed
   console.log("app running");
   const toggleParagraphHandler = () => {
     setShowParagraph((prevShowParagraph) => !prevShowParagraph); // cleaner way to use prevState

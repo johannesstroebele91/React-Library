@@ -5,6 +5,9 @@
   - [3.2) React DOM library](#32-react-dom-library)
   - [3.3) ReactDOM renderer](#33-reactdom-renderer)
 - [4) Virtual DOM](#4-virtual-dom)
+- [5) React re-executes components with state for every change](#5-react-re-executes-components-with-state-for-every-change)
+- [5.1) Example: parent component re-executes due to dynamic props `show={showParagraph}`](#51-example-parent-component-re-executes-due-to-dynamic-props-showshowparagraph)
+- [5.2) Example: child components re-execute due static props `show={false}`](#52-example-child-components-re-execute-due-static-props-showfalse)
 
 # 1) Basics
 
@@ -81,8 +84,53 @@ React uses a concept called virtual DOM
       1. ONLY the necessary changes are altert in the real DOM
       2. all of the other parts of the code stay the same
 
-Of course, React re-evaluates, or re-exectues component functions again,
+# 5) React re-executes components with state for every change
+
+Although the real DOM is NOT updated
 
 - whenever components, props, state, or context changes
-- which is necessary to identify these differences for the virtual DOM
-- BUT these re-evaluation are separate from the real DOM!
+- React components are re-evaluated (component functions are re-executed)
+- every time such a change happens
+
+# 5.1) Example: parent component re-executes due to dynamic props `show={showParagraph}`
+
+The function `console.log("app running");` of the parent gets triggered
+
+- although only the child component changes
+- because the state/props are handled in the parent
+- (of course the child component gets also triggered for every change)
+
+```javascript
+function App() {
+  const [showParagraph, setShowParagraph] = useState(false);
+
+  // For every state change, the entire component is re-executed
+  // although just content in the child (DemoOutput) has changed
+  console.log("app running");
+  const toggleParagraphHandler = () => {
+    setShowParagraph((prevShowParagraph) => !prevShowParagraph); // cleaner way to use prevState
+  };
+  return (
+    <div className="app">
+      <h1>Hi there!</h1>
+      <DemoOutput show={showParagraph} />
+      <Button onClick={toggleParagraphHandler}>Show paragraph</Button>
+    </div>
+  );
+}
+```
+
+```javascript
+const DemoOutput: React.FC<DemoOutputProps> = ({ show }) => {
+  return <p>{show ? "This is new!" : ""}</p>;
+};
+```
+
+# 5.2) Example: child components re-execute due static props `show={false}`
+
+Every time a parent component changes
+
+- all its child components and their childs
+- are re-executed automatically
+- thereby triggering `console.log("demo output running");`
+- (does not matter if the props are static)
