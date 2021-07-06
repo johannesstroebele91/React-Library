@@ -1,3 +1,4 @@
+import React from "react";
 import classes from "./Button.module.css";
 
 const Button = (props: any) => {
@@ -14,5 +15,4 @@ const Button = (props: any) => {
   );
 };
 
-export default Button;
-console.log("app running");
+export default React.memo(Button);

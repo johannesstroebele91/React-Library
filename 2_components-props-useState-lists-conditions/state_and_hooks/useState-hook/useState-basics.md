@@ -24,7 +24,7 @@ The function useState is needed because React
 
 So useState monitors a variable for change
 
-- by creating a new state (NOT UPDATE A STATE)
+- by creating a new state (NOT UPDATING THE STATE)
 
 The function useState returns an array with exactly two elements
 
@@ -43,10 +43,10 @@ Because a new state is created
 
 It is one of the most important **React hooks**
 
-- all name of hooks start with "uf"
+- all name of hooks start with "use"
 - all must be called inside of the React component function
-- NOT outside these functions
-- OR nested function (only 1 exception)
+  - NOT outside these functions
+  - OR nested function (only 1 exception)
 
 # 3) Example
 

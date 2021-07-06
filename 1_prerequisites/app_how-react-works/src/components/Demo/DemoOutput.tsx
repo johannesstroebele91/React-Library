@@ -1,3 +1,4 @@
+import React from "react";
 import MyParagraph from "./MyParagraph";
 
 interface DemoOutputProps {
@@ -9,4 +10,5 @@ const DemoOutput: React.FC<DemoOutputProps> = ({ show }) => {
   return <MyParagraph>{show ? "This is new!" : ""}</MyParagraph>;
 };
 
-export default DemoOutput;
+export default React.memo(DemoOutput);
+c;

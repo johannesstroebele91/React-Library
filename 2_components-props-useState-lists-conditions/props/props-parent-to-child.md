@@ -19,7 +19,7 @@ A generic types in functional components can be used
 
 - to explicitly add additional data to be passed
 - which are then combined with the props object
-- e.g. `const Todos: React.FC<> = (props) => {}`
+- e.g. `const Todos = (props) => {}`
 
 # 2) STANDARD EXAMPLE WITH TS
 
@@ -112,7 +112,7 @@ function App() {
 export default App;
 ```
 
-a) Todos.tsx with destructuring (recommended)
+Todos.tsx
 
 - Destructions is happening like `{ items, onDeleteTodo }`
 - AND NOT LIKE { items}, {onDeleteTodo }
@@ -157,7 +157,7 @@ Props can be outsourced to a types.ts file
 
 ```javascript
 // types.ts
-interface Todo {
+interface TodoProps {
   id: string;
   text: string;
 }
@@ -166,7 +166,7 @@ type Todo = {
   id: string;
   text: string;
 } */
-export default Todo;
+export default TodoProps;
 ```
 
 # 5) Automatically adding all props to a HTML element
@@ -209,8 +209,4 @@ const Input: React.FC<InputProps> = ({ label, input, ...props }) => {
     </div>
   );
 };
-```
-
-```
-
 ```
