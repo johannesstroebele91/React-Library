@@ -1,10 +1,17 @@
+- [1) Prevent unnecessary re-executions of components using React.memo()](#1-prevent-unnecessary-re-executions-of-components-using-reactmemo)
+- [2) Implementation](#2-implementation)
+- [3) Reason for not using it for all components](#3-reason-for-not-using-it-for-all-components)
+- [4) Use Cases](#4-use-cases)
+- [5) Problems with references values](#5-problems-with-references-values)
+- [5) Example](#5-example)
+
 # 1) Prevent unnecessary re-executions of components using React.memo()
 
 React.memo enables to tell React
 
 - to re-execute a certain component
 - only under certain circumstances
-- e.g. only when a prob changed (e.g. `show={false}`)
+- e.g. when a props of primitive types changed (e.g. boolean `show={false}`)
 
 # 2) Implementation
 
