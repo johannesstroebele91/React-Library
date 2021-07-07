@@ -11,4 +11,3 @@ const DemoOutput: React.FC<DemoOutputProps> = ({ show }) => {
 };
 
 export default React.memo(DemoOutput);
-c;

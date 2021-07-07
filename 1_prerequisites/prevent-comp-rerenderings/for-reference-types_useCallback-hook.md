@@ -1,6 +1,7 @@
 - [1) Goal](#1-goal)
 - [2) How it works](#2-how-it-works)
 - [3) Example](#3-example)
+- [4) Dependencies](#4-dependencies)
 
 # 1) Goal
 
@@ -48,3 +49,15 @@ const toggleParagraphHandler = useCallback(() => {
   setShowParagraph((prevShowParagraph) => !prevShowParagraph); // cleaner way to use prevState
 }, []);
 ```
+
+# 4) Dependencies
+
+Specify the dependencies similar to the useEffect hook
+
+1. important! functions like setShowParagraph
+   - do not need to be stated
+   - because they are saved already by React in memory
+2. on the other hand, variables that are needed in the function
+   - need to be added e.g. allowToggle
+   - which results in the function not being skipped,
+   - but actually it is re-executed if e.g. allowToggle changes
