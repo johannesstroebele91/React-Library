@@ -1,15 +1,15 @@
-- [1) Approaches for useEffect](#1-approaches-for-useeffect)
-- [2) Use cases for different dependencies](#2-use-cases-for-different-dependencies)
-  - [2.1) Completely empty dependencies ``](#21-completely-empty-dependencies-)
-  - [2.2) Empty array dependencies `[]`](#22-empty-array-dependencies-)
-  - [2.3) Specific dependencies `[enteredEmail, enteredPassword]`](#23-specific-dependencies-enteredemail-enteredpassword)
-- [3) Cleanup function](#3-cleanup-function)
-  - [3.1) Completely empty dependencies WITH CLEANUP FUNCTION](#31-completely-empty-dependencies-with-cleanup-function)
-  - [3.2) Empty array dependencies WITH CLEANUP FUNCTION](#32-empty-array-dependencies-with-cleanup-function)
-  - [3.3) Specific dependencies `[enteredEmail, enteredPassword]` WITH CLEANUP FUNCTION](#33-specific-dependencies-enteredemail-enteredpassword-with-cleanup-function)
-- [4) Adding Nested Properties As Dependencies To useEffect](#4-adding-nested-properties-as-dependencies-to-useeffect)
+- [1. Approaches for useEffect](#1-approaches-for-useeffect)
+- [2. Use cases for different dependencies](#2-use-cases-for-different-dependencies)
+  - [2.1. Completely empty dependencies ``](#21-completely-empty-dependencies-)
+  - [2.2. Empty array dependencies `[]`](#22-empty-array-dependencies-)
+  - [2.3. Specific dependencies `[enteredEmail, enteredPassword]`](#23-specific-dependencies-enteredemail-enteredpassword)
+- [3. Cleanup function](#3-cleanup-function)
+  - [3.1. Completely empty dependencies WITH CLEANUP FUNCTION](#31-completely-empty-dependencies-with-cleanup-function)
+  - [3.2. Empty array dependencies WITH CLEANUP FUNCTION](#32-empty-array-dependencies-with-cleanup-function)
+  - [3.3. Specific dependencies `[enteredEmail, enteredPassword]` WITH CLEANUP FUNCTION](#33-specific-dependencies-enteredemail-enteredpassword-with-cleanup-function)
+- [4. Adding Nested Properties As Dependencies To useEffect](#4-adding-nested-properties-as-dependencies-to-useeffect)
 
-# 1) Approaches for useEffect
+# 1. Approaches for useEffect
 
 Code of project changed, therefore refer to git commit: [27ef5348f073c6a4d80138814c5a591eab3afee1](https://github.com/johannesstroebele91/React-Library/commit/27ef5348f073c6a4d80138814c5a591eab3afee1)
 
@@ -37,11 +37,11 @@ Code of project changed, therefore refer to git commit: [27ef5348f073c6a4d801388
   - if the dependencies, specified in the 2. argument of useEffect, gets changed
   - whereby this dependency is only checked for each rendering of the component
 
-# 2) Use cases for different dependencies
+# 2. Use cases for different dependencies
 
 The useEffect use can be mostly used in these ways
 
-## 2.1) Completely empty dependencies ``
+## 2.1. Completely empty dependencies ``
 
 Triggers the effect function
 
@@ -55,7 +55,7 @@ useEffect(() => {
 });
 ```
 
-## 2.2) Empty array dependencies `[]`
+## 2.2. Empty array dependencies `[]`
 
 Triggers the execution of the effect function,
 
@@ -67,9 +67,9 @@ See App.tsx in [app_login-page](./app_login-page/src/App.tsx)
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // 2) Declare useEffect for persiting data
+  // 2. Declare useEffect for persiting data
   useEffect(() => {
-    // 3) Work with the previously declared item of the localStorage
+    // 3. Work with the previously declared item of the localStorage
     const storedUserLoggedInData = localStorage.getItem("isLoggedIn");
     if (storedUserLoggedInData === "1") {
       setIsLoggedIn(true);
@@ -78,13 +78,13 @@ function App() {
 
   const loginHandler = (email: string, password: string) => {
     // TODO functionality for checking email and password
-    // 1) Create a key value pair in the local storage
+    // 1. Create a key value pair in the local storage
     localStorage.setItem("isLoggedIn", "1");
     setIsLoggedIn(true);
   };
 
   const logoutHandler = () => {
-    // 4) Remove key afterwards from local storage
+    // 4. Remove key afterwards from local storage
     localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
   };
@@ -100,7 +100,7 @@ function App() {
 }
 ```
 
-## 2.3) Specific dependencies `[enteredEmail, enteredPassword]`
+## 2.3. Specific dependencies `[enteredEmail, enteredPassword]`
 
 Triggers the effect function
 
@@ -123,13 +123,13 @@ const Login = (props: any) => {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
 
-  // 1) Example of useEffect being used for updating the React state
+  // 1. Example of useEffect being used for updating the React state
   useEffect(() => {
-    // 2) Specify the effect function that should be executed
+    // 2. Specify the effect function that should be executed
     setFormIsValid(
       enteredEmail.includes("@") && enteredPassword.trim().length > 6
     );
-  }, // 3) Specify the dependencies that should be monitored for changes
+  }, // 3. Specify the dependencies that should be monitored for changes
   [enteredEmail, enteredPassword]);
 
   ...
@@ -195,7 +195,7 @@ const MyComponent = (props) => {
 };
 ```
 
-# 3) Cleanup function
+# 3. Cleanup function
 
 Ref: [Effects with and without cleanup](https://reactjs.org/docs/hooks-effect.html)
 
@@ -210,7 +210,7 @@ IMPORTANT!
 - the cleanup function gets executed
 - before the actual "effect function"
 
-## 3.1) Completely empty dependencies WITH CLEANUP FUNCTION
+## 3.1. Completely empty dependencies WITH CLEANUP FUNCTION
 
 TODO add what that does
 
@@ -223,7 +223,7 @@ useEffect(() => {
 });
 ```
 
-## 3.2) Empty array dependencies WITH CLEANUP FUNCTION
+## 3.2. Empty array dependencies WITH CLEANUP FUNCTION
 
 TODO add what that does
 
@@ -236,7 +236,7 @@ useEffect(() => {
 }, []);
 ```
 
-## 3.3) Specific dependencies `[enteredEmail, enteredPassword]` WITH CLEANUP FUNCTION
+## 3.3. Specific dependencies `[enteredEmail, enteredPassword]` WITH CLEANUP FUNCTION
 
 1. Add a `setTimeout()` function and paste the effect function inside
 2. Return a cleanup function at the end of the effect function
@@ -252,31 +252,31 @@ const Login = (props: any) => {
     const [enteredEmail, setEnteredEmail] = useState("");
     const [enteredPassword, setEnteredPassword] = useState("");
 
-    // 1) Example of useEffect being used for updating the React state (specify dependencies)
+    // 1. Example of useEffect being used for updating the React state (specify dependencies)
     useEffect(
     () => {
-        // 4) Wait for 1000ms until we execute a function
+        // 4. Wait for 1000ms until we execute a function
         const identifierTimer = setTimeout(() => {
         console.log("Form validity check");
-        // 2) Specify the effect function that should be executed
+        // 2. Specify the effect function that should be executed
         setFormIsValid(
             enteredEmail.includes("@") && enteredPassword.trim().length > 6
         );
         }, 1000);
 
-        // 5) Run a Cleanup function, to clear the timer in case it did not finish in time
+        // 5. Run a Cleanup function, to clear the timer in case it did not finish in time
         return () => {
         console.log("cleanup");
         clearTimeout(identifierTimer);
         };
-    }, // 3) Specify the dependencies that should be monitored for changes
+    }, // 3. Specify the dependencies that should be monitored for changes
     [enteredEmail, enteredPassword]
     );
   ...
 }
 ```
 
-# 4) Adding Nested Properties As Dependencies To useEffect
+# 4. Adding Nested Properties As Dependencies To useEffect
 
 It is a common approach to
 

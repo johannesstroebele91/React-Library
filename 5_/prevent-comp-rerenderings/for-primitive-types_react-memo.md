@@ -1,11 +1,11 @@
-- [1) Prevent unnecessary re-executions of components using React.memo()](#1-prevent-unnecessary-re-executions-of-components-using-reactmemo)
-- [2) Implementation](#2-implementation)
-- [3) Reason for not using it for all components](#3-reason-for-not-using-it-for-all-components)
-- [4) Use Cases](#4-use-cases)
-- [5) Problems with references values](#5-problems-with-references-values)
-- [5) Example](#5-example)
+- [1. Prevent unnecessary re-executions of components using React.memo()](#1-prevent-unnecessary-re-executions-of-components-using-reactmemo)
+- [2. Implementation](#2-implementation)
+- [3. Reason for not using it for all components](#3-reason-for-not-using-it-for-all-components)
+- [4. Use Cases](#4-use-cases)
+- [5. Problems with references values](#5-problems-with-references-values)
+- [5. Example](#5-example)
 
-# 1) Prevent unnecessary re-executions of components using React.memo()
+# 1. Prevent unnecessary re-executions of components using React.memo()
 
 React.memo enables to tell React
 
@@ -13,7 +13,7 @@ React.memo enables to tell React
 - only under certain circumstances
 - e.g. when a props of primitive types changed (e.g. boolean `show={false}`)
 
-# 2) Implementation
+# 2. Implementation
 
 React.memo needs to be wrapped
 
@@ -26,7 +26,7 @@ React.memo tells React to
 - from the the ones rendered before
 - and skips the re-render if NO discrepancies exist
 
-# 3) Reason for not using it for all components
+# 3. Reason for not using it for all components
 
 React.memo is not used always because React needs to
 
@@ -36,7 +36,7 @@ React.memo is not used always because React needs to
 - that can be higher in some cases then a re-render
 - RESULT: it is use case dependent
 
-# 4) Use Cases
+# 4. Use Cases
 
 - Huge component tree with lots of child components
   - React.memo enables to skipped unnecessary parent component re-renders
@@ -46,7 +46,7 @@ React.memo is not used always because React needs to
   - if you know that components and props change anyways als the time
   - for small apps and small component trees with few children
 
-# 5) Problems with references values
+# 5. Problems with references values
 
 React compares values before and after changes
 
@@ -62,6 +62,6 @@ React compares values before and after changes
     - are evaluted by React.memo to have changed (although the function has not)
     - which so triggers the re-render of the respective component
 
-# 5) Example
+# 5. Example
 
 See App.tsx

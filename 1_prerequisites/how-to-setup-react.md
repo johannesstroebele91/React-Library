@@ -1,9 +1,9 @@
-- [1) Create React App](#1-create-react-app)
-- [2) Babel:](#2-babel)
-- [2) Webpack](#2-webpack)
-- [4)  Node.js](#4--nodejs)
+- [1. Create React App](#1-create-react-app)
+- [2. Babel:](#2-babel)
+- [2. Webpack](#2-webpack)
+- [4. Node.js](#4--nodejs)
 
-# 1) Create React App
+# 1. Create React App
 
 https://reactjs.org/docs/create-a-new-react-app.html
 `npx create-react-app my-app`
@@ -32,20 +32,20 @@ https://reactjs.org/docs/create-a-new-react-app.html
 - Babel
 - Webpack
 
-# 2) [Babel](https://babeljs.io/docs/en/):
+# 2. [Babel](https://babeljs.io/docs/en/):
 
 - Is a toolchain that is mainly used to convert
 - ECMAScript 2015+ code
 - into a backwards compatible version of JS
 - in current and older browsers or environments
 
-# 2) [Webpack](webpack.md)
+# 2. [Webpack](webpack.md)
 
 - unify all these different sources and module types
 - in a way that's possible to import everything in your JS code,
 - and finally produce a shippable output
 
-# 4)  Node.js
+# 4. Node.js
 
 - Runtime environment for JS
 - Run JS outside of the browser

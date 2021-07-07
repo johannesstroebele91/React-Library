@@ -24,7 +24,7 @@ const MealItems: React.FC<MealItemsProps> = ({ meal }) => {
       <div>
         <h3>{meal.name}</h3>
         <div className={classes.description}>{meal.description}</div>
-        <div className={classes.price}>${meal.price.toFixed(2)}€</div>
+        <div className={classes.price}>${meal.price.toFixed(2.}€</div>
       </div>
       <div>
         <MealItemForm onAddToCart={onAddToCartHandler} />

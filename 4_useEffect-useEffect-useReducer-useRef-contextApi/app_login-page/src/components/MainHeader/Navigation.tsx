@@ -3,13 +3,13 @@ import AuthContext from "../../store/auth-context";
 import { useContext } from "react";
 
 const Navigation = (props: any) => {
-  // 1) Declare variable with useContext() using the AuthContext
+  // 1. Declare variable with useContext() using the AuthContext
   const context = useContext(AuthContext);
 
   return (
     <nav className={classes.nav}>
       <ul>
-        {/* 2) Use the parameters via context. */}
+        {/* 2. Use the parameters via context. */}
         {context.isLoggedIn && (
           <li>
             <a href="/">Users</a>

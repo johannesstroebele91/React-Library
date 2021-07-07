@@ -10,10 +10,10 @@ const App = () => {
   // TODO render lists of data dynamically
   const addExpenseHandler = (expense: Expense) => {
     // USING THE PREVIOUS STATE
-    // 1) The initial state populates the expenses variable with INITIAL_EXPENSES
-    // 2) When the new state is created `setExpenses()`
-      // the old state of the expense is passed via prevExpenses
-      // And the new state for the variable added via expense
+    // 1. The initial state populates the expenses variable with INITIAL_EXPENSES
+    // 2. When the new state is created `setExpenses()`
+    // the old state of the expense is passed via prevExpenses
+    // And the new state for the variable added via expense
     setExpenses((prevExpenses: Expense[]) => [expense, ...prevExpenses]);
   };
 

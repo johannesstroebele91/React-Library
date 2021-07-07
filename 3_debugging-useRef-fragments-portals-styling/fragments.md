@@ -1,4 +1,4 @@
-# 1) Explanation
+# 1. Explanation
 
 You can't return more than 1 "root" JSX element
 
@@ -8,11 +8,11 @@ You can't return more than 1 "root" JSX element
   - 1 element
   - or an object/array of elements
 
-# 2) Examples
+# 2. Examples
 
-## 2) Working examples
+## 2. Working examples
 
-### 2.1) React Fragments
+### 2.1. React Fragments
 
 This syntaxes down below render empty wrapper components
 
@@ -41,7 +41,7 @@ return (
 );
 ```
 
-### 2.2) Using a DIV
+### 2.2. Using a DIV
 
 - if they have semantic or structural meaning
 
@@ -54,7 +54,7 @@ return (
 );
 ```
 
-### 2.3) Using a custom Wrapper component
+### 2.3. Using a custom Wrapper component
 
 A custom wrapper component can be used to
 
@@ -114,9 +114,9 @@ const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
 };
 ```
 
-## 3) Bad examples
+## 3. Bad examples
 
-### 3.1) Using a DIV without semantic or structural meaning
+### 3.1. Using a DIV without semantic or structural meaning
 
 - if a <div> is not needed as a return element (e.g. for semantic or structural meaning)
 - this approach will lead to "<div> soup" (aka tons of unnecessary <div>s)
@@ -130,7 +130,7 @@ return (
 );
 ```
 
-### 3.2) Using an ARRAY
+### 3.2. Using an ARRAY
 
 - need to remove "{}" because it is an array
 - and also need to provide a key for each element as shown below

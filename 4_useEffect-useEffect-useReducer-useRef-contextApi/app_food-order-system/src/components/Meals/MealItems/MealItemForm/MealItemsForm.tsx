@@ -44,7 +44,7 @@ const MealItemForm: React.FC<MealItemFormProps> = ({ onAddToCart }) => {
         }}
       />
       <button>+ Add</button>
-      <p>{!amountIsValid && <p>Please enter a valid amount (1-5).</p>}</p>
+      <p>{!amountIsValid && <p>Please enter a valid amount (1-5..</p>}</p>
     </form>
   );
 };

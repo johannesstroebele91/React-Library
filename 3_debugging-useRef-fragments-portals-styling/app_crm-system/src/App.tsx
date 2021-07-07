@@ -17,7 +17,7 @@ function App() {
   const newUserHandler = (username: string, age: number) => {
     setUsers((prevState) => [
       ...prevState,
-      { id: Math.floor(Math.random() * 100 + 1), username: username, age: age },
+      { id: Math.floor(Math.random() * 100 + 1., username: username, age: age },
     ]);
   };
 

@@ -10,7 +10,7 @@ interface NewExpenseProps {
 const NewExpense: React.FC<NewExpenseProps> = ({ onAddExpense }) => {
   // !!! STEPS 1-3: UPDATE THE STATE WITH THE DATA FROM THE CHILD COMPONENT
   // !!! STEPS 4-6: CONDITIONAL CONTENT
-  /* 2) Handels the passed data,
+  /* 2. Handels the passed data,
     - by creating a variable
     - that points at the function */
   const saveExpenseDataHandler = (enteredExpenseData: Expense) => {
@@ -18,20 +18,20 @@ const NewExpense: React.FC<NewExpenseProps> = ({ onAddExpense }) => {
       ...enteredExpenseData,
     };
 
-    // 3) Updates the state
+    // 3. Updates the state
     onAddExpense(expenseData);
   };
 
-  // 5) Declare state for showNewExpenseForm condition
+  // 5. Declare state for showNewExpenseForm condition
   const [showNewExpenseForm, setShowNewExpenseForm] = useState(false);
-  // 6) Manage state with 2-way-biding for considering the cancel button in ExpenseForm
+  // 6. Manage state with 2-way-biding for considering the cancel button in ExpenseForm
   const showNewExpenseFormHandler = () => {
     setShowNewExpenseForm(false);
   };
   return (
     <div className="new-expense">
-      {/* 1) Receives the data from the child component*/}
-      {/* 4) Declare conditional content */}
+      {/* 1. Receives the data from the child component*/}
+      {/* 4. Declare conditional content */}
       {showNewExpenseForm && (
         <ExpenseForm
           onSaveExpenseData={saveExpenseDataHandler}

@@ -11,20 +11,20 @@ import ExpensesChart from "./ExpensesChart";
 // !!! STEP 4+5: A STATE CAN BE UPDATED USING THE NEW INPUT FROM THE CHILD
 // !!! STEP 6: A COMPONENT CAN BE CONTROLLED TO ENSURE THAT BOTH CHILD AND PARENT HAVE THE SAME DATA
 
-// 1) Props for receiving data from the parent
+// 1. Props for receiving data from the parent
 interface ExpensesProps {
   expenses: Expense[];
 }
 
 const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
-  // 5) Save the data in a state
+  // 5. Save the data in a state
   // (for making it possible to re-render page when changes occur)
   // And initializing the value e.e.g '2020'
   const [filteredYear, setFilteredYear] = useState("2021");
-  // 4) Processes the passed function
+  // 4. Processes the passed function
   const filterChangeHandler = (selectedYear: string) => {
     console.log(selectedYear);
-    // 6) Updates the state
+    // 6. Updates the state
     setFilteredYear(selectedYear);
   };
 
@@ -35,8 +35,8 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
   return (
     <>
       <Card className="expenses">
-        {/* 3) Receives the passed function from the child*/}
-        {/* 7) In order to ensure that both the parent and the child have the same data
+        {/* 3. Receives the passed function from the child*/}
+        {/* 7. In order to ensure that both the parent and the child have the same data
          * data (e.g. 'filteredYear') should be back
          * via two-way-binding
          * RESULT: 2020 is the default as stated above */}
@@ -44,8 +44,8 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
           onChangeDateFilter={filterChangeHandler}
           selectedFilteredYear={filteredYear}
         />
-        <ExpensesChart expenses={filteredExpenses}/>
-        <ExpensesList filteredExpenses={filteredExpenses}/>
+        <ExpensesChart expenses={filteredExpenses} />
+        <ExpensesList filteredExpenses={filteredExpenses} />
       </Card>
     </>
   );

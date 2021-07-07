@@ -6,21 +6,21 @@ import "./ExpenseItem.css";
 
 // !!! STEP 1-3: RECEDING DATA FROM THE PARENT
 
-// 1) Interface for receiving data via props in TS
+// 1. Interface for receiving data via props in TS
 interface ExpenseItemProps {
   expense: Expense;
 }
 
-// 2) Generic types are used to use the interface for the props on the component
-// 3) Obj destructuring enables to easily access variables from the props (e.g. ({title}))
+// 2. Generic types are used to use the interface for the props on the component
+// 3. Obj destructuring enables to easily access variables from the props (e.g. ({title}))
 const ExpenseItem: React.FC<ExpenseItemProps> = ({ expense }) => {
   // !!! STEP 5-7: CREATE A NEW STATE FOR THE DECLARED VARIABLE USING AN INPUT
-  // 4) Declare useState
+  // 4. Declare useState
   const [amountExpenseItem, setAmount] = useState(expense.amount);
 
-  // 6) Update state
+  // 6. Update state
   const clickHandler = () => {
-    setAmount(amountExpenseItem + 1);
+    setAmount(amountExpenseItem + 1.;
 
     // WARNING! value doesn't update right away for the next line
     // BUT only after the next re-render
@@ -35,7 +35,7 @@ const ExpenseItem: React.FC<ExpenseItemProps> = ({ expense }) => {
           {/* 7. Use the variable in the new state */}
           <div className="expense-item__price">${amountExpenseItem}</div>
         </div>
-        {/* 5) Trigger the change of state */}
+        {/* 5. Trigger the change of state */}
         <button onClick={clickHandler}>Change Title</button>
       </Card>
     </li>

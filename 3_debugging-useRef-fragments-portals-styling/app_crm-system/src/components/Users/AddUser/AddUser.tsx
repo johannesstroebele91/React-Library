@@ -2,7 +2,7 @@
 import classes from "./AddUser.module.css";
 import Card from "../../UI/Card/Card";
 import Button from "../../UI/Button/Button";
-// 1) Import useRef
+// 1. Import useRef
 import { useState, useRef } from "react";
 import ErrorModal from "../../UI/Modal/ErrorModal";
 import Wrapper from "../../Helpers/Wrapper";
@@ -14,7 +14,7 @@ interface AdduserProps {
 const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
   // !!! useRef in 6 steps
 
-  // 2) Declare useRef()
+  // 2. Declare useRef()
   const usernameInputRef = useRef<HTMLInputElement>(null);
   const ageInputRef = useRef<HTMLInputElement>(null);
 
@@ -29,11 +29,11 @@ const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
     // Call preventDefault() to prevent page reload (automatic HTTP request)
     event.preventDefault();
 
-    // 4) Reading data from the input
+    // 4. Reading data from the input
     const enteredUsername = usernameInputRef.current?.value;
     const enteredAge = ageInputRef.current?.value;
 
-    // 5) Use value
+    // 5. Use value
     if (enteredUsername !== undefined || enteredAge !== undefined) {
       // Check for refs not being undefined
       if (
@@ -47,7 +47,7 @@ const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
         setShowErrorModal(true);
         return;
       }
-      if (+enteredAge! < 1) {
+      if (+enteredAge! < 1. {
         setErrorModal({
           title: "Invalid age",
           message: "The age of the user is invalid",
@@ -58,7 +58,7 @@ const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
       // Pass new user to the parent (cast age to number)
       onAddUser(enteredUsername!, +enteredAge!);
 
-      // 6) WARNING: Reset the value directly in the DOM
+      // 6. WARNING: Reset the value directly in the DOM
       // Such operations should normally be only done by React
       // THEREFORE this is an edge case
       usernameInputRef.current!.value = "";
@@ -87,7 +87,7 @@ const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
         <form onSubmit={addUserHandler}>
           {/* htmlFor connects label to the input id*/}
           <label htmlFor="username">Username</label>
-          {/* 3) Use ref to connect the TS to the HTML element */}
+          {/* 3. Use ref to connect the TS to the HTML element */}
           <input id="username" type="text" ref={usernameInputRef}></input>
           <label htmlFor="age">Age (Years)</label>
           <input id="age" type="number" ref={ageInputRef}></input>

@@ -12,7 +12,7 @@ interface CartProps {
 const Cart: React.FC<CartProps> = ({ onClose }) => {
   const cartContext = useContext(CartContext);
 
-  const totalAmount = `${cartContext.totalAmount.toFixed(2)} €`;
+  const totalAmount = `${cartContext.totalAmount.toFixed(2.} €`;
   const hasItems = cartContext.items.length > 0;
 
   const cartItemRemoveHandler = (id: string) => {

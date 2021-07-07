@@ -1,12 +1,12 @@
-- [1) Explanation of useEffect](#1-explanation-of-useeffect)
-- [2) useEffect hook and Effects](#2-useeffect-hook-and-effects)
-- [3) Use Cases for useEffect](#3-use-cases-for-useeffect)
-- [4) How to see local storage items in the developer tools](#4-how-to-see-local-storage-items-in-the-developer-tools)
-- [5) See approaches and practical examples in the useEffect-approaches file](#5-see-approaches-and-practical-examples-in-the-useeffect-approaches-file)
+- [1. Explanation of useEffect](#1-explanation-of-useeffect)
+- [2. useEffect hook and Effects](#2-useeffect-hook-and-effects)
+- [3. Use Cases for useEffect](#3-use-cases-for-useeffect)
+- [4. How to see local storage items in the developer tools](#4-how-to-see-local-storage-items-in-the-developer-tools)
+- [5. See approaches and practical examples in the useEffect-approaches file](#5-see-approaches-and-practical-examples-in-the-useeffect-approaches-file)
 
 Code of project changed, therefore refer to git commit: [27ef5348f073c6a4d80138814c5a591eab3afee1](https://github.com/johannesstroebele91/React-Library/commit/27ef5348f073c6a4d80138814c5a591eab3afee1)
 
-# 1) Explanation of useEffect
+# 1. Explanation of useEffect
 
 The useEffect hook enables to
 
@@ -19,7 +19,7 @@ The state can be stored in the browser storage via
 - local storage: easy to use
 - cookies: a little more difficult
 
-# 2) useEffect hook and Effects
+# 2. useEffect hook and Effects
 
 Side-effects (short effects) are for managing
 
@@ -39,7 +39,7 @@ So, they need to be handeling separately from React
 - because it would create bad behaviors such as
 - bugs, loops, too many http requests, or re-execute unfinished http requests
 
-# 3) Use Cases for useEffect
+# 3. Use Cases for useEffect
 
 - sending HTTP requests to backend servers
 - storing something in the browser storage (e.g. local storage)
@@ -62,10 +62,10 @@ To be more precise they are NOT for React jobs such as:
 - React to User Events & Input
 - re-evaluate Component upon State & Prop Chances
 
-# 4) How to see local storage items in the developer tools
+# 4. How to see local storage items in the developer tools
 
 1. Go to Developer Tools
 2. Application
 3. Local Storage
 
-# 5) See approaches and practical examples in the useEffect-approaches file
+# 5. See approaches and practical examples in the useEffect-approaches file

@@ -1,19 +1,19 @@
-- [1) Basics](#1-basics)
-- [2) Use cases](#2-use-cases)
-- [3) useState vs useReducer](#3-usestate-vs-usereducer)
-  - [3.1) useState: for easier cases](#31-usestate-for-easier-cases)
-  - [3.2) useReducer: for complex cases](#32-usereducer-for-complex-cases)
-- [4) Explanation](#4-explanation)
-- [5) Example](#5-example)
+- [1. Basics](#1-basics)
+- [2. Use cases](#2-use-cases)
+- [3. useState vs useReducer](#3-usestate-vs-usereducer)
+  - [3.1. useState: for easier cases](#31-usestate-for-easier-cases)
+  - [3.2. useReducer: for complex cases](#32-usereducer-for-complex-cases)
+- [4. Explanation](#4-explanation)
+- [5. Example](#5-example)
 
-# 1) Basics
+# 1. Basics
 
 The hook useReducer enables to manage more complex states
 
 - than with the useState hook
 - BUT is in turn more complex to use
 
-# 2) Use cases
+# 2. Use cases
 
 - multiple states that belong together (e.g. enteredEmail and emailIsValid)
   - managing the same thing
@@ -24,7 +24,7 @@ The hook useReducer enables to manage more complex states
 - multiple states that change together (e.g. setFormIsValid)
   - or are related (dependencies to other states)
 
-# 3) useState vs useReducer
+# 3. useState vs useReducer
 
 Most of the time you know when you need to use useReducer
 
@@ -33,20 +33,20 @@ Most of the time you know when you need to use useReducer
 - easy to write bad, inefficient, buggy code
 - or you getting a lot of bugs/ unintentional behaviors
 
-## 3.1) useState: for easier cases
+## 3.1. useState: for easier cases
 
 - great for independent pieces of state / data
 - great if state updates are easy and limited to a few kinds of updates
 - great due to simpler to write (not an overkill)
 
-## 3.2) useReducer: for complex cases
+## 3.2. useReducer: for complex cases
 
 - great for an object as a state
 - great for more complex state updates (useReducer function can contain complex updating state logic)
 - great because you are guaranteed to work with the lastest state snapshot
 - great if you have related pieces of state / data (e.g. form input state)
 
-# 4) Explanation
+# 4. Explanation
 
 const [state, dispatchFn] = useReducer(reducerFn, initialState, initFn);
 
@@ -84,7 +84,7 @@ initFn
 - in case the initial state is more complex
 - e.g. the result of an HTTP request
 
-# 5) Example
+# 5. Example
 
 **See CartProvider, CartContext, HeaderCartButton for a more complex example**
 
@@ -104,7 +104,7 @@ This example enables to update a state based on another state (guarantees that c
    3. The syntax enables to pull out a property of a state object via object destructuring
 
 ```javascript
-// 2) Declare useReducer function for the state logic
+// 2. Declare useReducer function for the state logic
 const emailReducer = (state: any, action: any) => {
   if (action.type === "USER_INPUT") {
     return { value: action.val, isValid: action.val.includes("@") };
@@ -128,7 +128,7 @@ const passwordReducer = (state: any, action: any) => {
 const Login = (props: any) => {
   const [formIsValid, setFormIsValid] = useState<boolean>(false);
 
-  // 1) Declare useReducer and initialize
+  // 1. Declare useReducer and initialize
   const [emailState, dispatchEmail] = useReducer<
     React.Reducer<
       { value: string; isValid: boolean },
@@ -148,11 +148,11 @@ const Login = (props: any) => {
     isValid: false,
   });
 
-  // 6) Stopping unnecessary reruns of the useEffect hook
+  // 6. Stopping unnecessary reruns of the useEffect hook
   const { isValid: emailIsValid } = emailState;
   const { isValid: passwordIsValid } = passwordState;
 
-  // 5) useEffect enables to updating a state based on another state
+  // 5. useEffect enables to updating a state based on another state
   useEffect(() => {
     const identifier = setTimeout(() => {
       console.log("Checking form validity!");
@@ -165,7 +165,7 @@ const Login = (props: any) => {
     };
   }, [emailIsValid, passwordIsValid]);
 
-  // 3) and 4) use the state and the dispatchFn as before
+  // 3. and 4. use the state and the dispatchFn as before
   const emailChangeHandler = (event: any) => {
     dispatchEmail({ type: "USER_INPUT", val: event.target.value });
 
@@ -173,7 +173,7 @@ const Login = (props: any) => {
 
   const passwordChangeHandler = (event: any) => {
     dispatchPassword({ type: "USER_INPUT", val: event.target.value });
-    formIsValid(emailState.isValid && event.target.value.trim().length > 6);
+    formIsValid(emailState.isValid && event.target.value.trim().length > 6.;
   };
 
   const validateEmailHandler = () => {

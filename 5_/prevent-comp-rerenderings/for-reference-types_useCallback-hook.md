@@ -1,9 +1,9 @@
-- [1) Goal](#1-goal)
-- [2) How it works](#2-how-it-works)
-- [3) Example](#3-example)
-- [4) Dependencies](#4-dependencies)
+- [1. Goal](#1-goal)
+- [2. How it works](#2-how-it-works)
+- [3. Example](#3-example)
+- [4. Dependencies](#4-dependencies)
 
-# 1) Goal
+# 1. Goal
 
 The hook useCallback enables to tell React
 
@@ -12,7 +12,7 @@ The hook useCallback enables to tell React
 - e.g. when a props of references types changed
 - `props.onClick === props.previous.onClick` // Output: true
 
-# 2) How it works
+# 2. How it works
 
 useCallback does that by enabling to
 
@@ -35,7 +35,7 @@ With useCallback the function gets saved in Reacts' internal storage
 - obj2 = obj1 // Assigning the ob
 - obj2 === obj1 // Output: true
 
-# 3) Example
+# 3. Example
 
 The hook can be used in 2 steps:
 
@@ -50,7 +50,7 @@ const toggleParagraphHandler = useCallback(() => {
 }, []);
 ```
 
-# 4) Dependencies
+# 4. Dependencies
 
 Specify the dependencies similar to the useEffect hook
 
@@ -61,3 +61,13 @@ Specify the dependencies similar to the useEffect hook
    - need to be added e.g. allowToggle
    - which results in the function not being skipped,
    - but actually it is re-executed if e.g. allowToggle changes
+
+Example
+
+```javascript
+const toggleParagraphHandler = useCallback(() => {
+  if (allowToggle) {
+    setShowParagraph((prevShowParagraph) => !prevShowParagraph); // cleaner way to use prevState
+  }
+}, [allowToggle]);
+```

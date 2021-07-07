@@ -1,9 +1,9 @@
-- [1) Basics](#1-basics)
-- [2) Types of Errors](#2-types-of-errors)
-  - [2.1) Compilation errors](#21-compilation-errors)
-  - [2.2) Runtime errors](#22-runtime-errors)
+- [1. Basics](#1-basics)
+- [2. Types of Errors](#2-types-of-errors)
+  - [2.1. Compilation errors](#21-compilation-errors)
+  - [2.2. Runtime errors](#22-runtime-errors)
 
-# 1) Basics
+# 1. Basics
 
 Errors are shown
 
@@ -17,11 +17,11 @@ React (React development process)
 - catches error
 - and throws the errors at the user
 
-# 2) Types of Errors
+# 2. Types of Errors
 
 https://macwright.com/2015/02/28/errors.html
 
-## 2.1) Compilation errors
+## 2.1. Compilation errors
 
 Errors that happen during compile time
 
@@ -37,7 +37,7 @@ Such errors are shown
 
 These errors can be solved by reading the text
 
-## 2.2) Runtime errors
+## 2.2. Runtime errors
 
 Errors that happen while your code is running
 

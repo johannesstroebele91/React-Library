@@ -1,11 +1,11 @@
-- [1) Basics](#1-basics)
-- [2) Use cases](#2-use-cases)
-- [3) Approach](#3-approach)
-- [4) Issues resetting useRef](#4-issues-resetting-useref)
-- [5) Example](#5-example)
-- [6) Making refs work for custom components (forwardRef)](#6-making-refs-work-for-custom-components-forwardref)
+- [1. Basics](#1-basics)
+- [2. Use cases](#2-use-cases)
+- [3. Approach](#3-approach)
+- [4. Issues resetting useRef](#4-issues-resetting-useref)
+- [5. Example](#5-example)
+- [6. Making refs work for custom components (forwardRef)](#6-making-refs-work-for-custom-components-forwardref)
 
-# 1) Basics
+# 1. Basics
 
 Refs enables to get user input (like useState)
 
@@ -13,7 +13,7 @@ Refs enables to get user input (like useState)
 - and enables you to work with them
 - (setup a connection btw a HTML element and JS/TS code)
 
-# 2) Use cases
+# 2. Use cases
 
 Simlar as for useState for e.g. managing inputs
 
@@ -28,7 +28,7 @@ useRef enables to build uncontrolled component
 - but it relies on the default behavior of the input
 - and the value is just fetched by a React feature
 
-# 3) Approach
+# 3. Approach
 
 1. import { useRef } from "react";
 2. declare ref using useRef();
@@ -41,7 +41,7 @@ useRef enables to build uncontrolled component
    1. which would normally not be advised (but here its ok)
    2. e.g. `usernameInputRef.current!.value = "";`
 
-# 4) Issues resetting useRef
+# 4. Issues resetting useRef
 
 To reset useRef
 
@@ -57,34 +57,34 @@ Alternatively this can be done using
 - which needs to be reflected in the HTML (e.g. `form ref={formRef}`)
 - Ref: https://stackoverflow.com/a/62413386/11823182
 
-# 5) Example
+# 5. Example
 
 useRef can be used using these 6 steps:
 
 ```javascript
-  // 1) import useRef
+  // 1. import useRef
 import { useRef } from "react";
 
 const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
 
-  // 2) Declare useRef()
+  // 2. Declare useRef()
   const usernameInputRef = useRef<HTMLInputElement>(null);
   const ageInputRef = useRef<HTMLInputElement>(null);
 
   const addUserHandler = (event: any) => {
     event.preventDefault();
 
-    // 4) Reading data from the input
+    // 4. Reading data from the input
     const enteredUsername = usernameInputRef.current?.value;
     const enteredAge = ageInputRef.current?.value;
 
-   // 5) Use the value
+   // 5. Use the value
     if (enteredUsername !== undefined || enteredAge !== undefined) {
       }
       // Pass new user to the parent (cast age to number)
       onAddUser(enteredUsername!, +enteredAge!);
 
-      // 6) WARNING: Reset the value directly in the DOM
+      // 6. WARNING: Reset the value directly in the DOM
       // Such operations should normally be only done by React
       // THEREFORE this is an edge case
       usernameInputRef.current!.value = "";
@@ -96,7 +96,7 @@ const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor="username">Username</label>
-          {/* 3) Use ref to connect the TS to the HTML element */}
+          {/* 3. Use ref to connect the TS to the HTML element */}
           <input id="username" type="text" ref={usernameInputRef}></input>
           <Button type="submit">Add User</Button>
         </form>
@@ -106,7 +106,7 @@ const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
 };
 ```
 
-# 6) Making refs work for custom components (forwardRef)
+# 6. Making refs work for custom components (forwardRef)
 
 See [useImperativeHandle-hook.md](../../4_useEffect-useEffect-useReducer-useRef-contextApi/hooks/useImperativeHandle-hook.md) for a detailed explanation
 

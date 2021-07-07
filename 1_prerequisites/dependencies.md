@@ -1,4 +1,4 @@
-# 1) Basics
+# 1. Basics
 
 - From a dependency or library,
   - functions and variables can be accessed
@@ -8,7 +8,7 @@
 - such libraries need to be stated in the package.json before being able to use
 - the case of react library can it be skipped in react projects (`import React from 'react';`)
 
-# 2) React dependency
+# 2. React dependency
 
 - React does not need to be imported
 
@@ -16,7 +16,7 @@
   - but needed to be previously
   - now magic happens behind the scenes
 
-## 2.1) Without magic
+## 2.1. Without magic
 
 - React needs to be imported always
 - After the definition of the wrapper root element
@@ -36,7 +36,7 @@ return React.createElement(
 );
 ```
 
-## 2.2) With magic
+## 2.2. With magic
 
 - React does not need to be imported
 - And writing code is much faster

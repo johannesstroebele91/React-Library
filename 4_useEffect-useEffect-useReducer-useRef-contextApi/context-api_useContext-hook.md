@@ -1,15 +1,15 @@
-- [1) Basics](#1-basics)
-- [2) Naming conventions](#2-naming-conventions)
-- [3) Approach](#3-approach)
-- [3.1) Creating data store](#31-creating-data-store)
-- [3.2) Accessing the data store](#32-accessing-the-data-store)
-  - [3.2.1) Provide context](#321-provide-context)
-  - [3.2.2) Listen to context](#322-listen-to-context)
-    - [3.2.2.1) React hook with useContext hook (more elegant)](#3221-react-hook-with-usecontext-hook-more-elegant)
-    - [3.2.2.2) Consumers with Provider (less elegant)](#3222-consumers-with-provider-less-elegant)
+- [1. Basics](#1-basics)
+- [2. Naming conventions](#2-naming-conventions)
+- [3. Approach](#3-approach)
+- [3.1. Creating data store](#31-creating-data-store)
+- [3.2. Accessing the data store](#32-accessing-the-data-store)
+  - [3.2.1. Provide context](#321-provide-context)
+  - [3.2.2. Listen to context](#322-listen-to-context)
+    - [3.2.2.1. React hook with useContext hook (more elegant)](#3221-react-hook-with-usecontext-hook-more-elegant)
+    - [3.2.2.2. Consumers with Provider (less elegant)](#3222-consumers-with-provider-less-elegant)
 - [4. Context API limitations](#4-context-api-limitations)
 
-# 1) Basics
+# 1. Basics
 
 The context API (React Context) enables to
 
@@ -28,7 +28,7 @@ It is possible to use
 - one or multiple contexts
 - for managing data
 
-# 2) Naming conventions
+# 2. Naming conventions
 
 The folder containing then needed files for this
 
@@ -40,11 +40,11 @@ The files inside
 - are written small letters and using dash (e.g. auth-context.tsx)
 - because they are not a custom component (e.g. MainHeader.tsx)
 
-# 3) Approach
+# 3. Approach
 
 **See CartProvider, CartContext, HeaderCartButton for a more complex example**
 
-# 3.1) Creating data store
+# 3.1. Creating data store
 
 Text as a default state
 
@@ -73,9 +73,9 @@ What createContext() returns is
 - an object that contains
 - a component or multiple components
 
-# 3.2) Accessing the data store
+# 3.2. Accessing the data store
 
-### 3.2.1) Provide context
+### 3.2.1. Provide context
 
 - Enables also to
   - make the nested data changeable
@@ -117,11 +117,11 @@ const [isLoggedIn, setIsLoggedIn] = useState(false);
 ...
 ```
 
-### 3.2.2) Listen to context
+### 3.2.2. Listen to context
 
 You can listen to the store, context, or state using the:
 
-#### 3.2.2.1) React hook with useContext hook (more elegant)
+#### 3.2.2.1. React hook with useContext hook (more elegant)
 
 Enables to manage the state
 
@@ -160,13 +160,13 @@ Example in Navigation.tsx of [app_task-manager](../4_useEffect-useEffect-reducer
 
 ```javascript
 const Navigation = (props: any) => {
-  // 1) Declare variable with useContext() using the AuthContext
+  // 1. Declare variable with useContext() using the AuthContext
   const context = useContext(AuthContext);
 
   return (
     <nav className={classes.nav}>
       <p>
-        {/* 2) Use the parameters via context. */}
+        {/* 2. Use the parameters via context. */}
         {context.isLoggedIn && (
       </p>
       <nav>
@@ -208,27 +208,27 @@ export const AuthContextProvider = (props: any) => {
 
   // !!! useEffect to persit data through reloads and app restarts in 3 steps
 
-  // 2) Declare useEffect for persiting data
+  // 2. Declare useEffect for persiting data
   useEffect(
     () => {
-      // 2.1) Side-effect function: Work with the previously declared item of the localStorage
+      // 2.1. Side-effect function: Work with the previously declared item of the localStorage
       const storedUserLoggedInData = localStorage.getItem("isLoggedIn");
       if (storedUserLoggedInData === "1") {
         setIsLoggedIn(true);
       }
-    }, // 2.2) Dependency array: controls when the function is executed
+    }, // 2.2. Dependency array: controls when the function is executed
     []
   );
 
   const loginHandler = (email: string, password: string) => {
     // TODO functionality for checking email and password
-    // 1) Create a key value pair in the local storage
+    // 1. Create a key value pair in the local storage
     localStorage.setItem("isLoggedIn", "1");
     setIsLoggedIn(true);
   };
 
   const logoutHandler = () => {
-    // 3) Remove key afterwards from local storage
+    // 3. Remove key afterwards from local storage
     localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
   };
@@ -275,7 +275,7 @@ ReactDOM.render(
 );
 ```
 
-#### 3.2.2.2) Consumers with Provider (less elegant)
+#### 3.2.2.2. Consumers with Provider (less elegant)
 
 [Reference](https://reactjs.org/docs/context.html#contextconsumer)
 

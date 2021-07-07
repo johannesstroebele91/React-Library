@@ -1,4 +1,4 @@
-# 1) Declare useState
+# 1. Declare useState
 
 - Initialize useState with an initial value (e.g. amount)
 - Store with array destructuring in separate variables the two returned values
@@ -19,7 +19,7 @@ const [userInput, setUserInput] = useState({
 });
 ```
 
-# 2) Create a new state
+# 2. Create a new state
 
 Call the 2. value (updating function)
 
@@ -37,6 +37,7 @@ Call the 2. value (updating function)
 - and afterwards update the respective value
 
 REASON:
+
 - if they are not stated (e.g. only enteredTitle: event.target.value)
 - they would be thrown away for the new state
 
@@ -64,9 +65,9 @@ const amountChangeHandler = (event: any) => {
     enteredAmount: event.target.value,
   });
 };
-  ```
+```
 
-# 3) Use new value
+# 3. Use new value
 
 - Use the 1. value (e.g. amountExpenseItem)
 - for outputting data in the HTML

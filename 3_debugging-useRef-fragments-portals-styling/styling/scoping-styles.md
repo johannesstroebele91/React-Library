@@ -1,15 +1,15 @@
-- [1) CSS in React is un-scoped (standard)](#1-css-in-react-is-un-scoped-standard)
-- [2) Approaches for scoping CSS](#2-approaches-for-scoping-css)
-  - [2.1) Styled Components Package (3rd party library)](#21-styled-components-package-3rd-party-library)
-  - [2.1) CSS Modules](#21-css-modules)
-    - [2.1.1) Explanation](#211-explanation)
-    - [2.1.2) Setting up](#212-setting-up)
-    - [2.1.3) Example](#213-example)
-    - [2.2.1) Standard example](#221-standard-example)
-    - [2.2.2) Conditions example using props inside of styles](#222-conditions-example-using-props-inside-of-styles)
-    - [2.2.3) Conditions example without props](#223-conditions-example-without-props)
+- [1. CSS in React is un-scoped (standard)](#1-css-in-react-is-un-scoped-standard)
+- [2. Approaches for scoping CSS](#2-approaches-for-scoping-css)
+  - [2.1. Styled Components Package (3rd party library)](#21-styled-components-package-3rd-party-library)
+  - [2.1. CSS Modules](#21-css-modules)
+    - [2.1.1. Explanation](#211-explanation)
+    - [2.1.2. Setting up](#212-setting-up)
+    - [2.1.3. Example](#213-example)
+    - [2.2.1. Standard example](#221-standard-example)
+    - [2.2.2. Conditions example using props inside of styles](#222-conditions-example-using-props-inside-of-styles)
+    - [2.2.3. Conditions example without props](#223-conditions-example-without-props)
 
-# 1) CSS in React is un-scoped (standard)
+# 1. CSS in React is un-scoped (standard)
 
 The standard case in react is
 
@@ -17,15 +17,15 @@ The standard case in react is
 - so all of the classes are available globally (the whole app)
 - BUT you need to be VERY CAREFULL in larger projects
 
-# 2) Approaches for scoping CSS
+# 2. Approaches for scoping CSS
 
-## 2.1) Styled Components Package (3rd party library)
+## 2.1. Styled Components Package (3rd party library)
 
 Enable to embed css into JSX/TSX files
 
-## 2.1) CSS Modules
+## 2.1. CSS Modules
 
-### 2.1.1) Explanation
+### 2.1.1. Explanation
 
 Reference: [CSS Modules from create-react-app](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet/)
 Reference: [Button component in Git Commits]()
@@ -37,14 +37,14 @@ The build process for CSS modules
 - takes the CSS classes from the CSS files
 - and creates new classes with unique class names
 
-### 2.1.2) Setting up
+### 2.1.2. Setting up
 
 Projects needs to be setup to support these modules
 
 - in a special way
 - which is supported if `create-react-app` was used to create the app
 
-### 2.1.3) Example
+### 2.1.3. Example
 
 Approach
 
@@ -83,7 +83,7 @@ const Button = (props: any) => {
 export default Button;
 ```
 
-### 2.2.1) Standard example
+### 2.2.1. Standard example
 
 **Setup**
 
@@ -179,7 +179,7 @@ const Button = (props: any) => {
 export default Button;
 ```
 
-### 2.2.2) Conditions example using props inside of styles
+### 2.2.2. Conditions example using props inside of styles
 
 This is done using:
 
@@ -271,7 +271,7 @@ const CourseInput: React.FC<onAddGoalProps> = ({ onAddGoal }) => {
 };
 ```
 
-### 2.2.3) Conditions example without props
+### 2.2.3. Conditions example without props
 
 This is done using:
 

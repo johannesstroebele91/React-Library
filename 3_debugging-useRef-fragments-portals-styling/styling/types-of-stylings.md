@@ -1,11 +1,11 @@
-- [1) Inline styling `style={{}}`](#1-inline-styling-style)
-- [2) Regular CSS selectors](#2-regular-css-selectors)
-- [3) Class Modules](#3-class-modules)
-- [4) Style objects](#4-style-objects)
+- [1. Inline styling `style={{}}`](#1-inline-styling-style)
+- [2. Regular CSS selectors](#2-regular-css-selectors)
+- [3. Class Modules](#3-class-modules)
+- [4. Style objects](#4-style-objects)
 
 **Types of stylings for HTML elements**
 
-# 1) Inline styling `style={{}}`
+# 1. Inline styling `style={{}}`
 
 - In JSX, JavaScript expressions are written inside double curly braces {},
   - So styles in React are writting inside two sets of curly braces {{}}
@@ -28,7 +28,7 @@ b) stringified
 <div style={{ "font-size": 5 }}></div>
 ```
 
-# 2) Regular CSS selectors
+# 2. Regular CSS selectors
 
 - classes are passed as strings via the "className" prop
 - depend on props/state for dynamically rendering UI
@@ -67,7 +67,7 @@ div button {
 }
 ```
 
-# 3) Class Modules
+# 3. Class Modules
 
 Class modules can be used
 
@@ -116,7 +116,7 @@ const Card: React.FC<CardProps> = ({ children, className }) => {
 };
 ```
 
-# 4) Style objects
+# 4. Style objects
 
 - most often used to dynamically add styles at render time (e.g. changing position from top to left)
 

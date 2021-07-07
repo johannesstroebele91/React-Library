@@ -42,24 +42,24 @@ interface RefProps {
   focus: () => void;
 }
 
-// 4) forwardRef wraps the component function as with React.FC
+// 4. forwardRef wraps the component function as with React.FC
 // AND binds this component to a ref
 const Input = React.forwardRef(
   (props: InputProps, ref: React.Ref<RefProps>) => {
     // !!! Approach for useImperativeHandle
     // Similar to useRef but gives control over the return value and replace native functions
 
-    // 1) Declare ref
+    // 1. Declare ref
     const inputRef = useRef < HTMLInputElement > null;
 
-    // 2) create function that should active in case of sth.
+    // 2. create function that should active in case of sth.
     // The function should be callable from the outside
     // so the focus activates if
     const activate = () => {
       inputRef.current?.focus();
     };
 
-    // 3) useImperativeHandle enables to expose the previously defined native function by:
+    // 3. useImperativeHandle enables to expose the previously defined native function by:
     // a) specifying the reference to be set from outside
     // b) specifying the translation obj between child and the parent component
     // c) Optional input parameters
@@ -74,9 +74,9 @@ const Input = React.forwardRef(
         }`}
       >
         <label htmlFor={props.label}>
-          {props.label.charAt(0).toUpperCase() + props.label.slice(1)}
+          {props.label.charAt(0).toUpperCase() + props.label.slice(1.}
         </label>
-        {/* 5) using the ref */}
+        {/* 5. using the ref */}
         <input
           ref={inputRef}
           type={props.label}
@@ -97,7 +97,7 @@ const Input = React.forwardRef(
 
 ```javascript
 const Login = () => {
-  // 1) Declaring useRef
+  // 1. Declaring useRef
   const emailInputRef = useRef < HTMLInputElement > null;
   const passwordInputRef = useRef < HTMLInputElement > null;
 
@@ -106,7 +106,7 @@ const Login = () => {
     if (formIsValid) {
       context.onLogin(emailState.value, passwordState.value);
     } else if (!emailIsValid) {
-      // 3) Calling the function focus exposed by the ref
+      // 3. Calling the function focus exposed by the ref
       emailInputRef.current?.focus();
     } else if (!passwordIsValid) {
       passwordInputRef.current?.focus();
@@ -115,7 +115,7 @@ const Login = () => {
 
   return (
     <form onSubmit={submitHandler}>
-      {/* 2) Passes down the ref prob to the child */}
+      {/* 2. Passes down the ref prob to the child */}
       <Input
         ref={emailInputRef}
         label={"email"}

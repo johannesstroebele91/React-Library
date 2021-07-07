@@ -1,15 +1,15 @@
-- [1) Basics = lifting the state up](#1-basics--lifting-the-state-up)
-- [2) Example uncontrolled components](#2-example-uncontrolled-components)
-  - [2.1) Child component (ExpensesFilter)](#21-child-component-expensesfilter)
-  - [2.2) Parent component (Expenses)](#22-parent-component-expenses)
-- [3) Example controlled components](#3-example-controlled-components)
-  - [3.1) Child component (ExpensesFilter)](#31-child-component-expensesfilter)
-  - [3.2) Parent component (Expenses)](#32-parent-component-expenses)
-- [4) Complex Example](#4-complex-example)
-  - [4.1) Good approach](#41-good-approach)
-  - [4.2) Bad approach](#42-bad-approach)
+- [1. Basics = lifting the state up](#1-basics--lifting-the-state-up)
+- [2. Example uncontrolled components](#2-example-uncontrolled-components)
+  - [2.1. Child component (ExpensesFilter)](#21-child-component-expensesfilter)
+  - [2.2. Parent component (Expenses)](#22-parent-component-expenses)
+- [3. Example controlled components](#3-example-controlled-components)
+  - [3.1. Child component (ExpensesFilter)](#31-child-component-expensesfilter)
+  - [3.2. Parent component (Expenses)](#32-parent-component-expenses)
+- [4. Complex Example](#4-complex-example)
+  - [4.1. Good approach](#41-good-approach)
+  - [4.2. Bad approach](#42-bad-approach)
 
-# 1) Basics = lifting the state up
+# 1. Basics = lifting the state up
 
 Data can also be passed to the parent from a child (lifting the data)
 
@@ -23,7 +23,7 @@ Data cannot be directly passed via a variable
 - but only via a function
 - which both the parent and the child point to
 
-# 2) Example uncontrolled components
+# 2. Example uncontrolled components
 
 Means the component does not controll the state
 
@@ -34,7 +34,7 @@ Means the component does not controll the state
 
 **See the following Github Commit: [113ce035f92da3a1d32429b12b5253d0df407707](https://github.com/johannesstroebele91/React-Library/commit/113ce035f92da3a1d32429b12b5253d0df407707)**
 
-## 2.1) Child component (ExpensesFilter)
+## 2.1. Child component (ExpensesFilter)
 
 A Props interface needs to be defined
 
@@ -60,7 +60,7 @@ const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
   onChangeDateFilter,
   selectedFilteredYear,
 }) => {
-  // 1) Send the function with the value,
+  // 1. Send the function with the value,
   // That should be passed,
   // to the parent component (Expenses)
   const filterChangeHandler = (event: any) => {
@@ -71,7 +71,7 @@ const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
     <div className="expenses-filter">
       <div className="expenses-filter__control">
         <label>Filter by year</label>
-        {/* 2) Trigger the change of state using onChange */}
+        {/* 2. Trigger the change of state using onChange */}
         <select onChange={filterChangeHandler}>
           <option value="2022">2022</option>
           <option value="2021">2021</option>
@@ -82,7 +82,7 @@ const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
 };
 ```
 
-## 2.2) Parent component (Expenses)
+## 2.2. Parent component (Expenses)
 
 The variable `onChangeDateFilter` that points to a function
 
@@ -91,12 +91,12 @@ The variable `onChangeDateFilter` that points to a function
 
 ```javascript
 const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
-  // 3) Save the data in a state
+  // 3. Save the data in a state
   // (for making it possible to re-render page when changes occur)
   // And initializing the value e.e.g '2020'
   const [filteredYear, setFilteredYear] = useState("2020");
 
-  // 2) Processes the passed function
+  // 2. Processes the passed function
   const filterChangeHandler = (selectedYear: string) => {
     console.log(selectedYear);
   };
@@ -104,7 +104,7 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
   return (
     <>
       <Card className="expenses">
-        {/* 1) Receives the passed function from the child*/}
+        {/* 1. Receives the passed function from the child*/}
         <ExpensesFilter onChangeDateFilter={filterChangeHandler} />
         {/* ... */}
       </Card>
@@ -113,14 +113,14 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
 };
 ```
 
-# 3) Example controlled components
+# 3. Example controlled components
 
 Means that the respective value that should be passed and changes to it
 
 - are NOT handeled in the child
 - BUT the parent component
 
-## 3.1) Child component (ExpensesFilter)
+## 3.1. Child component (ExpensesFilter)
 
 Step 1 and 2 like before
 
@@ -139,7 +139,7 @@ const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
   onChangeDateFilter,
   selectedFilteredYear,
 }) => {
-  // 1) Send the function with the value,
+  // 1. Send the function with the value,
   // That should be passed,
   // to the parent component (Expenses)
   const filterChangeHandler = (event: any) => {
@@ -150,7 +150,7 @@ const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
     <div className="expenses-filter">
       <div className="expenses-filter__control">
         <label>Filter by year</label>
-        {/* 2) Trigger the change of state using onChange */}
+        {/* 2. Trigger the change of state using onChange */}
         <select onChange={filterChangeHandler} value={selectedFilteredYear}>
           <option value="2022">2022</option>
           <option value="2021">2021</option>
@@ -163,7 +163,7 @@ const ExpensesFilter: React.FC<ExpensesFilterProps> = ({
 };
 ```
 
-## 3.2) Parent component (Expenses)
+## 3.2. Parent component (Expenses)
 
 The steps 1 and two as before
 
@@ -177,22 +177,22 @@ interface ExpensesProps {
 }
 
 const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
-  // 3) Save the data in a state
+  // 3. Save the data in a state
   // (for making it possible to re-render page when changes occur)
   // And initializing the value e.e.g '2020'
   const [filteredYear, setFilteredYear] = useState("2020");
-  // 2) Processes the passed function
+  // 2. Processes the passed function
   const filterChangeHandler = (selectedYear: string) => {
     console.log(selectedYear);
-    // 4) Creates a new state of the respective variable
+    // 4. Creates a new state of the respective variable
     setFilteredYear(selectedYear);
   };
 
   return (
     <>
       <Card className="expenses">
-        {/* 1) Receives the passed function from the child*/}
-        {/* 5) In order to ensure that both the parent and the child have the same data
+        {/* 1. Receives the passed function from the child*/}
+        {/* 5. In order to ensure that both the parent and the child have the same data
          * data (e.g. 'filteredYear') should be back
          * via two-way-binding
          * RESULT: 2020 is the default as stated above */}
@@ -207,9 +207,9 @@ const Expenses: React.FC<ExpensesProps> = ({ expenses }) => {
 };
 ```
 
-# 4) Complex Example
+# 4. Complex Example
 
-## 4.1) Good approach
+## 4.1. Good approach
 
 The best solution is to use an handler (e.g. removeHandler)
 
@@ -226,7 +226,7 @@ interface CartItemProps {
 }
 
 const CartItem: React.FC<CartItemProps> = ({ item, onAdd, onRemove }) => {
-  const price = `${item.price.toFixed(2)} €`;
+  const price = `${item.price.toFixed(2.} €`;
 
   const removeHandler = () => {
     onRemove(item.id);
@@ -256,7 +256,7 @@ Parent (Cart.tsx in the food order system)
 const Cart: React.FC<CartProps> = ({ onClose }) => {
   const cartContext = useContext(CartContext);
 
-  const totalAmount = `${cartContext.totalAmount.toFixed(2)} €`;
+  const totalAmount = `${cartContext.totalAmount.toFixed(2.} €`;
   const hasItems = cartContext.items.length > 0;
 
   const cartItemRemoveHandler = (id: string) => {
@@ -281,7 +281,7 @@ const Cart: React.FC<CartProps> = ({ onClose }) => {
 };
 ```
 
-## 4.2) Bad approach
+## 4.2. Bad approach
 
 The solution to use directly, e.g. onRemove, also works
 
@@ -300,7 +300,7 @@ interface CartItemProps {
 }
 
 const CartItem: React.FC<CartItemProps> = ({ item, onAdd, onRemove }) => {
-  const price = `${item.price.toFixed(2)} €`;
+  const price = `${item.price.toFixed(2.} €`;
 
   const removeHandler = () => {
     onRemove(item.id);
@@ -330,7 +330,7 @@ Parent (Cart.tsx in the food order system)
 const Cart: React.FC<CartProps> = ({ onClose }) => {
   const cartContext = useContext(CartContext);
 
-  const totalAmount = `${cartContext.totalAmount.toFixed(2)} €`;
+  const totalAmount = `${cartContext.totalAmount.toFixed(2.} €`;
   const hasItems = cartContext.items.length > 0;
 
   const cartItemRemoveHandler = (id: string) => {

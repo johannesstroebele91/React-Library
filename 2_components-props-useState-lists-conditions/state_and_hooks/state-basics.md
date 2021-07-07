@@ -1,4 +1,4 @@
-# 1) Relevance
+# 1. Basics
 
 **Without changes to the state an app is in the end static**
 
@@ -13,7 +13,7 @@ The state is fully controlled by the component
 - and is on a PER COMPONENT bases
 - even for multiple e.g. ExpenseItem components
 
-Problem example:
+# 2. Relevance
 
 - Variables can be altered
   - by the event handler
@@ -24,12 +24,13 @@ Problem example:
   - **SOLUTION: STATE!!!**
 
 WARNING:
+
 - only a new state is created by this method
 - not the old state updated
 - so the old variables from the previous state needs to passed
 - to the new state
 
-# 2) Approach
+# 2. Approach
 
 You need to specify
 
@@ -37,8 +38,6 @@ You need to specify
 - AND how these events trigger a change in the state
 
 [Example see ExpenseItem file](../../react-as-spa-ts/general-version/src/components/Expenses/ExpenseItem/ExpenseItem.tsx)
-
-## 2.1) React to user events
 
 - HTML elements that can be interactive with
 - can trigger user events, which can be viewed:

@@ -1,9 +1,9 @@
-- [1) Basics](#1-basics)
-- [2) Problems](#2-problems)
-- [3) Solution](#3-solution)
-- [4) Children props](#4-children-props)
+- [1. Basics](#1-basics)
+- [2. Problems](#2-problems)
+- [3. Solution](#3-solution)
+- [4. Children props](#4-children-props)
 
-# 1) Basics
+# 1. Basics
 
 - The goal is to pass data between components
   - thereby making components reusable
@@ -18,7 +18,7 @@
   - i.e. in the returned JSX code
   - by using `{}` which a JS expression in between them
 
-# 2) Problems
+# 2. Problems
 
 - Data passed to via props
   - not only includes the passed data
@@ -37,12 +37,12 @@ function Todos(props: any) {
 export default Todos;
 ```
 
-# 3) Solution
+# 3. Solution
 
 [Pass data from parent to child](./props-parent-to-child.md)
 [Pass data from child to parent](./props-child-to-parent.md)
 
-# 4) Children props
+# 4. Children props
 
 Children props holds all of the content
 
@@ -62,8 +62,7 @@ export default Wrapper;
 Example Other Custom Components (e.g. AddUser)
 
 ```javascript
-
-import Wrapper from "..."
+import Wrapper from "...";
 
 const AddUser: React.FC<AdduserProps> = ({ onAddUser }) => {
   return (

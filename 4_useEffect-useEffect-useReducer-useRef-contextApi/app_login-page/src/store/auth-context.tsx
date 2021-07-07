@@ -16,27 +16,27 @@ export const AuthContextProvider = (props: any) => {
 
   // !!! useEffect to persit data through reloads and app restarts in 3 steps
 
-  // 2) Declare useEffect for persiting data
+  // 2. Declare useEffect for persiting data
   useEffect(
     () => {
-      // 2.1) Side-effect function: Work with the previously declared item of the localStorage
+      // 2.1. Side-effect function: Work with the previously declared item of the localStorage
       const storedUserLoggedInData = localStorage.getItem("isLoggedIn");
       if (storedUserLoggedInData === "1") {
         setIsLoggedIn(true);
       }
-    }, // 2.2) Dependency array: controls when the function is executed
+    }, // 2.2. Dependency array: controls when the function is executed
     []
   );
 
   const loginHandler = (email: string, password: string) => {
     // TODO functionality for checking email and password
-    // 1) Create a key value pair in the local storage
+    // 1. Create a key value pair in the local storage
     localStorage.setItem("isLoggedIn", "1");
     setIsLoggedIn(true);
   };
 
   const logoutHandler = () => {
-    // 3) Remove key afterwards from local storage
+    // 3. Remove key afterwards from local storage
     localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
   };

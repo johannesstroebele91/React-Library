@@ -12,7 +12,7 @@
 
 **The following parameters can be passed to setState()**
 
-## 2.1) parameter can be a function, or an object
+## 2.1. parameter can be a function, or an object
 
 a) functions:
 
@@ -27,7 +27,7 @@ b) object:
 - only need to add the state that should be updated
 - e.g. this.setState(peter.phone='01722831'
 
-## 2.2) parameter is a callback function
+## 2.2. parameter is a callback function
 
 - enables to change something after the state was altered
 - this is because setState() is an async function

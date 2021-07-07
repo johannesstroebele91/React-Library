@@ -6,7 +6,7 @@ import Button from "../UI/Button/Button";
 import AuthContext from "../../store/auth-context";
 import Input from "../UI/Input/Input";
 
-// 2) Declare useReducer function for the state logic
+// 2. Declare useReducer function for the state logic
 const emailReducer = (state: any, action: any) => {
   if (action.type === "USER_INPUT") {
     return { value: action.val, isValid: action.val.includes("@") };
@@ -41,7 +41,7 @@ const Login = () => {
   const emailInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
-  // 1) Declare useReducer and initialize
+  // 1. Declare useReducer and initialize
   const [emailState, dispatchEmail] = useReducer<
     React.Reducer<
       { value: string; isValid: boolean },
@@ -69,11 +69,11 @@ const Login = () => {
     };
   }, []);
 
-  // 6) Stopping unnecessary reruns of the useEffect hook
+  // 6. Stopping unnecessary reruns of the useEffect hook
   const { isValid: emailIsValid } = emailState;
   const { isValid: passwordIsValid } = passwordState;
 
-  // 5) useEffect enables to updating a state based on another state
+  // 5. useEffect enables to updating a state based on another state
   useEffect(() => {
     const identifier = setTimeout(() => {
       console.log("Checking form validity!");
@@ -86,7 +86,7 @@ const Login = () => {
     };
   }, [emailIsValid, passwordIsValid]);
 
-  // 3) and 4) use the state and the dispatchFn as before
+  // 3. and 4. use the state and the dispatchFn as before
   const emailChangeHandler = (event: any) => {
     dispatchEmail({ type: "USER_INPUT", val: event.target.value });
 
@@ -98,7 +98,7 @@ const Login = () => {
   const passwordChangeHandler = (event: any) => {
     dispatchPassword({ type: "USER_INPUT", val: event.target.value });
 
-    // setFormIsValid(emailState.isValid && event.target.value.trim().length > 6);
+    // setFormIsValid(emailState.isValid && event.target.value.trim().length > 6.;
   };
 
   const validateEmailHandler = () => {

@@ -8,7 +8,7 @@ interface CartItemProps {
 }
 
 const CartItem: React.FC<CartItemProps> = ({ item, onAdd, onRemove }) => {
-  const price = `${item.price.toFixed(2)} €`;
+  const price = `${item.price.toFixed(2.} €`;
 
   const removeHandler = () => {
     onRemove(item.id);
@@ -24,7 +24,7 @@ const CartItem: React.FC<CartItemProps> = ({ item, onAdd, onRemove }) => {
         </div>
       </div>
       <div className={classes.actions}>
-        {/* 1) The best solution is to use an handler (e.g. removeHandler) */}
+        {/* 1. The best solution is to use an handler (e.g. removeHandler) */}
         {/* but an arrow function solution is also possible */}
         {/* although it is bad practice to execute functions in the HTML  */}
         <button onClick={removeHandler}>−</button>

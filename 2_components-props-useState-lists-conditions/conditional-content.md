@@ -1,11 +1,11 @@
-# 1) Basics
+# 1. Basics
 
 Conditional content can be implemented
 
 - by using the ternary operator
 - e.g. {condition ? true : false}
 
-# 2) Short condition length example
+# 2. Short condition length example
 
 Better for small statements
 
@@ -29,7 +29,7 @@ return (
 );
 ```
 
-# 3) Medium condition length example
+# 3. Medium condition length example
 
 Better for longer statements
 
@@ -53,7 +53,7 @@ return (
 );
 ```
 
-# 4) Long condition length example
+# 4. Long condition length example
 
 The condition can also be declared in advance and used later
 
@@ -72,7 +72,7 @@ if (filteredExpenses.length > 0) {
 return <>{expensesContent}</>;
 ```
 
-# 5) Long condition length example
+# 5. Long condition length example
 
 The condition can also be declared in advance and used later
 
@@ -93,7 +93,7 @@ return (
 );
 ```
 
-# 6) Passing data for rendering child component conditionally
+# 6. Passing data for rendering child component conditionally
 
 Parent component:
 

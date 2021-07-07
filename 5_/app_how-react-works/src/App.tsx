@@ -12,8 +12,8 @@ function App() {
   // although just content in the child (DemoOutput) has changed
   console.log("app running");
 
-  // 1) tell React that this function will never change (why? we have to know!)
-  // 2) Specify the dependencies similar to the useEffect hook
+  // 1. tell React that this function will never change (why? we have to know!)
+  // 2. Specify the dependencies similar to the useEffect hook
   const toggleParagraphHandler = useCallback(() => {
     if (allowToggle) {
       setShowParagraph((prevShowParagraph) => !prevShowParagraph); // cleaner way to use prevState

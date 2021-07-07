@@ -1,4 +1,4 @@
-# 1) Basics
+# 1. Basics
 
 Composition (children props)
 
@@ -8,14 +8,14 @@ Composition (children props)
 - Combination of components
 - e.g. <ExpenseItem/>
 
-# 2) Wrapper Components
+# 2. Wrapper Components
 
 - For such components not everything is configured by props
 - but content is passed
 - via the opening and closing tags of the component using `{props.children}`
 - enabling to combine components for more abstraction
 
-# 3) Important
+# 3. Important
 
 - such components are not able to support
 - all functionalities like normal HTML elements
@@ -24,7 +24,7 @@ Composition (children props)
 - by using functionalities such as props.children
 - e.g. Card component
 
-# 4) Example
+# 4. Example
 
 Card.tsx from food order system
 

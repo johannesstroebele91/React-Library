@@ -50,8 +50,8 @@ const ErrorModal: React.FC<ErrorModalProps> = ({
   return (
     <>
       {/* Portals enable to transfer DOM elements respectively to id specified (e.g. in the index.html) or somewhere else */}
-      {/* 1) Specify element which should be rendered*/}
-      {/* 2) Specify id where the component should be rendered */}
+      {/* 1. Specify element which should be rendered*/}
+      {/* 2. Specify id where the component should be rendered */}
       {ReactDOM.createPortal(
         <Backdrop onCloseModal={onCloseModal} />,
         document.getElementById("backdrop-root")!

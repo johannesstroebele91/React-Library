@@ -1,6 +1,6 @@
 **Project Files Structure**
 
-# 1) Prerequisites
+# 1. Prerequisites
 
 - apps
   - React with Javascript as **widgets**
@@ -12,7 +12,7 @@
 - react and TypeScript
 - webpack
 
-# 2) Components, Props, useState, dynamic lists, conditions
+# 2. Components, Props, useState, dynamic lists, conditions
 
 - apps
   - expenses manager (applies that was learned in the [1.](./1_prerequisites/) and [2. folder]())
@@ -25,7 +25,7 @@
 - conditional content
 - lists rendering
 
-# 3) Debugging, useRef, fragments, portals, styling
+# 3. Debugging, useRef, fragments, portals, styling
 
 - apps
   - app tasks manager (applies what was learned in the [2. folder]()
@@ -36,7 +36,7 @@
 - fragments
 - portals
 
-# 4) UseEffect, reducers, context API
+# 4. UseEffect, reducers, context API
 
 - apps
   - app ???
