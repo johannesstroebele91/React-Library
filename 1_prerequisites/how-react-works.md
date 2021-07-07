@@ -8,16 +8,21 @@
 - [5) React re-executes components with state for every change](#5-react-re-executes-components-with-state-for-every-change)
 - [5.1) Example: parent component re-executes due to dynamic props `show={showParagraph}`](#51-example-parent-component-re-executes-due-to-dynamic-props-showshowparagraph)
 - [5.2) Example: child components re-execute due static props `show={false}`](#52-example-child-components-re-execute-due-static-props-showfalse)
+- [6) React and State Management](#6-react-and-state-management)
 
 # 1) Basics
 
 React is a JS library
 
 - written in declarative JS code
-- that mainly manages components (props, context, state changes)
-- by combining HTML, CSS and JS
+- that combines HTML, CSS and JS
 - for building user interfaces
 - that are re-usable and reactive
+
+React mainly manages
+
+- components (e.g. functional component)
+- and the state attached to components (e.g. props, context, ...)
 
 # 2) Application Areas
 
@@ -88,7 +93,7 @@ React uses a concept called virtual DOM
 
 Although the real DOM is NOT updated
 
-- whenever components, props, state, or context changes
+- whenever the state changes (e.g. via props, context, ...)
 - React components are re-evaluated (component functions are re-executed)
 - every time such a change happens
 
@@ -96,8 +101,8 @@ Although the real DOM is NOT updated
 
 The function `console.log("app running");` of the parent gets triggered
 
-- although only the child component changes
-- because the state/props are handled in the parent
+- although only the state of the child component changed
+- because the state (e.g. props) are handled in the parent
 - (of course the child component gets also triggered for every change)
 
 ```javascript
@@ -134,3 +139,17 @@ Every time a parent component changes
 - are re-executed automatically
 - thereby triggering `console.log("demo output running");`
 - (does not matter if the props are static)
+
+# 6) React and State Management
+
+The state (e.g. via useState, useReducer) in React is
+
+- NOT lost
+- or needs to be reinitialize
+- because React saves the state and the values
+- as long as it is rendered in the DOM
+
+However!
+
+- the state of conditional component might be deleted
+- when they are not rendered
