@@ -64,4 +64,4 @@ React compares values before and after changes
 
 # 5. Example
 
-See App.tsx
+See App.tsx of app_simple-toggle-button

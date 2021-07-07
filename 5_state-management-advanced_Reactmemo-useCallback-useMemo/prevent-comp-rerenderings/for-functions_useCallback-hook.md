@@ -5,10 +5,16 @@
 
 # 1. Goal
 
-The hook useCallback enables to tell React
+The hook useCallback enables
 
-- to re-execute a certain component
-- only under certain circumstances
+- memorize function via React
+- thereby to stop React from re-execute functions
+- multiple times during the re-render cycles of a component
+
+So changing a function only
+
+- when the previous function does not match the new function
+- after the state update
 - e.g. when a props of references types changed
 - `props.onClick === props.previous.onClick` // Output: true
 
@@ -44,6 +50,8 @@ The hook can be used in 2 steps:
    - btw. functions like setShowParagraph do not need to be stated
    - because they are saved already by React in memory
 
+Example in App.tsx of app_simple-toggle-button
+
 ```javascript
 const toggleParagraphHandler = useCallback(() => {
   setShowParagraph((prevShowParagraph) => !prevShowParagraph); // cleaner way to use prevState
@@ -62,7 +70,7 @@ Specify the dependencies similar to the useEffect hook
    - which results in the function not being skipped,
    - but actually it is re-executed if e.g. allowToggle changes
 
-Example
+Example in App.tsx of app_simple-toggle-button
 
 ```javascript
 const toggleParagraphHandler = useCallback(() => {
