@@ -1,7 +1,18 @@
-import React, { useState } from "react";
-import "./App.css";
-import MoviesList from "./components/MoviesList";
+# Basics
 
+Ref: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
+
+# Types
+
+Informational responses (100–199)
+Successful responses (200–299)
+Redirects (300–399)
+Client errors (400–499)
+Server errors (500–599)
+
+# Example
+
+```javascript
 function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -34,25 +45,6 @@ function App() {
     setIsLoading(false);
   };
 
-  /* Old Approach
-  const fetchMoviesHandler = () => {
-    fetch("https://swapi.dev/api/films/")
-      .then((response) => {
-        return response.json(); // returns promise
-      })
-      .then((data) => {
-        const transformedMovies = data.results.map((movieData) => {
-          return {
-            id: movieData.episode.id,
-            title: movieData.title,
-            openingText: movieData.opening_crawl,
-            releaseDate: movieData.release_date,
-          };  // returns actual data data
-        });
-        setMovies(transformedMovies);
-      });
-  }; */
-
   let content = <p>Found no movies</p>;
   if (movies.length > 0) {
     content = <MoviesList movies={movies} />;
@@ -73,5 +65,4 @@ function App() {
     </React.Fragment>
   );
 }
-
-export default App;
+```
