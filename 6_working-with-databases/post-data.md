@@ -1,21 +1,18 @@
-import React, { useCallback, useEffect, useState } from "react";
-import "./App.css";
-import AddMovie from "./components/AddMovie";
-import MoviesList from "./components/MoviesList";
+# Basics
 
+The fetch() function also allows to POST data using the post method
+
+# Example
+
+```javascript
 function App() {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Hoisting makes that all "const" statements are processed
-  // at the beginning, therefore useEffect needs to be moved
-  // after "const fetchMoviesHandler ..."
-  // and NOT like before can stay before it
-  // when the normal function() syntax is used
   const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
-    setError(null); // Clear previous error
+    setError(null);
     try {
       const response = await fetch(
         "https://react-http-45506-default-rtdb.firebaseio.com/movies.json"
@@ -42,14 +39,11 @@ function App() {
       setError(error.message);
     }
     setIsLoading(false);
-  }, []); // state updating functions (e.g. setError) don't need to be included
-  // because they are automatically added by react
+  }, []);
 
-  // HTTP requests is a side-effect that may change component state
-  // Such side-effect should go into useEffect
   useEffect(() => {
     fetchMoviesHandler();
-  }, [fetchMoviesHandler]); // only runes for the first time
+  }, [fetchMoviesHandler]);
 
   // The fetch() function also allows to POST data!!!
   // method is by default get
@@ -92,5 +86,4 @@ function App() {
     </React.Fragment>
   );
 }
-
-export default App;
+```

@@ -31,3 +31,15 @@ application programming interface
 
 - rules on how HTTP requests (e.g. REST or GraphQL)
 - needs to be mad
+
+# Solution
+
+This can be done
+
+- natively using fetch()
+- or with libraries e.g. axios
+
+Can send
+
+- get (often no specification needed e.g. with fetch())
+- and post requests (specification needed method: 'POST')
