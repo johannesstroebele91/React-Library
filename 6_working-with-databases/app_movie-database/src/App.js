@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import MoviesList from "./components/MoviesList";
 
@@ -7,8 +7,12 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Better version
-  const fetchMoviesHandler = async () => {
+  // Hoisting makes that all "const" statements are processed
+  // at the beginning, therefore useEffect needs to be moved
+  // after "const fetchMoviesHandler ..."
+  // and NOT like before can stay before it
+  // when the normal function() syntax is used
+  const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null); // Clear previous error
     try {
@@ -32,26 +36,14 @@ function App() {
       setError(error.message);
     }
     setIsLoading(false);
-  };
+  }, []); // state updating functions (e.g. setError) don't need to be included
+  // because they are automatically added by react
 
-  /* Old Approach
-  const fetchMoviesHandler = () => {
-    fetch("https://swapi.dev/api/films/")
-      .then((response) => {
-        return response.json(); // returns promise
-      })
-      .then((data) => {
-        const transformedMovies = data.results.map((movieData) => {
-          return {
-            id: movieData.episode.id,
-            title: movieData.title,
-            openingText: movieData.opening_crawl,
-            releaseDate: movieData.release_date,
-          };  // returns actual data data
-        });
-        setMovies(transformedMovies);
-      });
-  }; */
+  // HTTP requests is a side-effect that may change component state
+  // Such side-effect should go into useEffect
+  useEffect(() => {
+    fetchMoviesHandler();
+  }, [fetchMoviesHandler]); // only runes for the first time
 
   let content = <p>Found no movies</p>;
   if (movies.length > 0) {
