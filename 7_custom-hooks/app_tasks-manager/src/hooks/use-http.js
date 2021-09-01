@@ -26,8 +26,11 @@ const useHttp = () => {
     setIsLoading(false);
   }, []);
 
-  // Shorthand: isLoading: isLoading, error: error, sendRequest: sendRequest
-  return { isLoading, error, sendRequest };
+  return {
+    isLoading,
+    error,
+    sendRequest,
+  };
 };
 
 export default useHttp;
