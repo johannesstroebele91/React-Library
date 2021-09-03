@@ -58,6 +58,7 @@ const SimpleInput = (props) => {
           onBlur={nameBlurHandler}
           value={enteredName}
         />
+
         {nameInputHasError && (
           <p className="error-text">Name must not be empty.</p>
         )}
