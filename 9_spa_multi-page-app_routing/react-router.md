@@ -3,8 +3,6 @@
   - [MainHeader.js](#mainheaderjs)
   - [App.js](#appjs)
   - [index.js](#indexjs)
-- [Hightlight active link via NavLinks](#hightlight-active-link-via-navlinks)
-  - [Example](#example-1)
 
 # Basics
 
@@ -17,6 +15,14 @@ Is in a general convention
 
 - to put all pages
 - into a "pages" instead of the "component folder
+
+The attribute exact
+
+- is extremely important
+- for handling e.g. how the stanard URL `https://<someName>/` is handled
+- because if <Route path="/"> would be written without `exact`
+- the path would always match!
+- THEREFORE USE <Route path="/" exact>
 
 # Example
 
@@ -64,7 +70,7 @@ function App() {
   return (
     <div>
       <MainHeader />
-      <Route path="/"></Route>
+      <Route path="/" exact></Route>
       <Route path="/welcome">
         <Welcome />
       </Route>
@@ -93,47 +99,3 @@ ReactDOM.render(
   document.getElementById("root")
 );
 ```
-
-# Hightlight active link via NavLinks
-
-The component NavLink from react-router-dom
-
-- enables to show which component
-- is currently active
-
-It requires to be added to the
-
-- component via NavLink & activeClassName
-- and the css class like ".header a.active"
-
-## Example
-
-import { NavLink } from "react-router-dom";
-import classes from "./MainHeader.module.css";
-
-const MainHeader = () => {
-return (
-
-<header className={classes.header}>
-<ul>
-<li>
-<NavLink activeClassName={classes.active} to="/">
-Home
-</NavLink>
-</li>
-<li>
-<NavLink activeClassName={classes.active} to="/welcome">
-Welcome
-</NavLink>
-</li>
-<li>
-<NavLink activeClassName={classes.active} to="/products">
-Products
-</NavLink>
-</li>
-</ul>
-</header>
-);
-};
-
-export default MainHeader;

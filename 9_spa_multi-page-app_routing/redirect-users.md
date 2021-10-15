@@ -1,3 +1,13 @@
+# Redirecting
+
+Enables to redirect users when clicking on a link
+
+- to another page automatically
+- which can come in handy if e.g. data on a page is not available
+
+# Example
+
+```javascript
 import { Redirect, Route, Switch } from "react-router-dom";
 import MainHeader from "./components/MainHeader";
 import ProductDetail from "./pages/ProductDetail";
@@ -26,3 +36,4 @@ function App() {
 }
 
 export default App;
+```
