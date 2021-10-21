@@ -5,17 +5,16 @@ Can only use React hooks in
 - React components function
 - and custom hooks
 
-Just functions that
+Are functions that enable to
 
-- outsources stateful logic
+- outsources stateful logic (hooks)
 - into re-usable functions
-- by using React hooks and state
 - which regular functions cannot use
 
-The custom hook
+For example,
 
-- is bound to the respective component
-- it is called from
+- useHistory() can be used in an usePageOpener() custom hook
+- which enables to re-use functions with hooks
 
 A custom hook can return
 
@@ -91,7 +90,3 @@ const useHttp = (requestConfig, applyData) => {
   return { isLoading, error, sendRequest };
 };
 ```
-
-## Using a custom hook:
-
-# Best Practices

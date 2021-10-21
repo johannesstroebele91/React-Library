@@ -1,22 +1,13 @@
-- [Dynamic routing](#dynamic-routing)
 - [Switch](#switch)
 - [Example](#example)
   - [App.js](#appjs)
   - [ProductDetails.js](#productdetailsjs)
 
-# Dynamic routing
-
-Params enables to dynamically route pages
-
-- e.g. /products-detail/:productId
-- so the ":" tells React that the following value can be different things
-- AND multiple params are also possible e.g. /products-detail/:productId/:anotherId
-
 # Switch
 
-Enables to not show all pages at the same time,
+Enables to show only one active page at a time
 
-- but only one
+- (not show all pages at the same time),
 - HAS the problem that it matches any path that begins in the same way
 - and not the exact path
 - the attribute exact handles that only the full path is matched
