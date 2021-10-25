@@ -1,8 +1,41 @@
-import { Fragment } from "react";
-import { useHistory, useLocation } from "react-router-dom";
-import QuoteItem from "./QuoteItem";
-import classes from "./QuoteList.module.css";
+# basics
 
+Query parameters
+
+- enable to pass extra data
+- into the page that was loaded
+
+These parameters are optional
+
+# useHistory
+
+This hook gives access
+
+- to the history object
+- which allows to change and manage the URL
+
+# useLocation
+
+This hook gives access
+
+- to the location object
+- which includes information about the currently loaded page
+- search includes the query parameters
+
+URLSearchParams can be used
+
+- to extract the data
+- from the query params
+
+As shown in the example,
+
+- the URL can then be changed
+- to consider the query parameters (e.g. ascending)
+- and show it in the URL
+
+# Example: QuoteList.js
+
+```javascript
 const sortQuotes = (quotes, ascending) => {
   return quotes.sort((quoteA, quoteB) => {
     if (ascending) {
@@ -48,5 +81,4 @@ const QuoteList = (props) => {
     </Fragment>
   );
 };
-
-export default QuoteList;
+```
