@@ -14,6 +14,11 @@ This hook gives access
 - to the history object
 - which allows to change and manage the URL
 
+It can be given a
+
+- string (less readable) but also
+- an object (more readable)
+
 # useLocation
 
 This hook gives access
@@ -58,6 +63,12 @@ const QuoteList = (props) => {
   const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
   const changeSortingHandler = () => {
+    // Using an object (more readable)
+    history({
+      pathname: location.pathname,
+      search: `?sort=${isSortingAscending ? "desc" : "asc"}`,
+    });
+    // Using an string (less readable)
     history.push("/quotes?sort=" + (isSortingAscending ? "desc" : "asc"));
   };
 

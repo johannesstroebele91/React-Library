@@ -6,11 +6,7 @@ const DUMMY_QUOTES = [
 ];
 
 const AllQuotes = () => {
-  return (
-    <div className="centered">
-      <QuoteList quotes={DUMMY_QUOTES} />
-    </div>
-  );
+  return <QuoteList quotes={DUMMY_QUOTES} />;
 };
 
 export default AllQuotes;
