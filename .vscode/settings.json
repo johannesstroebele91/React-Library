@@ -13,5 +13,5 @@
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": ["apptsx"]
+  "cSpell.words": ["apptsx", "noopener", "noreferrer"]
 }
