@@ -3,6 +3,11 @@
 Tool for running tests and asserting the results, most popular for React is Jest
 For "simulating" (rendering) the React app / components the React Testing Library is used
 
+References:
+
+- jest: https://jestjs.io/docs/getting-started
+- react-testing-library: https://testing-library.com/docs/react-testing-library/intro/
+
 # Jest
 
 Normally Jest tests can be run
