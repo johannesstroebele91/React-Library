@@ -4,11 +4,15 @@ Client-side routing with React happens
 
 - solely in the browser (with react-router-dom)
 - AND NOT in the backend
+- SERVER only sends one HTML page,
+- afterwards React takes over and
+- controles the UI
 
 Server-side routing happens
 
 - on a remote machine
 - which host the production ready React code
+- Server sends multiple html pages
 
 # Procedure of client-side routing
 

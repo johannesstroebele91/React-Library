@@ -40,7 +40,7 @@ import { render, screen } from "@testing-library/react";
 import Async from "./Async";
 describe("Async component", () => {
   test("renders posts if requests succeeds", async () => {
-    // overwrite fetch function, with a fetch mock funtion by jest
+    // overwrite fetch function, with a fetch mock function by jest
     window.fetch = jest.fn();
     window.fetch.mockResolvedValueOnce({
       json: async () => [
