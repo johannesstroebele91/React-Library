@@ -20,7 +20,7 @@
 
 ## Approach
 
-- bundles JavaScript files for usage in a browser
+- React bundles JavaScript files for usage in a browser
 - It can handle not only combination and minification of JS and CSS files,
 - but also other assets such as image files (spriting) through the use of plugins
 

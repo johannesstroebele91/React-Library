@@ -4,10 +4,7 @@
   - [3.1. React without React DOM](#31-react-without-react-dom)
   - [3.2. React DOM library](#32-react-dom-library)
   - [3.3. ReactDOM renderer](#33-reactdom-renderer)
-- [4. Virtual DOM](#4-virtual-dom)
-- [5. React re-executes components with state for every change](#5-react-re-executes-components-with-state-for-every-change)
-- [5.1. Example: parent component re-executes due to dynamic props `show={showParagraph}`](#51-example-parent-component-re-executes-due-to-dynamic-props-showshowparagraph)
-- [5.2. Example: child components re-execute due static props `show={false}`](#52-example-child-components-re-execute-due-static-props-showfalse)
+- [4. What happens behind the scenes](#4-what-happens-behind-the-scenes)
 
 # 1. Basics
 
@@ -17,6 +14,13 @@ React is a JS library
 - that combines HTML, CSS and JS
 - for building user interfaces
 - that are re-usable and reactive
+
+If a application is writtin
+
+- only with HTML, CSS, and JS
+- the code needs to be written in a imperative way
+- which leads to duplications and more code
+- in comparison to React
 
 React mainly manages
 
@@ -70,3 +74,21 @@ It enables to build a component tree
      - in the `public/index.html` folder
      - It includes the 'root' element,
      - which ReactDOM uses to render the element `<App />` in this place
+
+# 4. What happens behind the scenes
+
+The browser would not understand
+
+- the syntax of the react components
+- out of the box
+
+In order to achieve this
+
+- the react files are transformed (build) in a certain way
+- so the browser can understand
+- by tools such as create-react-app (https://create-react-app.dev/)
+
+A development server is also used
+
+- which hosts the running React app locally
+- and updates the page whenever changes are made to the code
