@@ -1,3 +1,34 @@
+# Basics
+
+Problem is that the visitor of a page
+
+- can normally only use the page
+- if all of the content is downloaded
+- there the visitor has to wait
+
+# Opportunity to minify the code
+
+Lazy loading enables to
+
+- only downloaded
+- if the visitor actually visits the specific page
+
+This is done by
+
+- splitting the code
+- into multiple bundles
+- which are only downloaded
+- when there are needed
+
+This can be implemented
+
+- via the routing
+- thereby splitting the application
+- by the route of the visitor
+
+# Example
+
+```javascript
 import React, { Suspense } from "react";
 import { Redirect, Route, Switch } from "react-router-dom";
 import Layout from "./components/layout/Layout";
@@ -42,5 +73,4 @@ function App() {
     </Layout>
   );
 }
-
-export default App;
+```
