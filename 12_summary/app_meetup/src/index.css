@@ -6,6 +6,8 @@ body {
   font-family: sans-serif;
   margin: 3rem;
   background-color: #dfdfdf;
+  margin: 0;
+  padding: 0;
 }
 
 h1,
@@ -39,12 +41,10 @@ h2 {
 }
 
 .card {
-  display: inline-block;
   background-color: white;
   border-radius: 4px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 1rem;
-  margin: 1rem;
   width: 20rem;
 }
 

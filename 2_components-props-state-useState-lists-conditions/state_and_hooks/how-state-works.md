@@ -7,6 +7,8 @@
 
 # 1. Basics
 
+Reference: https://academind.com/tutorials/what-is-state
+
 The state (e.g. via useState, useReducer) in React is
 
 - NOT lost
