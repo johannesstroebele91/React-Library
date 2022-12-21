@@ -21,7 +21,8 @@ The state is fully controlled by the component
   - like this `let amountExpense = title;`
 - BUT: this does not re-render the UI
   - only the values in the console are updated
-  - **SOLUTION: STATE!!!**
+
+**SOLUTION: STATE!!!**
 
 WARNING:
 

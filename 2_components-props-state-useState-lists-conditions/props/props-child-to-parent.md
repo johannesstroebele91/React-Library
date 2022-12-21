@@ -226,7 +226,7 @@ interface CartItemProps {
 }
 
 const CartItem: React.FC<CartItemProps> = ({ item, onAdd, onRemove }) => {
-  const price = `${item.price.toFixed(2.} €`;
+  const price = `${item.price.toFixed(2)} €`;
 
   const removeHandler = () => {
     onRemove(item.id);
